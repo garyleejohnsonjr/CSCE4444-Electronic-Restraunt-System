@@ -3,6 +3,7 @@
     package="com.github.CSCE4444ElectronicRestrauntSystem" >
 
     <application
+        android:name="com.github.CSCE4444ElectronicRestrauntSystem.MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
