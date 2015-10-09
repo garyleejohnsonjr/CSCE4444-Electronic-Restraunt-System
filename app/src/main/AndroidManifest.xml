@@ -2,19 +2,32 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.CSCE4444ElectronicRestrauntSystem" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
-        android:name="com.github.CSCE4444ElectronicRestrauntSystem.MainApplication"
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PayBill"
+            android:label="@string/title_activity_pay_bill" >
+        </activity>
+        <activity
+            android:name=".CustomerMain"
+            android:label="@string/title_activity_customer_main" >
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>
