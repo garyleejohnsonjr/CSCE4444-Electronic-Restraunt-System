@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -61,7 +62,15 @@ public class MainActivity extends AppCompatActivity {
                 query.findInBackground(new FindCallback<ParseObject>() {
                     public void done(List<ParseObject> users,
                                      ParseException e) {
-                        if (e == null)
+                        //Username Not Found
+                        //Todo:Incorrect Username Message
+                        if(users.size() == 0)
+                        {
+                            Toast.makeText(getApplicationContext(), "Username invalid.", Toast.LENGTH_LONG).show();
+                            finish();
+                            startActivity(getIntent());
+                        }
+                        else if (e == null)
                         {
                             for (ParseObject username: users) {
                                 //Log to check queries
@@ -105,18 +114,12 @@ public class MainActivity extends AppCompatActivity {
                                 //Todo:Incorrect Password Message
                                 else
                                 {
+                                    //toast/alert message I prefer alerts but this works for now
+                                    Toast.makeText(getApplicationContext(), "Password invalid.", Toast.LENGTH_LONG).show();
                                     finish();
                                     startActivity(getIntent());
                                 }
                             }
-                        }
-
-                        //Username Not Found
-                        //Todo:Incorrect Username Message
-                        else if(users.size() == 0)
-                        {
-                            finish();
-                            startActivity(getIntent());
                         }
                         else
                         {

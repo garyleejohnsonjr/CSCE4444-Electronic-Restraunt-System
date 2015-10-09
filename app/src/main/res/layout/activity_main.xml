@@ -23,7 +23,6 @@
         android:ems="10"
         android:id="@+id/etPassword"
         android:hint="Password"
-        android:imeOptions="actionUnspecified"
         android:maxLines="1" android:singleLine="true"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
