@@ -28,6 +28,18 @@
             android:name=".CustomerMain"
             android:label="@string/title_activity_customer_main" >
         </activity>
+        <activity
+            android:name=".CreateUser"
+            android:label="@string/title_activity_create_user" >
+        </activity>
+        <activity
+            android:name=".KitchenMain"
+            android:label="@string/title_activity_kitchen_main" >
+        </activity>
+        <activity
+            android:name=".ServerMain"
+            android:label="@string/title_activity_server_main" >
+        </activity>
     </application>
 
 </manifest>

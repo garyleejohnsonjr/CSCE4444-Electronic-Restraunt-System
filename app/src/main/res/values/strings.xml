@@ -6,4 +6,9 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_pay_bill">Pay Bill</string>
     <string name="title_activity_customer_main">CustomerMain</string>
+    <string name="title_activity_kitchen_main">KitchenMain</string>
+    <string name="title_activity_server_main">ServerMain</string>
+    <string name="title_activity_create_user">Create User</string>
+
+
 </resources>
