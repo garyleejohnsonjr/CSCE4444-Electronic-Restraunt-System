@@ -22,4 +22,37 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Menu"
+        android:id="@+id/bCustomerViewMenu"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Games"
+        android:id="@+id/bGames"
+        android:layout_below="@+id/bCustomerViewMenu"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rewards Club"
+        android:id="@+id/bRewardsClub"
+        android:layout_below="@+id/bGames"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Server/Refills"
+        android:id="@+id/bCallServer"
+        android:layout_alignBottom="@+id/bPayBill"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
