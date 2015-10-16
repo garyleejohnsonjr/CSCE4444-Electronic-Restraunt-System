@@ -22,6 +22,69 @@
         android:id="@+id/bPayBill"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingredients Inventory"
+        android:id="@+id/bIngredients"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+    <LinearLayout
+        android:id="@+id/llOuterLayout"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="1"
+        android:paddingTop="2dp"
+        android:layout_below="@+id/tvKitchenStuffHere"
+        android:layout_above="@+id/bPayBill">
+        <LinearLayout
+            android:id="@+id/llCompletedOrders"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight=".7"
+            android:background="#02ffffff">
+            <TextView
+                android:id="@+id/tvCompleted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Completed Orders"
+                android:textStyle="bold"/>
+            <ListView
+                android:id="@+id/lvOrderScroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#99ffee11">
+            </ListView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llNewOrders"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight=".3"
+            android:paddingTop="10dp"
+            android:background="#02ffffff">
+            <TextView
+                android:id="@+id/tvNewOrders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Orders"
+                android:textStyle="bold"/>
+            <ListView
+                android:id="@+id/lvNewOrderScroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#99ffee11">
+            </ListView>
+        </LinearLayout>
+    </LinearLayout>
+
 
 </RelativeLayout>
