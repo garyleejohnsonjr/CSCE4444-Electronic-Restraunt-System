@@ -57,6 +57,10 @@
     <string name="title_activity_reports">Reports</string>
     <string name="title_activity_manager_main">ManagerMain</string>
     <string name="title_activity_rewards_status">RewardsStatus</string>
+    <string name="title_activity_table_status">TableStatus</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

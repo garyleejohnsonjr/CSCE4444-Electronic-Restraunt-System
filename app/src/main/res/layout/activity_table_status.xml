@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.github.CSCE4444ElectronicRestrauntSystem.TableStatus">
+
+<RadioGroup
+        android:id="@+id/rbTables"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Table Occupied"
+            android:id="@+id/bTableOccupied"
+            android:checked="false" />
+        <RadioButton
+            android:id="@+id/bTableOrdered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Table Ordered"
+            android:checked="false" />
+        <RadioButton android:id="@+id/bTableEating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Table Eating"
+            android:checked="false" />
+        <RadioButton android:id="@+id/bTablePaid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Table Paid"
+            android:checked="false" />
+        <RadioButton android:id="@+id/bTableHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Table Help"
+            android:checked="false" />
+        <RadioButton android:id="@+id/bTableUnoccupied"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Table Unoccupied"
+            android:checked="false" />
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/bStatusSubmit"
+        android:layout_below="@+id/rbTables"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp" />
+</RelativeLayout>
