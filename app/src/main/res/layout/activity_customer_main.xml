@@ -1,58 +1,83 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.github.CSCE4444ElectronicRestrauntSystem.CustomerMain">
+    tools:context="com.github.CSCE4444ElectronicRestrauntSystem.CustomerMain"
+    android:background="#99ffc610">
 
-    <TextView android:text="Customer Stuff Here" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvCustomerStuffHere"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pay Bill"
-        android:id="@+id/bPayBill"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Menu"
-        android:id="@+id/bCustomerViewMenu"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Menu"
+                android:id="@+id/bCustomerViewMenu" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Games"
-        android:id="@+id/bGames"
-        android:layout_below="@+id/bCustomerViewMenu"
-        android:layout_centerHorizontal="true" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Call Server / Refills"
+                android:id="@+id/bCallServer" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rewards Club"
-        android:id="@+id/bRewardsClub"
-        android:layout_below="@+id/bGames"
-        android:layout_centerHorizontal="true" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rewards Club"
+                android:id="@+id/bRewardsClub" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Server/Refills"
-        android:id="@+id/bCallServer"
-        android:layout_alignBottom="@+id/bPayBill"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Share On Twitter"
+                android:id="@+id/bShare" />
 
-</RelativeLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Games"
+                android:id="@+id/bGames" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Really Awesome Burgers"
+            android:id="@+id/textView4"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:textColor="#e63a2a"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pay Bill"
+            android:id="@+id/bPayBill" />
+
+    </LinearLayout>
+
+</LinearLayout>
