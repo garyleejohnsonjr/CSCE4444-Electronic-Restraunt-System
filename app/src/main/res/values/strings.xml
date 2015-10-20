@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">CSCE4444 Electronic Restraunt System</string>
-    <string name="title_activity_main">Login</string>
+    <string name="title_activity_main">CSCE4444 Electronic Restraunt System</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
