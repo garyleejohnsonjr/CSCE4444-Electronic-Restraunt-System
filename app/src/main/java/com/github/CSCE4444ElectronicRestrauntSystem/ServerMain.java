@@ -1,20 +1,23 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.List;
+
 
 //Main Sever Page
 //Todo: This is basically just a copy of the temporary CustomerMain
@@ -25,6 +28,42 @@ public class ServerMain extends AppCompatActivity {
 
 
     }
+    void changeColor(final TextView tTable, int tableNum){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Tables");
+        query.whereEqualTo("Number", tableNum);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> tables,
+                             ParseException e) {
+                //Todo: Submit nothing error
+                if (e == null) {
+                    for (ParseObject table : tables) {
+                        //Puts Status into database
+                        if(table.getString("Status").equals("Table Ordered"))
+                            //Blue-Ordered
+                            tTable.setTextColor(0xFF0008FF);
+                        if(table.getString("Status").equals("Table Paid"))
+                            //Black-Table Paid and occupied
+                            tTable.setTextColor(0xFF010101);
+                        //Todo:Blinking- Needs help
+                        if(table.getString("Status").equals("Table Unoccupied"))
+                            //White - Unoccupied
+                            tTable.setTextColor(0xFFFFFFFF);
+                        if(table.getString("Status").equals("Table Eating"))
+                            //Red-Table Eating
+                            tTable.setTextColor(0xFFFF0B00);
+                        if(table.getString("Status").equals("Table Occupied"))
+                            //Green-Table Occupied
+                            tTable.setTextColor(0xFF00FF00);
+                    }
+                } else {
+                    //Failed Query Log
+                    Log.d("Tables", "Error: " + e.getMessage());
+                }
+            }
+        });
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,16 +71,56 @@ public class ServerMain extends AppCompatActivity {
 
         //Buttons and clickable text tables
         Button bPayBill = (Button) findViewById(R.id.bPayBill);
-        TextView tTable1 = (TextView) findViewById(R.id.tTable1);
-        TextView tTable2 = (TextView) findViewById(R.id.tTable2);
-        TextView tTable3 = (TextView) findViewById(R.id.tTable3);
-        TextView tTable4 = (TextView) findViewById(R.id.tTable4);
-        TextView tTable5 = (TextView) findViewById(R.id.tTable5);
-        TextView tTable6 = (TextView) findViewById(R.id.tTable6);
-        TextView tTable7 = (TextView) findViewById(R.id.tTable7);
-        TextView tTable8 = (TextView) findViewById(R.id.tTable8);
-        TextView tTable9 = (TextView) findViewById(R.id.tTable9);
-        TextView tTable10 = (TextView) findViewById(R.id.tTable10);
+        final TextView tTable1 = (TextView) findViewById(R.id.tTable1);
+        final TextView tTable2 = (TextView) findViewById(R.id.tTable2);
+        final TextView tTable3 = (TextView) findViewById(R.id.tTable3);
+        final TextView tTable4 = (TextView) findViewById(R.id.tTable4);
+        final TextView tTable5 = (TextView) findViewById(R.id.tTable5);
+        final TextView tTable6 = (TextView) findViewById(R.id.tTable6);
+        final TextView tTable7 = (TextView) findViewById(R.id.tTable7);
+        final TextView tTable8 = (TextView) findViewById(R.id.tTable8);
+        final TextView tTable9 = (TextView) findViewById(R.id.tTable9);
+        final TextView tTable10 = (TextView) findViewById(R.id.tTable10);
+
+        //Sets Default Table colors
+        changeColor(tTable1, 1);
+        changeColor(tTable2, 2);
+        changeColor(tTable3, 3);
+        changeColor(tTable4, 4);
+        changeColor(tTable5, 5);
+        changeColor(tTable6, 6);
+        changeColor(tTable7, 7);
+        changeColor(tTable8, 8);
+        changeColor(tTable9, 9);
+        changeColor(tTable10, 10);
+
+        Thread refreshFeed = new Thread(){
+            public void run(){
+                while(true){
+                    try{
+                        sleep(10000);
+                    }
+                    catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                    finally {
+                        //Checks for updated Table status every 10 secs
+                        changeColor(tTable1, 1);
+                        changeColor(tTable2, 2);
+                        changeColor(tTable3, 3);
+                        changeColor(tTable4, 4);
+                        changeColor(tTable5, 5);
+                        changeColor(tTable6, 6);
+                        changeColor(tTable7, 7);
+                        changeColor(tTable8, 8);
+                        changeColor(tTable9, 9);
+                        changeColor(tTable10, 10);
+                    }
+                }
+            }
+        };
+        refreshFeed.start();
+
 
         //Each ables onClick function
         tTable1.setOnClickListener(new View.OnClickListener(){
