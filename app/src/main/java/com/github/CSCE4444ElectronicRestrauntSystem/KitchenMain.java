@@ -17,15 +17,15 @@ public class KitchenMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kitchen_main);
 
-        Button bPayBill = (Button) findViewById(R.id.bPayBill);
+        //Button bPayBill = (Button) findViewById(R.id.bPayBill);
 
-        bPayBill.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent iPayBill = new Intent(KitchenMain.this, PayBill.class);
-                startActivity(iPayBill);
-            }
-        });
+        //bPayBill.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            //public void onClick(View v) {
+            //    Intent iPayBill = new Intent(KitchenMain.this, PayBill.class);
+            //    startActivity(iPayBill);
+            //}
+        //});
     }
 
     @Override
