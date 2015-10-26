@@ -21,7 +21,6 @@ import java.util.List;
 
 // the activity used for the main food menu
 public class MenuMain extends AppCompatActivity {
-    // Todo: Disable current category button
     // Todo: Go to add item activity when item in menu is tapped
     // Todo: Go to edit/submit order activity when button is clicked
 
@@ -52,20 +51,25 @@ public class MenuMain extends AppCompatActivity {
         // modify query based on which category button is used
         switch (view.getId()) {
             case R.id.bAppetizers:
+                setTitle("Menu - Appetizers");
                 query.whereEqualTo("Type", "Appatizer");
                 break;
             case R.id.bFavorites:
+                setTitle("Menu - Favorites");
                 query.whereNotEqualTo("Type", "Drink");
                 query.addDescendingOrder("Frequency");
                 query.setLimit(3);
                 break;
             case R.id.bEntrees:
+                setTitle("Menu - Entrees");
                 query.whereEqualTo("Type", "Entree");
                 break;
             case R.id.bDesserts:
+                setTitle("Menu - Desserts");
                 query.whereEqualTo("Type", "Dessert");
                 break;
             case R.id.bDrinks:
+                setTitle("Menu - Drinks");
                 query.whereEqualTo("Type", "Drink");
                 break;
         }
