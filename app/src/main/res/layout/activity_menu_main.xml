@@ -28,35 +28,40 @@
                 android:layout_height="wrap_content"
                 android:text="Appetizers"
                 android:id="@+id/bAppetizers"
-                android:gravity="left|center_vertical" />
+                android:gravity="left|center_vertical"
+                android:onClick="switchCategory" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Favorites"
                 android:id="@+id/bFavorites"
-                android:gravity="left|center_vertical" />
+                android:gravity="left|center_vertical"
+                android:onClick="switchCategory" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Entrees"
                 android:id="@+id/bEntrees"
-                android:gravity="left|center_vertical" />
+                android:gravity="left|center_vertical"
+                android:onClick="switchCategory" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Desserts"
                 android:id="@+id/bDesserts"
-                android:gravity="left|center_vertical" />
+                android:gravity="left|center_vertical"
+                android:onClick="switchCategory" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Drinks"
                 android:id="@+id/bDrinks"
-                android:gravity="left|center_vertical" />
+                android:gravity="left|center_vertical"
+                android:onClick="switchCategory" />
         </LinearLayout>
 
         <ListView

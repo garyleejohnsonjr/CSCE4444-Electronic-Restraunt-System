@@ -21,27 +21,65 @@ import java.util.List;
 
 // the activity used for the main food menu
 public class MenuMain extends AppCompatActivity {
-    // Todo: Filter menu based on category button click
     // Todo: Disable current category button
     // Todo: Go to add item activity when item in menu is tapped
     // Todo: Go to edit/submit order activity when button is clicked
 
+
     // activity creation event
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // set the view to the layout
         setContentView(R.layout.activity_menu_main);
+        switchCategory(this.findViewById(R.id.bAppetizers));
+    }
 
-        // get menu items from parse in background
-        ParseQuery.getQuery("MenuItem").findInBackground(new FindCallback<ParseObject>() {
+
+    // switch category event
+    public void switchCategory(View view) {
+        // create parse query of menu items
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
+
+        // enable all the buttons
+        this.findViewById(R.id.bAppetizers).setEnabled(true);
+        this.findViewById(R.id.bFavorites).setEnabled(true);
+        this.findViewById(R.id.bEntrees).setEnabled(true);
+        this.findViewById(R.id.bDesserts).setEnabled(true);
+        this.findViewById(R.id.bDrinks).setEnabled(true);
+
+        // disable this button
+        view.setEnabled(false);
+
+        // modify query based on which category button is used
+        switch (view.getId()) {
+            case R.id.bAppetizers:
+                query.whereEqualTo("Type", "Appatizer");
+                break;
+            case R.id.bFavorites:
+                query.whereNotEqualTo("Type", "Drink");
+                query.addDescendingOrder("Frequency");
+                query.setLimit(3);
+                break;
+            case R.id.bEntrees:
+                query.whereEqualTo("Type", "Entree");
+                break;
+            case R.id.bDesserts:
+                query.whereEqualTo("Type", "Dessert");
+                break;
+            case R.id.bDrinks:
+                query.whereEqualTo("Type", "Drink");
+                break;
+        }
+
+        // run the query in the background, then create and set the adapter
+        query.findInBackground(new FindCallback<ParseObject>() {
             @Override public void done(List<ParseObject> menuItems, ParseException e) {
                 MenuAdapter adapter = new MenuAdapter(menuItems);
-                ListView lvMenu = (ListView)findViewById(R.id.lvMenu);
+                ListView lvMenu = (ListView) findViewById(R.id.lvMenu);
                 lvMenu.setAdapter(adapter);
             }
         });
     }
+
 
     // nested class used for the menu adapter
     private class MenuAdapter extends ArrayAdapter<ParseObject> {
@@ -51,7 +89,6 @@ public class MenuMain extends AppCompatActivity {
 
         // function called whenever the list is created or scrolled
         @Override public View getView(int position, View view, ViewGroup parent) {
-            // view inflater
             if (view == null) {
                 view = getLayoutInflater().inflate(R.layout.activity_menu_item, parent, false);
             }

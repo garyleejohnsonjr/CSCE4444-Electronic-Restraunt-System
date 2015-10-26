@@ -10,7 +10,8 @@
         android:layout_height="250px"
         android:id="@+id/ivPicture"
         android:background="#000000"
-        android:layout_marginRight="30px"/>
+        android:layout_marginRight="30px"
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:orientation="vertical"
