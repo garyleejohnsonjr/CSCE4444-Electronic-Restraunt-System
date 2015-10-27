@@ -4,8 +4,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
@@ -16,7 +19,8 @@ import com.parse.ParseQuery;
 
 public class AddItem extends AppCompatActivity {
     //TODO: add item button
-    //TODO: calories button
+
+    int calories;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +59,17 @@ public class AddItem extends AppCompatActivity {
                 TextView tvDescription = (TextView)findViewById(R.id.tvDescription);
                 String description = item.getString("Description");
                 tvDescription.setText(description);
+
+                // get calories
+                Button bCalories = (Button)findViewById(R.id.bCalories);
+                calories = item.getNumber("Calories").intValue();
+                bCalories.setEnabled(true);
             }
         });
+    }
+
+    public void checkCalories(View view) {
+        Toast.makeText(getApplicationContext(), "Calories: " + calories, Toast.LENGTH_SHORT).show();
     }
 
 }

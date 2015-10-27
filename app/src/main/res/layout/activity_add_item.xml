@@ -117,7 +117,9 @@
             android:layout_height="wrap_content"
             android:text="Calories"
             android:id="@+id/bCalories"
-            style="@android:style/Widget.Holo.Light.Button" />
+            style="@android:style/Widget.Holo.Light.Button"
+            android:enabled="false"
+            android:onClick="checkCalories" />
 
         <Button
             android:layout_width="wrap_content"
