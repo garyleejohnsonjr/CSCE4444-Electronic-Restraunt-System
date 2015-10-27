@@ -27,19 +27,21 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/etUserName"
                 android:hint="Username"
-                android:ems="10"
+                android:ems="12"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                style="@android:style/Widget.Holo.Light.EditText" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:ems="10"
+                android:ems="12"
                 android:id="@+id/etPassword"
                 android:hint="Password"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                style="@android:style/Widget.Holo.Light.EditText" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -47,18 +49,20 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="New User"
                     android:id="@+id/bCreateNewUser"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    style="@android:style/Widget.Holo.Light.Button" />
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Login"
                     android:id="@+id/bCreateUserInfo"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    style="@android:style/Widget.Holo.Light.Button" />
 
             </LinearLayout>
 

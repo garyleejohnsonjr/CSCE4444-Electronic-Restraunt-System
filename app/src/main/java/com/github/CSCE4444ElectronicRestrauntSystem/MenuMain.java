@@ -1,5 +1,6 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
@@ -29,7 +30,7 @@ public class MenuMain extends AppCompatActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_main);
-        switchCategory(this.findViewById(R.id.bAppetizers));
+        switchCategory(findViewById(R.id.bAppetizers));
     }
 
 
@@ -39,11 +40,11 @@ public class MenuMain extends AppCompatActivity {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
 
         // enable all the buttons
-        this.findViewById(R.id.bAppetizers).setEnabled(true);
-        this.findViewById(R.id.bFavorites).setEnabled(true);
-        this.findViewById(R.id.bEntrees).setEnabled(true);
-        this.findViewById(R.id.bDesserts).setEnabled(true);
-        this.findViewById(R.id.bDrinks).setEnabled(true);
+        findViewById(R.id.bAppetizers).setEnabled(true);
+        findViewById(R.id.bFavorites).setEnabled(true);
+        findViewById(R.id.bEntrees).setEnabled(true);
+        findViewById(R.id.bDesserts).setEnabled(true);
+        findViewById(R.id.bDrinks).setEnabled(true);
 
         // disable this button
         view.setEnabled(false);
@@ -78,10 +79,20 @@ public class MenuMain extends AppCompatActivity {
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override public void done(List<ParseObject> menuItems, ParseException e) {
                 MenuAdapter adapter = new MenuAdapter(menuItems);
-                ListView lvMenu = (ListView) findViewById(R.id.lvMenu);
+                ListView lvMenu = (ListView)findViewById(R.id.lvMenu);
                 lvMenu.setAdapter(adapter);
             }
         });
+    }
+
+
+    // add item event
+    public void addItem(View view) {
+        Intent intent = new Intent(this, AddItem.class);
+        TextView tvItemName = (TextView)view.findViewById(R.id.tvItemName);
+        String itemName = tvItemName.getText().toString();
+        intent.putExtra("ItemName", itemName);
+        startActivity(intent);
     }
 
 

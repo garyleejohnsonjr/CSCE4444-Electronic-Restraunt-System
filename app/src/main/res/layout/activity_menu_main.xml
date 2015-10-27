@@ -29,7 +29,8 @@
                 android:text="Appetizers"
                 android:id="@+id/bAppetizers"
                 android:gravity="left|center_vertical"
-                android:onClick="switchCategory" />
+                android:onClick="switchCategory"
+                style="@android:style/Widget.Holo.Light.Button" />
 
             <Button
                 android:layout_width="match_parent"
@@ -37,7 +38,8 @@
                 android:text="Favorites"
                 android:id="@+id/bFavorites"
                 android:gravity="left|center_vertical"
-                android:onClick="switchCategory" />
+                android:onClick="switchCategory"
+                style="@android:style/Widget.Holo.Light.Button" />
 
             <Button
                 android:layout_width="match_parent"
@@ -45,7 +47,8 @@
                 android:text="Entrees"
                 android:id="@+id/bEntrees"
                 android:gravity="left|center_vertical"
-                android:onClick="switchCategory" />
+                android:onClick="switchCategory"
+                style="@android:style/Widget.Holo.Light.Button" />
 
             <Button
                 android:layout_width="match_parent"
@@ -53,7 +56,8 @@
                 android:text="Desserts"
                 android:id="@+id/bDesserts"
                 android:gravity="left|center_vertical"
-                android:onClick="switchCategory" />
+                android:onClick="switchCategory"
+                style="@android:style/Widget.Holo.Light.Button" />
 
             <Button
                 android:layout_width="match_parent"
@@ -61,7 +65,8 @@
                 android:text="Drinks"
                 android:id="@+id/bDrinks"
                 android:gravity="left|center_vertical"
-                android:onClick="switchCategory" />
+                android:onClick="switchCategory"
+                style="@android:style/Widget.Holo.Light.Button" />
         </LinearLayout>
 
         <ListView
@@ -91,7 +96,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit or Submit Order"
-            android:id="@+id/bOrder" />
+            android:id="@+id/bOrder"
+            style="@android:style/Widget.Holo.Light.Button" />
     </LinearLayout>
 
 </LinearLayout>
