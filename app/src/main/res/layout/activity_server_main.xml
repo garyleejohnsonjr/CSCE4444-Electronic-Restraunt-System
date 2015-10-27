@@ -40,7 +40,8 @@
                 android:text="Table 1"
                 android:id="@+id/tTable1"
                 android:layout_column="1"
-                android:clickable="true" />
+                android:clickable="true"/>
+
         </TableRow>
 
         <TableRow

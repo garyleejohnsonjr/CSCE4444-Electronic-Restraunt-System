@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,24 +40,47 @@ public class ServerMain extends AppCompatActivity {
                 if (e == null) {
                     for (ParseObject table : tables) {
                         //Puts Status into database
-                        if(table.getString("Status").equals("Table Ordered"))
+                        if(table.getString("Status").equals("Table Ordered")) {
                             //Blue-Ordered
+                            tTable.clearAnimation();
                             tTable.setTextColor(0xFF0008FF);
-                        if(table.getString("Status").equals("Table Paid"))
-                            //Black-Table Paid and occupied
+                        }
+                        if(table.getString("Status").equals("Table Paid")) {
+                            //Black-Table Paid and
+                            tTable.clearAnimation();
                             tTable.setTextColor(0xFF010101);
-                        //Todo:Blinking- Needs help
-                        if(table.getString("Status").equals("Table Unoccupied"))
+                        }
+                        //Todo: May need to change color. Just for testing purposes
+                        if(table.getString("Status").equals("Table Help")){
+                            //Blinks Pink if needs help
+                            tTable.setTextColor(0xFFFF00E9);
+                            Animation anim = new AlphaAnimation(0.0f, 1.0f);
+                            anim.setDuration(50); //Blinking speed
+                            anim.setStartOffset(20);
+                            anim.setRepeatMode(Animation.REVERSE);
+                            anim.setRepeatCount(Animation.INFINITE);
+                            tTable.startAnimation(anim);
+                        }
+
+                        if(table.getString("Status").equals("Table Unoccupied")) {
                             //White - Unoccupied
+                            tTable.clearAnimation();
                             tTable.setTextColor(0xFFFFFFFF);
-                        if(table.getString("Status").equals("Table Eating"))
+                        }
+                        if(table.getString("Status").equals("Table Eating")) {
                             //Red-Table Eating
+                            tTable.clearAnimation();
                             tTable.setTextColor(0xFFFF0B00);
-                        if(table.getString("Status").equals("Table Occupied"))
+                        }
+                        if(table.getString("Status").equals("Table Occupied")) {
                             //Green-Table Occupied
+                            tTable.clearAnimation();
                             tTable.setTextColor(0xFF00FF00);
+                        }
                     }
-                } else {
+                }
+
+                else {
                     //Failed Query Log
                     Log.d("Tables", "Error: " + e.getMessage());
                 }
