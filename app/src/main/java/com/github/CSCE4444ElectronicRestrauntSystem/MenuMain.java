@@ -22,8 +22,7 @@ import java.util.List;
 
 // the activity used for the main food menu
 public class MenuMain extends AppCompatActivity {
-    // Todo: Go to add item activity when item in menu is tapped
-    // Todo: Go to edit/submit order activity when button is clicked
+    // Todo: Go to edit/submit order activity when submit button is tapped
 
 
     // activity creation event
@@ -36,8 +35,6 @@ public class MenuMain extends AppCompatActivity {
 
     // switch category event
     public void switchCategory(View view) {
-        // create parse query of menu items
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
 
         // enable all the buttons
         findViewById(R.id.bAppetizers).setEnabled(true);
@@ -48,6 +45,10 @@ public class MenuMain extends AppCompatActivity {
 
         // disable this button
         view.setEnabled(false);
+
+        // create parse query of menu items
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
+        query.whereEqualTo("Avalibility", true);
 
         // modify query based on which category button is used
         switch (view.getId()) {
