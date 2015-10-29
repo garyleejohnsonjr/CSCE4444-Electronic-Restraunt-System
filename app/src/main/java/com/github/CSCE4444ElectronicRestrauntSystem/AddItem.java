@@ -1,11 +1,13 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,8 +20,6 @@ import com.parse.ParseQuery;
 
 
 public class AddItem extends AppCompatActivity {
-    //TODO: add item button
-
     int calories;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +68,17 @@ public class AddItem extends AppCompatActivity {
         });
     }
 
+    // check calories button event
     public void checkCalories(View view) {
         Toast.makeText(getApplicationContext(), "Calories: " + calories, Toast.LENGTH_SHORT).show();
     }
 
+    // add item button event
+    public void addItem(View view) {
+        EditText etRequests = (EditText)findViewById(R.id.etRequests);
+        String requests = etRequests.getText().toString();
+        getIntent().putExtra("Requests", requests);
+        setResult(Activity.RESULT_OK, getIntent());
+        finish();
+    }
 }

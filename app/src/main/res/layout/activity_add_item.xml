@@ -126,6 +126,7 @@
             android:layout_height="wrap_content"
             android:text="Add Item"
             android:id="@+id/bAddItem"
+            android:onClick="addItem"
             style="@android:style/Widget.Holo.Light.Button" />
 
     </LinearLayout>
