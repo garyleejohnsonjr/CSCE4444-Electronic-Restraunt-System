@@ -27,31 +27,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Menu"
-                android:id="@+id/bCustomerViewMenu" />
+                android:id="@+id/bCustomerViewMenu"
+                style="@android:style/Widget.Holo.Light.Button" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Call Server / Refills"
-                android:id="@+id/bCallServer" />
+                android:id="@+id/bCallServer"
+                style="@android:style/Widget.Holo.Light.Button" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Rewards Club"
-                android:id="@+id/bRewardsClub" />
+                android:id="@+id/bRewardsClub"
+                style="@android:style/Widget.Holo.Light.Button" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Share On Twitter"
-                android:id="@+id/bShare" />
+                android:id="@+id/bShare"
+                style="@android:style/Widget.Holo.Light.Button" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Games"
-                android:id="@+id/bGames" />
+                android:id="@+id/bGames"
+                style="@android:style/Widget.Holo.Light.Button" />
 
         </LinearLayout>
     </FrameLayout>
@@ -76,7 +81,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pay Bill"
-            android:id="@+id/bPayBill" />
+            android:id="@+id/bPayBill"
+            style="@android:style/Widget.Holo.Light.Button" />
 
     </LinearLayout>
 

@@ -64,7 +64,8 @@
                 android:layout_height="wrap_content"
                 android:text="Submit"
                 android:id="@+id/bCreateUserInfo"
-                android:clickable="true" />
+                android:clickable="true"
+                style="@android:style/Widget.Holo.Light.Button" />
         </LinearLayout>
     </FrameLayout>
 
