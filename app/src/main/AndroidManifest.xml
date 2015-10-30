@@ -104,13 +104,12 @@
             android:label="@string/title_activity_table_status" >
         </activity>
         <activity
-<<<<<<< HEAD
             android:name=".CreateRewardUser"
             android:label="@string/title_activity_create_reward_user" >
-=======
+        </activity>
+        <activity
             android:name=".AddItem"
             android:label="@string/title_activity_add_item" >
->>>>>>> origin/master
         </activity>
     </application>
 
