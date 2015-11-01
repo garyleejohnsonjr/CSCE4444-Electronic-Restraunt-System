@@ -111,6 +111,10 @@
             android:name=".AddItem"
             android:label="@string/title_activity_add_item" >
         </activity>
+        <activity
+            android:name=".SubmitOrder"
+            android:label="@string/title_activity_submit_order">
+        </activity>
     </application>
 
 </manifest>

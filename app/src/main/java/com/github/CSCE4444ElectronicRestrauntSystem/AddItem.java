@@ -1,6 +1,7 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -22,11 +23,12 @@ import com.parse.ParseQuery;
 public class AddItem extends AppCompatActivity {
     int calories;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    // activity creation event
+    @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 
-        // item name
+        // get item name
         String ItemName = getIntent().getStringExtra("ItemName");
         setTitle("Add Item - " + ItemName);
         ((TextView)findViewById(R.id.tvItemName)).setText(ItemName);
@@ -64,8 +66,18 @@ public class AddItem extends AppCompatActivity {
                 Button bCalories = (Button)findViewById(R.id.bCalories);
                 calories = item.getNumber("Calories").intValue();
                 bCalories.setEnabled(true);
+
+                // enable add item button
+                Button bAddItem = (Button)findViewById(R.id.bAddItem);
+                bAddItem.setEnabled(true);
             }
         });
+    }
+
+    // call server event
+    public void callServer(View view) {
+        Intent intent = new Intent(this, CallServer.class);
+        startActivity(intent);
     }
 
     // check calories button event
