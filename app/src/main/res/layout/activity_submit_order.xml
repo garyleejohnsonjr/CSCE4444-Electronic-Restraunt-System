@@ -46,7 +46,8 @@
             android:layout_height="wrap_content"
             android:text="Call Server / Refills"
             android:id="@+id/bCallServer"
-            style="@android:style/Widget.Holo.Light.Button" />
+            style="@android:style/Widget.Holo.Light.Button"
+            android:onClick="callServer" />
 
         <Button
             android:layout_width="wrap_content"

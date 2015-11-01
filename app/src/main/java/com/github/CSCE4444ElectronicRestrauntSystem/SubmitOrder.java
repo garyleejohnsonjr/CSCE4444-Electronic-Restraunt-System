@@ -1,5 +1,6 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,9 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 public class SubmitOrder extends AppCompatActivity {
-    // TODO: call server button
     // TODO: submit order button
-    // TODO: remove item buttons
 
     @Override public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -30,6 +29,34 @@ public class SubmitOrder extends AppCompatActivity {
         for (OrderItem item : application.currentOrder) totalPrice += item.price;
         String formattedTotalPrice = String.format("$%.2f", totalPrice);
         tvTotalPrice.setText("Total: " + formattedTotalPrice);
+    }
+
+    // remove item event
+    public void removeItem(View view) {
+        // get adapter
+        ListView lvSubmitOrder = (ListView) findViewById(R.id.lvSubmitOrder);
+        SubmitAdapter adapter = (SubmitAdapter)lvSubmitOrder.getAdapter();
+
+        // get item to remove
+        int position = lvSubmitOrder.getPositionForView(view);
+        OrderItem currentItem = adapter.getItem(position);
+
+        // remove item
+        adapter.remove(currentItem);
+
+        // update total price
+        TextView tvTotalPrice = (TextView)findViewById(R.id.tvTotalPrice);
+        float totalPrice = 0;
+        MainApplication application = (MainApplication)getApplicationContext();
+        for (OrderItem item : application.currentOrder) totalPrice += item.price;
+        String formattedTotalPrice = String.format("$%.2f", totalPrice);
+        tvTotalPrice.setText("Total: " + formattedTotalPrice);
+    }
+
+    // call server event
+    public void callServer(View view) {
+        Intent intent = new Intent(this, CallServer.class);
+        startActivity(intent);
     }
 
     private class SubmitAdapter extends ArrayAdapter<OrderItem> {

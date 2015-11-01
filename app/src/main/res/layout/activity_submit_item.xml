@@ -17,7 +17,8 @@
             android:text="Remove"
             android:id="@+id/bRemove"
             android:layout_marginRight="15px"
-            style="@android:style/Widget.Holo.Light.Button" />
+            style="@android:style/Widget.Holo.Light.Button"
+            android:onClick="removeItem" />
 
         <TextView
             android:layout_width="0dp"
