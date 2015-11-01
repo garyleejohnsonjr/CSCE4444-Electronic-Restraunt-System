@@ -53,6 +53,7 @@ public class AddItem extends AppCompatActivity {
                 // get price
                 TextView tvPrice = (TextView)findViewById(R.id.tvPrice);
                 float price = item.getNumber("Price").floatValue();
+                getIntent().putExtra("Price", price);
                 String formattedPrice = String.format("$%.2f", price);
                 if (formattedPrice.equals("$0.00")) formattedPrice = "Free";
                 tvPrice.setText(formattedPrice);
@@ -87,9 +88,9 @@ public class AddItem extends AppCompatActivity {
 
     // add item button event
     public void addItem(View view) {
-        EditText etRequests = (EditText)findViewById(R.id.etRequests);
-        String requests = etRequests.getText().toString();
-        getIntent().putExtra("Requests", requests);
+        EditText etRequest = (EditText)findViewById(R.id.etRequest);
+        String request = etRequest.getText().toString();
+        getIntent().putExtra("Request", request);
         setResult(Activity.RESULT_OK, getIntent());
         finish();
     }

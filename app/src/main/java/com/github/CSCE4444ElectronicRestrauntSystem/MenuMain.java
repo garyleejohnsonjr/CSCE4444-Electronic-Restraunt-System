@@ -20,6 +20,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.LinkedList;
 import java.util.List;
 
 // the activity used for the main food menu
@@ -80,7 +81,7 @@ public class MenuMain extends AppCompatActivity {
             @Override
             public void done(List<ParseObject> menuItems, ParseException e) {
                 MenuAdapter adapter = new MenuAdapter(menuItems);
-                ListView lvMenu = (ListView) findViewById(R.id.lvMenu);
+                ListView lvMenu = (ListView)findViewById(R.id.lvMenu);
                 lvMenu.setAdapter(adapter);
             }
         });
@@ -115,10 +116,11 @@ public class MenuMain extends AppCompatActivity {
     @Override public void onActivityResult(int id, int result, Intent intent) {
         if (id == REQUEST_ADD_ITEM && result == Activity.RESULT_OK) {
             String itemName = intent.getExtras().getString("ItemName");
-            String requests = intent.getExtras().getString("Requests");
+            String request = intent.getExtras().getString("Request");
+            float price = intent.getExtras().getFloat("Price");
             MainApplication application = (MainApplication)getApplicationContext();
-            MainApplication.CurrentOrder currentOrder = application.currentOrder;
-            currentOrder.addItem(itemName, requests);
+            LinkedList<OrderItem> currentOrder = application.currentOrder;
+            currentOrder.addLast(new OrderItem(itemName, request, price));
             String toast = itemName + " added to order.";
             Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
             switchCategory(currentCategory);

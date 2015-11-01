@@ -90,7 +90,7 @@
                 android:layout_height="match_parent"
                 android:inputType="textMultiLine"
                 android:ems="10"
-                android:id="@+id/etRequests"
+                android:id="@+id/etRequest"
                 android:gravity="top" />
         </LinearLayout>
 

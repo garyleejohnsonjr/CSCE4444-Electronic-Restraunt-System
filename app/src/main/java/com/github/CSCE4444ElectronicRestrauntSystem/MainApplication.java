@@ -4,28 +4,9 @@ import android.app.Application;
 import com.parse.Parse;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class MainApplication extends Application{
-    public CurrentOrder currentOrder= new CurrentOrder();
-
-    public class CurrentOrder {
-        LinkedList<Item> items = new LinkedList<>();
-
-        class Item {
-            String name;
-            String request;
-
-            Item (String name, String request) {
-                this.name = name;
-                this.request = request;
-            }
-        }
-
-        public void addItem(String name, String request) {
-            items.addLast(new Item(name, request));
-        }
-    }
+    public LinkedList<OrderItem> currentOrder = new LinkedList<>();
 
     @Override public void onCreate() {
         super.onCreate();
