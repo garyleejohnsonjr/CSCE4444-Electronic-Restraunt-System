@@ -26,6 +26,8 @@ import java.util.List;
 // the activity used for the main food menu
 public class MenuMain extends AppCompatActivity {
     static final int REQUEST_ADD_ITEM = 0;
+    static final int REQUEST_SUBMIT_ORDER = 1;
+
     View currentCategory;
 
     // activity creation event

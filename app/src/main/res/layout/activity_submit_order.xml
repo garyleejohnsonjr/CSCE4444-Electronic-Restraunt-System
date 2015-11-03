@@ -54,7 +54,8 @@
             android:layout_height="wrap_content"
             android:text="Submit Order"
             android:id="@+id/bSubmitOrder"
-            style="@android:style/Widget.Holo.Light.Button" />
+            style="@android:style/Widget.Holo.Light.Button"
+            android:onClick="submitOrder" />
     </LinearLayout>
 
 </LinearLayout>

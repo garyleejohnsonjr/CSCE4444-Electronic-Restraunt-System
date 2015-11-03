@@ -9,11 +9,17 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.parse.ParseObject;
+
+import java.util.LinkedList;
 import java.util.List;
 
 public class SubmitOrder extends AppCompatActivity {
     // TODO: submit order button
+
+    float totalPrice = 0;
 
     @Override public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -25,7 +31,7 @@ public class SubmitOrder extends AppCompatActivity {
 
         // total price
         TextView tvTotalPrice = (TextView)findViewById(R.id.tvTotalPrice);
-        float totalPrice = 0;
+        totalPrice = 0;
         for (OrderItem item : application.currentOrder) totalPrice += item.price;
         String formattedTotalPrice = String.format("$%.2f", totalPrice);
         tvTotalPrice.setText("Total: " + formattedTotalPrice);
@@ -45,10 +51,8 @@ public class SubmitOrder extends AppCompatActivity {
         adapter.remove(currentItem);
 
         // update total price
+        totalPrice -= currentItem.price;
         TextView tvTotalPrice = (TextView)findViewById(R.id.tvTotalPrice);
-        float totalPrice = 0;
-        MainApplication application = (MainApplication)getApplicationContext();
-        for (OrderItem item : application.currentOrder) totalPrice += item.price;
         String formattedTotalPrice = String.format("$%.2f", totalPrice);
         tvTotalPrice.setText("Total: " + formattedTotalPrice);
     }
@@ -57,6 +61,47 @@ public class SubmitOrder extends AppCompatActivity {
     public void callServer(View view) {
         Intent intent = new Intent(this, CallServer.class);
         startActivity(intent);
+    }
+
+    // submit order event
+    public void submitOrder(View view) {
+        // make sure there's at least one item in the order
+        MainApplication application = (MainApplication)getApplicationContext();
+        if (application.currentOrder.size() > 0) {
+            // make a new parse object
+            ParseObject order = new ParseObject("Order");
+
+            // make a list of items ordered and requests
+            LinkedList<String> itemsOrdered = new LinkedList<>();
+            LinkedList<String> requests = new LinkedList<>();
+            for (OrderItem item : application.currentOrder) {
+                itemsOrdered.addLast(item.name);
+                requests.addLast(item.request);
+            }
+
+            // build the order
+            order.put("ItemsOrdered", itemsOrdered);
+            order.put("Requests", requests);
+            order.put("Status", "Placed");
+            order.put("TableNumber", 1);
+            order.put("Total", totalPrice);
+
+            // save the order to the database
+            order.saveInBackground();
+
+            // clear the current order
+            application.currentOrder.clear();
+
+            // display toast
+            String toast = "Order submitted.";
+            Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
+
+            // return to the menu
+            finish();
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Order empty!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private class SubmitAdapter extends ArrayAdapter<OrderItem> {
