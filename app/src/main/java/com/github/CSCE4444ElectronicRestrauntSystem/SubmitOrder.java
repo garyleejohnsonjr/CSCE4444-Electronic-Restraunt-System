@@ -3,6 +3,7 @@ package com.github.CSCE4444ElectronicRestrauntSystem;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -11,7 +12,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -88,6 +92,29 @@ public class SubmitOrder extends AppCompatActivity {
 
             // save the order to the database
             order.saveInBackground();
+
+            final  ParseObject x  = order;
+
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Tables");
+            query.whereEqualTo("Number", 1);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                public void done(List<ParseObject> tables, ParseException e) {
+                    //Todo: Submit nothing error
+                    if (e == null) {
+                        for (ParseObject table : tables) {
+                            table.put("CurrentOrder", x);
+                            Log.d("Tables", "Submit " + x.getString("Status"));
+                            table.saveInBackground();
+                    }
+                    } else {
+                        //Failed Query Log
+                        Log.d("Tables", "Error: " + e.getMessage());
+                    }
+                }
+            });
+
+
+
 
             // clear the current order
             application.currentOrder.clear();

@@ -15,7 +15,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="299dp"
-        android:id="@+id/lvSubmitOrder"
+        android:id="@+id/lvTableOrder"
         android:layout_weight="0.70" />
 
     <TextView
@@ -32,11 +32,27 @@
         android:layout_height="wrap_content">
 
         <Button
+            style="@android:style/Widget.Holo.Light.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Menu"
+            android:id="@+id/bMenu"
+            android:onClick="submitOrder" />
+
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Submit Order"
             android:id="@+id/bSubmitOrder"
             style="@android:style/Widget.Holo.Light.Button"
+            android:onClick="submitOrder" />
+
+        <Button
+            style="@android:style/Widget.Holo.Light.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pay"
+            android:id="@+id/bPay"
             android:onClick="submitOrder" />
     </LinearLayout>
 
