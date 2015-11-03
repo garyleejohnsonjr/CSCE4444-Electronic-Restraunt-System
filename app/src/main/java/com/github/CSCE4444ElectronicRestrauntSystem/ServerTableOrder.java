@@ -26,11 +26,7 @@ public class ServerTableOrder extends AppCompatActivity {
         setContentView(R.layout.activity_server_table_order);
 
         final Intent i = getIntent();
-        //Finds selected button
-        final RadioGroup status = (RadioGroup) findViewById(R.id.rbTables);
-        int selectedStatus = status.getCheckedRadioButtonId();
         int tableNum = 0;
-        final RadioButton newStatus = (RadioButton) findViewById(selectedStatus);
 
         //gets table number and finds in database
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Tables");
@@ -41,7 +37,7 @@ public class ServerTableOrder extends AppCompatActivity {
                 //Todo: Submit nothing error
                 if (e == null) {
                     for (ParseObject table : tables) {
-
+                        Log.d("Tables", "True");
                     }
                 } else {
                     //Failed Query Log

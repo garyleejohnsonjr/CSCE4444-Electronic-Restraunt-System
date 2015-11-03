@@ -90,7 +90,6 @@ public class ServerMain extends AppCompatActivity {
         setContentView(R.layout.activity_server_main);
 
         //Buttons and clickable text tables
-        Button bPayBill = (Button) findViewById(R.id.bPayBill);
         final TextView tTable1 = (TextView) findViewById(R.id.tTable1);
         final TextView tTable2 = (TextView) findViewById(R.id.tTable2);
         final TextView tTable3 = (TextView) findViewById(R.id.tTable3);
@@ -246,7 +245,6 @@ public class ServerMain extends AppCompatActivity {
             }
         });
 
-
         //Table Order button listners
         bTable1.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -340,13 +338,7 @@ public class ServerMain extends AppCompatActivity {
         });
 
 
-        bPayBill.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent iPayBill = new Intent(ServerMain.this, PayBill.class);
-                startActivity(iPayBill);
-            }
-        });
+
     }
 
     @Override

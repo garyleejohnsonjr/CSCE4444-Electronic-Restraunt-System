@@ -112,10 +112,11 @@
             android:label="@string/title_activity_add_item" >
         </activity>
         <activity
-<<<<<<< HEAD
             android:name=".ServerTableOrder"
             android:label="@string/title_activity_server_table_order" >
-=======
+        </activity>
+
+        <activity
             android:name=".SubmitOrder"
             android:label="@string/title_activity_submit_order" >
         </activity>
@@ -127,7 +128,6 @@
         <activity
             android:name=".ShareTwitter"
             android:label="@string/title_activity_share_twitter" >
->>>>>>> origin/master
         </activity>
     </application>
 

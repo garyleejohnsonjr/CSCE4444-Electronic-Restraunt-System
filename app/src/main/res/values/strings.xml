@@ -63,10 +63,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_create_reward_user">CreateRewardUser</string>
     <string name="title_activity_add_item">Add Item</string>
-<<<<<<< HEAD
     <string name="title_activity_server_table_order">ServerTableOrder</string>
-=======
     <string name="title_activity_submit_order">Submit Order</string>
     <string name="title_activity_share_twitter">ShareTwitter</string>
->>>>>>> origin/master
 </resources>
