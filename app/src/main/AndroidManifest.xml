@@ -111,6 +111,10 @@
             android:name=".AddItem"
             android:label="@string/title_activity_add_item" >
         </activity>
+        <activity
+            android:name=".ServerTableOrder"
+            android:label="@string/title_activity_server_table_order" >
+        </activity>
     </application>
 
 </manifest>
