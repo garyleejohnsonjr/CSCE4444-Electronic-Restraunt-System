@@ -113,7 +113,16 @@
         </activity>
         <activity
             android:name=".SubmitOrder"
-            android:label="@string/title_activity_submit_order">
+            android:label="@string/title_activity_submit_order" >
+        </activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="d3df456b8795277337e26778481446a564116b9b" />
+
+        <activity
+            android:name=".ShareTwitter"
+            android:label="@string/title_activity_share_twitter" >
         </activity>
     </application>
 
