@@ -1,6 +1,7 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -22,11 +23,12 @@ import com.parse.ParseQuery;
 public class AddItem extends AppCompatActivity {
     int calories;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    // activity creation event
+    @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 
-        // item name
+        // get item name
         String ItemName = getIntent().getStringExtra("ItemName");
         setTitle("Add Item - " + ItemName);
         ((TextView)findViewById(R.id.tvItemName)).setText(ItemName);
@@ -51,6 +53,7 @@ public class AddItem extends AppCompatActivity {
                 // get price
                 TextView tvPrice = (TextView)findViewById(R.id.tvPrice);
                 float price = item.getNumber("Price").floatValue();
+                getIntent().putExtra("Price", price);
                 String formattedPrice = String.format("$%.2f", price);
                 if (formattedPrice.equals("$0.00")) formattedPrice = "Free";
                 tvPrice.setText(formattedPrice);
@@ -64,8 +67,18 @@ public class AddItem extends AppCompatActivity {
                 Button bCalories = (Button)findViewById(R.id.bCalories);
                 calories = item.getNumber("Calories").intValue();
                 bCalories.setEnabled(true);
+
+                // enable add item button
+                Button bAddItem = (Button)findViewById(R.id.bAddItem);
+                bAddItem.setEnabled(true);
             }
         });
+    }
+
+    // call server event
+    public void callServer(View view) {
+        Intent intent = new Intent(this, CallServer.class);
+        startActivity(intent);
     }
 
     // check calories button event
@@ -75,9 +88,9 @@ public class AddItem extends AppCompatActivity {
 
     // add item button event
     public void addItem(View view) {
-        EditText etRequests = (EditText)findViewById(R.id.etRequests);
-        String requests = etRequests.getText().toString();
-        getIntent().putExtra("Requests", requests);
+        EditText etRequest = (EditText)findViewById(R.id.etRequest);
+        String request = etRequest.getText().toString();
+        getIntent().putExtra("Request", request);
         setResult(Activity.RESULT_OK, getIntent());
         finish();
     }

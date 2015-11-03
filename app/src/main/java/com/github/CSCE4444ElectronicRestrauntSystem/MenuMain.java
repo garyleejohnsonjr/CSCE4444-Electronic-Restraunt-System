@@ -20,31 +20,30 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.LinkedList;
 import java.util.List;
 
 // the activity used for the main food menu
 public class MenuMain extends AppCompatActivity {
-    // Todo: Go to edit/submit order activity when submit button is tapped
-
     static final int REQUEST_ADD_ITEM = 0;
+    static final int REQUEST_SUBMIT_ORDER = 1;
+
+    View currentCategory;
 
     // activity creation event
-    @Override public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    @Override public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
         setContentView(R.layout.activity_menu_main);
-        switchCategory(findViewById(R.id.bAppetizers));
+        currentCategory = findViewById(R.id.bAppetizers);
+        switchCategory(currentCategory);
     }
-
 
     // switch category event
     public void switchCategory(View view) {
 
         // enable all the buttons
-        findViewById(R.id.bAppetizers).setEnabled(true);
-        findViewById(R.id.bFavorites).setEnabled(true);
-        findViewById(R.id.bEntrees).setEnabled(true);
-        findViewById(R.id.bDesserts).setEnabled(true);
-        findViewById(R.id.bDrinks).setEnabled(true);
+        currentCategory.setEnabled(true);
+        currentCategory = view;
 
         // disable this button
         view.setEnabled(false);
@@ -81,7 +80,8 @@ public class MenuMain extends AppCompatActivity {
 
         // run the query in the background, then create and set the adapter
         query.findInBackground(new FindCallback<ParseObject>() {
-            @Override public void done(List<ParseObject> menuItems, ParseException e) {
+            @Override
+            public void done(List<ParseObject> menuItems, ParseException e) {
                 MenuAdapter adapter = new MenuAdapter(menuItems);
                 ListView lvMenu = (ListView)findViewById(R.id.lvMenu);
                 lvMenu.setAdapter(adapter);
@@ -100,13 +100,32 @@ public class MenuMain extends AppCompatActivity {
     }
 
 
+    // call server event
+    public void callServer(View view) {
+        Intent intent = new Intent(this, CallServer.class);
+        startActivity(intent);
+    }
+
+
+    // submit order activity
+    public void submitOrder (View view) {
+        Intent intent = new Intent(this, SubmitOrder.class);
+        startActivity(intent);
+    }
+
+
     // activity result event
     @Override public void onActivityResult(int id, int result, Intent intent) {
         if (id == REQUEST_ADD_ITEM && result == Activity.RESULT_OK) {
             String itemName = intent.getExtras().getString("ItemName");
-            String requests = intent.getExtras().getString("Requests");
-            //TODO: add item to order
-            Toast.makeText(getApplicationContext(), itemName + " added! (not really) Requests: " + requests, Toast.LENGTH_LONG).show();
+            String request = intent.getExtras().getString("Request");
+            float price = intent.getExtras().getFloat("Price");
+            MainApplication application = (MainApplication)getApplicationContext();
+            LinkedList<OrderItem> currentOrder = application.currentOrder;
+            currentOrder.addLast(new OrderItem(itemName, request, price));
+            String toast = itemName + " added to order.";
+            Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
+            switchCategory(currentCategory);
         }
     }
 
@@ -127,20 +146,21 @@ public class MenuMain extends AppCompatActivity {
             ParseObject item = getItem(position);
 
             // get pictures from parse in background
+            ImageView ivPicture = (ImageView)view.findViewById(R.id.ivPicture);
+            ivPicture.setImageBitmap(null);
             item.getParseFile("Picture").getDataInBackground(new GetDataCallback() {
-                private View view;
+                private ImageView ivPicture;
 
-                private GetDataCallback initialize(View view) {
-                    this.view = view;
+                private GetDataCallback initialize(ImageView ivPicture) {
+                    this.ivPicture = ivPicture;
                     return this;
                 }
 
                 @Override public void done(byte[] data, ParseException e) {
-                    ImageView ivPicture = (ImageView)view.findViewById(R.id.ivPicture);
                     Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                     ivPicture.setImageBitmap(bitmap);
                 }
-            }.initialize(view));
+            }.initialize(ivPicture));
 
             // get item name
             TextView tvItemName = (TextView)view.findViewById(R.id.tvItemName);

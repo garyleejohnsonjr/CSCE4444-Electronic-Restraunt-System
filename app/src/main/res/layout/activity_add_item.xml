@@ -90,7 +90,7 @@
                 android:layout_height="match_parent"
                 android:inputType="textMultiLine"
                 android:ems="10"
-                android:id="@+id/etRequests"
+                android:id="@+id/etRequest"
                 android:gravity="top" />
         </LinearLayout>
 
@@ -115,6 +115,14 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Call Server / Refills"
+            android:id="@+id/bCallServer"
+            style="@android:style/Widget.Holo.Light.Button"
+            android:onClick="callServer" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Calories"
             android:id="@+id/bCalories"
             style="@android:style/Widget.Holo.Light.Button"
@@ -127,7 +135,8 @@
             android:text="Add Item"
             android:id="@+id/bAddItem"
             android:onClick="addItem"
-            style="@android:style/Widget.Holo.Light.Button" />
+            style="@android:style/Widget.Holo.Light.Button"
+            android:enabled="false" />
 
     </LinearLayout>
 
