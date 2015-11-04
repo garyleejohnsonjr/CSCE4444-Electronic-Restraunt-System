@@ -66,4 +66,5 @@
     <string name="title_activity_server_table_order">ServerTableOrder</string>
     <string name="title_activity_submit_order">Submit Order</string>
     <string name="title_activity_share_twitter">ShareTwitter</string>
+    <string name="title_activity_tic_tac_toe">TicTacToe</string>
 </resources>
