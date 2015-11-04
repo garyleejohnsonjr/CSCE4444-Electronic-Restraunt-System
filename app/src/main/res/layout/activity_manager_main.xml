@@ -85,14 +85,12 @@
             android:id="@+id/bManageIngridients" />
     </LinearLayout>
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/ManagerTitle"
-        android:layout_toEndOf="@+id/linearLayout"
-        android:orientation="vertical"
-        android:id="@+id/lvReportView"
-        android:layout_above="@+id/textView6"
-        android:layout_toRightOf="@+id/linearLayout"></TableLayout>
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lvReportSpace"
+        android:layout_alignTop="@+id/linearLayout"
+        android:layout_toRightOf="@+id/linearLayout"
+        android:layout_toEndOf="@+id/linearLayout" />
 
 </RelativeLayout>
