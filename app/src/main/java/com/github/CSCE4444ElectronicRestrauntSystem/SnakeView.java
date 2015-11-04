@@ -169,7 +169,7 @@ public class SnakeView extends TileView implements View.OnTouchListener {
         addRandomApple();
         addRandomApple();
 
-        mMoveDelay = 600;
+        mMoveDelay = 100;
         mScore = 0;
     }
 
