@@ -1,5 +1,7 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -72,59 +74,51 @@ public class SubmitOrder extends AppCompatActivity {
         // make sure there's at least one item in the order
         MainApplication application = (MainApplication)getApplicationContext();
         if (application.currentOrder.size() > 0) {
-            // make a new parse object
-            ParseObject order = new ParseObject("Order");
+            new AlertDialog.Builder(this)
+                .setTitle("Order Confirmation")
+                .setMessage("Are you sure you want to submit this order? Once the order is submitted it cannot be changed.")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    // make a new parse object
+                    ParseObject order = new ParseObject("Order");
 
-            // make a list of items ordered and requests
-            LinkedList<String> itemsOrdered = new LinkedList<>();
-            LinkedList<String> requests = new LinkedList<>();
-            for (OrderItem item : application.currentOrder) {
-                itemsOrdered.addLast(item.name);
-                requests.addLast(item.request);
-            }
-
-            // build the order
-            order.put("ItemsOrdered", itemsOrdered);
-            order.put("Requests", requests);
-            order.put("Status", "Placed");
-            order.put("TableNumber", 1);
-            order.put("Total", totalPrice);
-
-            // save the order to the database
-            order.saveInBackground();
-
-            final  ParseObject x  = order;
-
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("Tables");
-            query.whereEqualTo("Number", 1);
-            query.findInBackground(new FindCallback<ParseObject>() {
-                public void done(List<ParseObject> tables, ParseException e) {
-                    //Todo: Submit nothing error
-                    if (e == null) {
-                        for (ParseObject table : tables) {
-                            table.put("CurrentOrder", x);
-                            Log.d("Tables", "Submit " + x.getString("Status"));
-                            table.saveInBackground();
+                    // make a list of items ordered and requests
+                    LinkedList<String> itemsOrdered = new LinkedList<>();
+                    LinkedList<String> requests = new LinkedList<>();
+                    MainApplication application = (MainApplication)getApplicationContext();
+                    for (OrderItem item : application.currentOrder) {
+                        itemsOrdered.addLast(item.name);
+                        requests.addLast(item.request);
                     }
-                    } else {
-                        //Failed Query Log
-                        Log.d("Tables", "Error: " + e.getMessage());
+
+                    // build the order
+                    order.put("ItemsOrdered", itemsOrdered);
+                    order.put("Requests", requests);
+                    order.put("Status", "Placed");
+                    order.put("TableNumber", application.currentTable);
+                    order.put("Total", totalPrice);
+
+                    // save the order to the database
+                    order.saveInBackground();
+
+                    // clear the current order
+                    application.currentOrder.clear();
+
+                    // display toast
+                    String toast = "Order submitted.";
+                    Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
+
+                    // return to the menu
+                    finish();
                     }
-                }
-            });
-
-
-
-
-            // clear the current order
-            application.currentOrder.clear();
-
-            // display toast
-            String toast = "Order submitted.";
-            Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
-
-            // return to the menu
-            finish();
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
         }
         else {
             Toast.makeText(getApplicationContext(), "Order empty!", Toast.LENGTH_LONG).show();

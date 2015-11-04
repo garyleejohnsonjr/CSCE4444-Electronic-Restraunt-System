@@ -79,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
 
                                 if(username.getString("Password").equals(pswd))
                                 {
+                                    MainApplication application = (MainApplication)getApplication();
+                                    application.currentTable = username.getInt("TableNumber");
+
                                     //Sends to Customer Page
                                     if (username.getString("Job").equals("Customer")) {
                                         Intent i = new Intent(MainActivity.this, CustomerMain.class);
