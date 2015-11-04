@@ -97,31 +97,11 @@ public class SubmitOrder extends AppCompatActivity {
                         order.put("ItemsOrdered", itemsOrdered);
                         order.put("Requests", requests);
                         order.put("Status", "Placed");
-                        order.put("TableNumber", 1);
+                        order.put("TableNumber", application.currentTable);
                         order.put("Total", totalPrice);
 
                         // save the order to the database
                         order.saveInBackground();
-
-                        final  ParseObject x  = order;
-
-                        ParseQuery<ParseObject> query = ParseQuery.getQuery("Tables");
-                        query.whereEqualTo("Number", 1);
-                        query.findInBackground(new FindCallback<ParseObject>() {
-                            public void done(List<ParseObject> tables, ParseException e) {
-                                //Todo: Submit nothing error
-                                if (e == null) {
-                                    for (ParseObject table : tables) {
-                                        table.put("CurrentOrder", x);
-                                        Log.d("Tables", "Submit " + x.getString("Status"));
-                                        table.saveInBackground();
-                                    }
-                                } else {
-                                    //Failed Query Log
-                                    Log.d("Tables", "Error: " + e.getMessage());
-                                }
-                            }
-                        });
 
                         // clear the current order
                         application.currentOrder.clear();
