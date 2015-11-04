@@ -16,12 +16,21 @@ public class Games extends AppCompatActivity {
         setContentView(R.layout.activity_games);
 
         Button bTicTacToe = (Button) findViewById(R.id.bTicTacToe);
+        Button bSnake = (Button) findViewById(R.id.bSnake);
 
         bTicTacToe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iShareTwitter = new Intent(Games.this, TicTacToe.class);
-                startActivity(iShareTwitter);
+                Intent iTicTacToe = new Intent(Games.this, TicTacToe.class);
+                startActivity(iTicTacToe);
+            }
+        });
+
+        bSnake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iSnake = new Intent(Games.this, Snake.class);
+                startActivity(iSnake);
             }
         });
     }

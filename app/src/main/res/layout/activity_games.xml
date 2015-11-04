@@ -40,8 +40,8 @@ android:background="#99ffc610">
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Game 2"
-            android:id="@+id/bGame2"
+            android:text="Snake"
+            android:id="@+id/bSnake"
             style="@android:style/Widget.Holo.Light.Button" />
 
         <Button
