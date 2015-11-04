@@ -74,65 +74,42 @@ public class SubmitOrder extends AppCompatActivity {
         // make sure there's at least one item in the order
         MainApplication application = (MainApplication)getApplicationContext();
         if (application.currentOrder.size() > 0) {
-
-<<<<<<< HEAD
-            // build the order
-            order.put("ItemsOrdered", itemsOrdered);
-            order.put("Requests", requests);
-            order.put("Status", "Placed");
-            order.put("TableNumber", 1);
-            order.put("Total", totalPrice);
-
-            // save the order to the database
-            order.saveInBackground();
-
-            // clear the current order
-            application.currentOrder.clear();
-
-            // display toast
-            String toast = "Order submitted.";
-            Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
-
-            // return to the menu
-            finish();
-=======
-
             new AlertDialog.Builder(this)
                 .setTitle("Order Confirmation")
                 .setMessage("Are you sure you want to submit this order? Once the order is submitted it cannot be changed.")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // make a new parse object
-                        ParseObject order = new ParseObject("Order");
+                    // make a new parse object
+                    ParseObject order = new ParseObject("Order");
 
-                        // make a list of items ordered and requests
-                        LinkedList<String> itemsOrdered = new LinkedList<>();
-                        LinkedList<String> requests = new LinkedList<>();
-                        MainApplication application = (MainApplication)getApplicationContext();
-                        for (OrderItem item : application.currentOrder) {
-                            itemsOrdered.addLast(item.name);
-                            requests.addLast(item.request);
-                        }
+                    // make a list of items ordered and requests
+                    LinkedList<String> itemsOrdered = new LinkedList<>();
+                    LinkedList<String> requests = new LinkedList<>();
+                    MainApplication application = (MainApplication)getApplicationContext();
+                    for (OrderItem item : application.currentOrder) {
+                        itemsOrdered.addLast(item.name);
+                        requests.addLast(item.request);
+                    }
 
-                        // build the order
-                        order.put("ItemsOrdered", itemsOrdered);
-                        order.put("Requests", requests);
-                        order.put("Status", "Placed");
-                        order.put("TableNumber", application.currentTable);
-                        order.put("Total", totalPrice);
+                    // build the order
+                    order.put("ItemsOrdered", itemsOrdered);
+                    order.put("Requests", requests);
+                    order.put("Status", "Placed");
+                    order.put("TableNumber", application.currentTable);
+                    order.put("Total", totalPrice);
 
-                        // save the order to the database
-                        order.saveInBackground();
+                    // save the order to the database
+                    order.saveInBackground();
 
-                        // clear the current order
-                        application.currentOrder.clear();
+                    // clear the current order
+                    application.currentOrder.clear();
 
-                        // display toast
-                        String toast = "Order submitted.";
-                        Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
+                    // display toast
+                    String toast = "Order submitted.";
+                    Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
 
-                        // return to the menu
-                        finish();
+                    // return to the menu
+                    finish();
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -142,7 +119,6 @@ public class SubmitOrder extends AppCompatActivity {
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
->>>>>>> origin/master
         }
         else {
             Toast.makeText(getApplicationContext(), "Order empty!", Toast.LENGTH_LONG).show();
