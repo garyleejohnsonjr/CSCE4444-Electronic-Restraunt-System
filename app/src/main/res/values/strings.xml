@@ -67,4 +67,14 @@
     <string name="title_activity_submit_order">Submit Order</string>
     <string name="title_activity_share_twitter">ShareTwitter</string>
     <string name="title_activity_tic_tac_toe">TicTacToe</string>
+    <string name="title_activity_snake">Snake</string>
+
+
+
+    <string name="mode_ready">Snake\nPress Up To Play</string>
+    <string name="mode_pause">Paused\nPress Up To Resume</string>
+    <string name="mode_lose_prefix">Game Over\nScore: </string>
+    <string name="mode_lose_suffix">\nPress Up To Play</string>
+
+    <string name="snake_layout_text_text"></string>
 </resources>
