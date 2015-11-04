@@ -78,4 +78,5 @@
 
     <string name="snake_layout_text_text"></string>
     <string name="title_activity_server_orders">ServerOrders</string>
+    <string name="title_activity_rewards_game">RewardsGame</string>
 </resources>

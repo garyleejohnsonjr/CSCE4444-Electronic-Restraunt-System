@@ -133,14 +133,17 @@
             android:label="@string/title_activity_tic_tac_toe" >
         </activity>
         <activity
-
             android:name=".Snake"
             android:label="@string/title_activity_snake" >
-	</activity>
-	<activity
+        </activity>
+        <activity
             android:name=".ServerOrders"
             android:label="@string/title_activity_server_orders" >
-    </activity>
+        </activity>
+        <activity
+            android:name=".RewardsGame"
+            android:label="@string/title_activity_rewards_game" >
+        </activity>
     </application>
 
 </manifest>

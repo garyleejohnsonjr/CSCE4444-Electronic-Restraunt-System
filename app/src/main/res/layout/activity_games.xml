@@ -54,8 +54,8 @@ android:background="#99ffc610">
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Game 4"
-            android:id="@+id/bGame4"
+            android:text="Win $10 Off Your Next Visit!"
+            android:id="@+id/bRewardsGame"
             style="@android:style/Widget.Holo.Light.Button" />
 
     </LinearLayout>
