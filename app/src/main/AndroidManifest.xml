@@ -132,6 +132,10 @@
             android:name=".TicTacToe"
             android:label="@string/title_activity_tic_tac_toe" >
         </activity>
+        <activity
+            android:name=".ServerOrders"
+            android:label="@string/title_activity_server_orders" >
+        </activity>
     </application>
 
 </manifest>
