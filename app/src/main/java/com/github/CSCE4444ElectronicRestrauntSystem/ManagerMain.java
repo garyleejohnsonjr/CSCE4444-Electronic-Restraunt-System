@@ -1,9 +1,13 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 
 public class ManagerMain extends AppCompatActivity {
 
@@ -11,6 +15,13 @@ public class ManagerMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_main);
+        Button bGratuityReport = (Button) findViewById(R.id.bGratuityReport);
+        Button bRevenueReport = (Button) findViewById(R.id.bRevenueReport);
+        Button bItemsSold = (Button) findViewById(R.id.bItemsSold);
+        Button bTop3 = (Button) findViewById(R.id.bTop3);
+        Button bTableAdmin = (Button) findViewById(R.id.bTableAdmin);
+        Button bManageAdmin = (Button) findViewById(R.id.bManageIngridients);
+
     }
 
     @Override
