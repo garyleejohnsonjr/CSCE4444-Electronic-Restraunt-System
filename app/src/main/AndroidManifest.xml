@@ -144,6 +144,14 @@
             android:name=".RewardsGame"
             android:label="@string/title_activity_rewards_game" >
         </activity>
+        <activity
+            android:name=".RewardsGameWin"
+            android:label="@string/title_activity_rewards_game_win" >
+        </activity>
+        <activity
+            android:name=".RewardsGameLose"
+            android:label="@string/title_activity_rewards_game_lose" >
+        </activity>
     </application>
 
 </manifest>

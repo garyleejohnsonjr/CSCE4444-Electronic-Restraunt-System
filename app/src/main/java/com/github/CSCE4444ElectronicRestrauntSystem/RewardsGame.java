@@ -1,5 +1,7 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
+import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,13 +20,8 @@ public class RewardsGame extends AppCompatActivity {
         setContentView(R.layout.activity_rewards_game);
     }
 
-    //Action for when a cell is clicked. Determines which cell has been clicked and passed that
-    // information on the the virtual game board.
+
     public void cardClick(View v) {
-        //Get the id of the clicked object and assign it to a Textview variable
-        //TextView cell = (TextView) findViewById(v.getId());
-        //Check the content and make sure the cell is empty and that the game isn't over
-        //String content = (String) cell.getText();
 
         Random thisNumber = new Random();
         int roll = thisNumber.nextInt(5) + 1;
@@ -34,12 +31,38 @@ public class RewardsGame extends AppCompatActivity {
             ImageView cell = (ImageView) findViewById(v.getId());
             cell.setImageResource(R.drawable.ace);
             //TODO: DO SOME REAL SHIT HERE!
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    Intent iRewardsGame = new Intent(RewardsGame.this, RewardsGameWin.class);
+                    startActivity(iRewardsGame);
+                }
+            }, 500);
+
+            //try {
+            //    wait(2000);
+            //} catch (InterruptedException e) {
+            //    e.printStackTrace();
+            //}
+
+            //Intent iRewardsGame = new Intent(RewardsGame.this, RewardsGameWin.class);
+            //startActivity(iRewardsGame);
+
         }
         else
         {
             ImageView cell = (ImageView) findViewById(v.getId());
             cell.setImageResource(R.drawable.joker);
             //TODO: DO SOME MO' REAL SHIT HERE!
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    Intent iRewardsGame = new Intent(RewardsGame.this, RewardsGameLose.class);
+                    startActivity(iRewardsGame);
+                }
+            }, 500);
         }
     }
 
