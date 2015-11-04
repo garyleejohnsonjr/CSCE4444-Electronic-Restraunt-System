@@ -25,11 +25,6 @@ import java.util.List;
 //Todo: This is basically just a copy of the temporary CustomerMain
 public class ServerMain extends AppCompatActivity {
 
-    //Table Status Fragment
-    public void tableSelect(int tableNum){
-
-
-    }
     void changeColor(final TextView tTable, int tableNum){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Tables");
         query.whereEqualTo("Number", tableNum);
@@ -95,7 +90,6 @@ public class ServerMain extends AppCompatActivity {
         setContentView(R.layout.activity_server_main);
 
         //Buttons and clickable text tables
-        Button bPayBill = (Button) findViewById(R.id.bPayBill);
         final TextView tTable1 = (TextView) findViewById(R.id.tTable1);
         final TextView tTable2 = (TextView) findViewById(R.id.tTable2);
         final TextView tTable3 = (TextView) findViewById(R.id.tTable3);
@@ -106,6 +100,18 @@ public class ServerMain extends AppCompatActivity {
         final TextView tTable8 = (TextView) findViewById(R.id.tTable8);
         final TextView tTable9 = (TextView) findViewById(R.id.tTable9);
         final TextView tTable10 = (TextView) findViewById(R.id.tTable10);
+
+        //Server Table buttons
+        final Button bTable1 = (Button) findViewById(R.id.bTable1Order);
+        final Button bTable2 = (Button) findViewById(R.id.bTable2Order);
+        final Button bTable3 = (Button) findViewById(R.id.bTable3Order);
+        final Button bTable4 = (Button) findViewById(R.id.bTable4Order);
+        final Button bTable5 = (Button) findViewById(R.id.bTable5Order);
+        final Button bTable6 = (Button) findViewById(R.id.bTable6Order);
+        final Button bTable7 = (Button) findViewById(R.id.bTable7Order);
+        final Button bTable8 = (Button) findViewById(R.id.bTable8Order);
+        final Button bTable9 = (Button) findViewById(R.id.bTable9Order);
+        final Button bTable10 = (Button) findViewById(R.id.bTable10Order);
 
         //Sets Default Table colors
         changeColor(tTable1, 1);
@@ -239,14 +245,100 @@ public class ServerMain extends AppCompatActivity {
             }
         });
 
-
-        bPayBill.setOnClickListener(new View.OnClickListener() {
+        //Table Order button listners
+        bTable1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent iPayBill = new Intent(ServerMain.this, PayBill.class);
-                startActivity(iPayBill);
+                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                iTableOrder.putExtra("Number", 1);
+                startActivity(iTableOrder);
+                finish();
             }
         });
+        bTable2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                iTableOrder.putExtra("Number", 2);
+                startActivity(iTableOrder);
+                finish();
+            }
+        });
+        bTable3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                iTableOrder.putExtra("Number", 3);
+                startActivity(iTableOrder);
+                finish();
+            }
+        });
+        bTable4.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                iTableOrder.putExtra("Number", 4);
+                startActivity(iTableOrder);
+                finish();
+            }
+        });
+        bTable5.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                iTableOrder.putExtra("Number", 5);
+                startActivity(iTableOrder);
+                finish();
+            }
+        });
+        bTable6.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                iTableOrder.putExtra("Number", 6);
+                startActivity(iTableOrder);
+                finish();
+            }
+        });
+        bTable7.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                iTableOrder.putExtra("Number", 7);
+                startActivity(iTableOrder);
+                finish();
+            }
+        });
+        bTable8.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                iTableOrder.putExtra("Number", 8);
+                startActivity(iTableOrder);
+                finish();
+            }
+        });
+        bTable9.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                iTableOrder.putExtra("Number", 9);
+                startActivity(iTableOrder);
+                finish();
+            }
+        });
+        bTable10.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                iTableOrder.putExtra("Number", 10);
+                startActivity(iTableOrder);
+                finish();
+            }
+        });
+
+
+
     }
 
     @Override
