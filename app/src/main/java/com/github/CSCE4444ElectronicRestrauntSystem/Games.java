@@ -19,6 +19,7 @@ public class Games extends AppCompatActivity {
         Button bTicTacToe = (Button) findViewById(R.id.bTicTacToe);
         Button bSnake = (Button) findViewById(R.id.bSnake);
         Button bRewards = (Button) findViewById(R.id.bRewardsGame);
+        Button bPong = (Button) findViewById(R.id.bPong);
 
         bTicTacToe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +34,14 @@ public class Games extends AppCompatActivity {
             public void onClick(View v) {
                 Intent iSnake = new Intent(Games.this, Snake.class);
                 startActivity(iSnake);
+            }
+        });
+
+        bPong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iPong = new Intent(Games.this, Pong.class);
+                startActivity(iPong);
             }
         });
 
