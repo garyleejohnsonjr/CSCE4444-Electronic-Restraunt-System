@@ -49,7 +49,7 @@
     <string name="error_fragment_message">An error occurred</string>
     <string name="dismiss_error">Dismiss</string>
     <string name="oops">Oops</string>
-    <string name="title_activity_call_server">CallServer</string>
+    <string name="title_activity_call_server">Call Server</string>
     <string name="title_activity_table_list">TableList</string>
     <string name="title_activity_all_orders">AllOrders</string>
     <string name="title_activity_single_order">SingleOrder</string>
