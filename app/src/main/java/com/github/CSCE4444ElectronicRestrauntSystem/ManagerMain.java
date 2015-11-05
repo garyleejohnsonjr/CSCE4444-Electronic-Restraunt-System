@@ -30,78 +30,66 @@ public class ManagerMain extends AppCompatActivity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_manager_main);
-        currentCategory = findViewById(R.id.bItemsSold);
-        switchReport(currentCategory);
+        currentCategory = findViewById(R.id.bRevenueReport);
+        RevenueReport(currentCategory);
 
     }
-
-    public void switchReport(View view) {
-        currentCategory.setEnabled(true);
+//shows revenue report on clicking button
+    public void RevenueReport(View view) {
         currentCategory = view;
+        currentCategory.setEnabled(false);
         ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
-        view.setEnabled(false);
-        switch (view.getId()) {
-            case (R.id.bItemsSold)://displaying items by most sold
-                query.addDescendingOrder("Frequency");
-                break;
-            case (R.id.bGratuityReport):
-                //  query = ParseQuery.getQuery("Users");
-                //  query.whereEqualTo("Job","Server");
-                //  query.addDescendingOrder("Name");
-                //find total gratuity earned by server here
-                break;
-            case (R.id.bRevenueReport):
-                query.addDescendingOrder("Price");
-                break;
-            case (R.id.bTop3):
-                query.whereNotEqualTo("Type", "Drink");
-                query.addDescendingOrder("Frequency");
-                query.setLimit(3);
-                break;
-            case (R.id.bManageIngridients):
-                //sends us to the Ingridiants activity
-                break;
-            case (R.id.bTableAdmin):
-                //sends us to the Tables view
-                break;
-        }
+        query.addDescendingOrder("ItemName");
+        // run the query in the background, then create and set the adapter
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
-            public void done(List<ParseObject> menuItems, ParseException e) {
-                ReportAdapter adapter = new ReportAdapter(menuItems);
-                ListView lvMenu = (ListView) findViewById(R.id.lvMenu);
-                lvMenu.setAdapter(adapter);
+            public void done(List<ParseObject> reportItems, ParseException e) {
+                RevReportAdaptor adapter = new RevReportAdaptor(reportItems);
+                ListView lvReportSpace = (ListView) findViewById(R.id.lvReportSpace);
+                lvReportSpace.setAdapter(adapter);
             }
         });
     }
-        // nested class used for the menu adapter
-        private class ReportAdapter extends ArrayAdapter<ParseObject> {
+    private class RevReportAdaptor extends ArrayAdapter<ParseObject>{
+        public RevReportAdaptor(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
 
-            // constructor
-            public ReportAdapter(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
+        @Override public View getView(int position, View view, ViewGroup parent) {
+            ParseObject entry=getItem(position);
+            TextView tvItemName=(TextView)findViewById(R.id.tvItemName);
+            String ItemName=entry.getString("ItemName");
+            tvItemName.setText(ItemName);
+            TextView tvItemQuantity=(TextView)findViewById(R.id.tvItemQuantity);
+            String ItemQuantity=entry.getString("Frequency");
+            tvItemQuantity.setText(ItemQuantity);
 
-            // function called whenever the list is created or scrolled
-            @Override public View getView(int position, View view, ViewGroup parent) {
-                if (view == null) {
-                    view = getLayoutInflater().inflate(R.layout.activity_manager_report, parent, false);
-                }
-
-                // get the current item
-                ParseObject item = getItem(position);
-
-
-                // get item name
-                TextView tvItemName = (TextView)view.findViewById(R.id.tvItemName);
-                String itemName = item.getString("ItemName");
-                tvItemName.setText(itemName);
-
-
-
-                // get quantity
-               TextView tvItemQuanity =(TextView)view.findViewById(R.id.tvItemQuantity);
-                String itemQuanity =item.getString("Frequency");
-                // return the view
-                return view;
-            }
+            return view;
         }
     }
+    public void GratuityReport(View view){
+        currentCategory = view;
+        currentCategory.setEnabled(false);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Orders");
+        // run the query in the background, then create and set the adapter
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> reportItems, ParseException e) {
+                GratReportAdaptor adapter = new GratReportAdaptor(reportItems);
+                ListView lvReportSpace = (ListView) findViewById(R.id.lvReportSpace);
+                lvReportSpace.setAdapter(adapter);
+            }
+        });
+    }
+    public class GratReportAdaptor extends ArrayAdapter<ParseObject>{
+        public GratReportAdaptor(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
+    }
+    public void TaxReport(View view){
+
+    }
+    public void AdjustmentReport(View view){
+
+    }
+    public void SalesReport(View view){
+
+    }
+}
+
