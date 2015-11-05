@@ -180,6 +180,38 @@ public class ManagerMain extends AppCompatActivity {
         currentCategory.setEnabled(true);
         currentCategory = view;
         currentCategory.setEnabled(false);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
+        query.addDescendingOrder("ItemName");
+        // run the query in the background, then create and set the adapter
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> reportItems, ParseException e) {
+                SalesReportAdaptor adapter = new SalesReportAdaptor(reportItems);
+                ListView lvReportSpace = (ListView) findViewById(R.id.lvReportSpace);
+                lvReportSpace.setAdapter(adapter);
+            }
+        });
+    }
+    private class SalesReportAdaptor extends ArrayAdapter<ParseObject>{
+        public SalesReportAdaptor(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
+
+        @Override public View getView(int position, View view, ViewGroup parent) {
+            if (view == null) {
+                view = getLayoutInflater().inflate(R.layout.activity_manager_reportrev, parent, false);
+            }
+            //seting item name in field
+            ParseObject entry=getItem(position);
+            TextView tvItemName=(TextView)view.findViewById(R.id.tvItemName);
+            String ItemName=entry.getString("ItemName");
+            tvItemName.setText(ItemName);
+            //setting item quantity in field
+            TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvItemQuantity);
+            int ItemQuantity=(int)entry.getNumber("Frequency");
+            String sIQ=String.valueOf(ItemQuantity);
+            tvItemQuantity.setText(sIQ);
+
+            return view;
+        }
     }
 }
 
