@@ -1,26 +1,18 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
-import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class ManagerMain extends AppCompatActivity {
@@ -55,15 +47,15 @@ public class ManagerMain extends AppCompatActivity {
 
         @Override public View getView(int position, View view, ViewGroup parent) {
             if (view == null) {
-                view = getLayoutInflater().inflate(R.layout.activity_manager_report, parent, false);
+                view = getLayoutInflater().inflate(R.layout.activity_manager_reportrev, parent, false);
             }
             //seting item name in field
             ParseObject entry=getItem(position);
-            TextView tvItemName=(TextView)findViewById(R.id.tvItemName);
+            TextView tvItemName=(TextView)view.findViewById(R.id.tvItemName);
             String ItemName=entry.getString("ItemName");
             tvItemName.setText(ItemName);
             //setting item quantity in field
-            TextView tvItemQuantity=(TextView)findViewById(R.id.tvItemQuantity);
+            TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvItemQuantity);
             int ItemQuantity=(int)entry.getNumber("Frequency");
             String sIQ=String.valueOf(ItemQuantity);
             tvItemQuantity.setText(sIQ);
@@ -87,6 +79,24 @@ public class ManagerMain extends AppCompatActivity {
     }
     public class GratReportAdaptor extends ArrayAdapter<ParseObject>{
         public GratReportAdaptor(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
+        @Override public View getView(int position, View view, ViewGroup parent) {
+            if (view == null) {
+                view = getLayoutInflater().inflate(R.layout.activity_manager_reportgrat, parent, false);
+            }
+            //seting item name in field
+            ParseObject entry=getItem(position);
+            TextView tvItemName=(TextView)view.findViewById(R.id.tvItemName);
+            String ItemName=entry.getString("ItemName");
+            tvItemName.setText(ItemName);
+            //setting item quantity in field
+            TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvItemQuantity);
+            int ItemQuantity=(int)entry.getNumber("Frequency");
+            String sIQ=String.valueOf(ItemQuantity);
+            tvItemQuantity.setText(sIQ);
+
+            return view;
+        }
+
     }
     public void TaxReport(View view){
 
