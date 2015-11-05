@@ -88,11 +88,12 @@ public class ManagerMain extends AppCompatActivity {
             //seting item name in field
             ParseObject entry=getItem(position);
             TextView tvOrder=(TextView)view.findViewById(R.id.tvOrder);
-            String ItemName=entry.getString("TableNumber");
-            tvOrder.setText(ItemName);
+            Integer ItemName=entry.getInt("TableNumber");
+            String ItemNameString = "Table: " + String.valueOf(ItemName);
+            tvOrder.setText(ItemNameString);
             //setting item quantity in field
-            TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvItemQuantity);
-            int Gratuity=(int)entry.getNumber("Gratuity");
+            TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvGratuity);
+            Double Gratuity=  entry.getNumber("Gratuity").doubleValue();
             String sG=String.valueOf(Gratuity);
             tvItemQuantity.setText(sG);
 
