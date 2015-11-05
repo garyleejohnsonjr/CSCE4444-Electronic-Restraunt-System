@@ -58,7 +58,9 @@ public class ManagerMain extends AppCompatActivity {
             //setting item quantity in field
             TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvItemQuantity);
             int ItemQuantity=(int)entry.getNumber("Frequency");
-            String sIQ=String.valueOf(ItemQuantity);
+            Double ItemPrice=entry.getNumber("Price").doubleValue();
+            Double rev=ItemQuantity*ItemPrice;
+            String sIQ=String.valueOf(rev);
             tvItemQuantity.setText(sIQ);
 
             return view;
