@@ -87,10 +87,10 @@ public class SubmitOrder extends AppCompatActivity {
                     LinkedList<String> itemsOrdered = new LinkedList<>();
                     LinkedList<String> requests = new LinkedList<>();
                     MainApplication application = (MainApplication)getApplicationContext();
-                    for (OrderItem item : application.currentOrder) {
-                        itemsOrdered.addLast(item.name);
-                        requests.addLast(item.request);
-                    }
+                    for (OrderItem item : application.currentOrder)                         {
+                            itemsOrdered.addLast(item.name);
+                            requests.addLast(item.request);
+                        }
 
                     // build the order
                     order.put("ItemsOrdered", itemsOrdered);

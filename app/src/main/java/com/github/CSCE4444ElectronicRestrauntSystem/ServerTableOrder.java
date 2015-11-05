@@ -232,21 +232,52 @@ public class ServerTableOrder extends AppCompatActivity {
             super(ServerTableOrder.this, 0, objects);
         }
         @Override
-        public View getView(int position, View view, ViewGroup parent) {
+        public View getView(final int position, View view, ViewGroup parent) {
             if (view == null) {
                 view = getLayoutInflater().inflate(R.layout.activity_comp_item, parent, false);
             }
             // get the item
             String item = getItem(position).toString();
-            // get item name
+            // get item name and puts on page
             TextView tvItemName = (TextView) view.findViewById(R.id.tvItemName);
             tvItemName.setText(item);
 
-            // get price
-            final TextView tvPrice = (TextView) view.findViewById(R.id.tvPrice);
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
-            query.whereEqualTo("ItemName", item);
+            //Gets requests and puts on page
+            final TextView tvRequest = (TextView) view.findViewById(R.id.tvRequest);
+            final Intent i = getIntent();
+            final int tableNum = 0;
+
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
+            query.whereEqualTo("TableNumber", i.getIntExtra("Number", tableNum));
+            query.whereNotEqualTo("Status", "Paid");
+            query.orderByAscending("createdAt");
             query.findInBackground(new FindCallback<ParseObject>() {
+                public void done(List<ParseObject> orders,
+                                 com.parse.ParseException e) {
+                    if (e == null) {
+                        int x = 0;
+                        for (ParseObject order : orders) {
+                            if (x == i.getIntExtra("Order", tableNum)) {
+                                List<String> requests = order.getList("Requests");
+                                int y = 0;
+                                for(String request:requests ) {
+                                    if (y == position)
+                                        tvRequest.setText(request);
+                                    y++;
+                                }
+                            }
+                            x++;
+                        }
+                    }
+                }
+            });
+
+            // Get price and puts on page
+            final TextView tvPrice = (TextView) view.findViewById(R.id.tvPrice);
+
+            ParseQuery<ParseObject> Newquery = ParseQuery.getQuery("MenuItem");
+            Newquery.whereEqualTo("ItemName", item);
+            Newquery.findInBackground(new FindCallback<ParseObject>() {
                 public void done(List<ParseObject> menuitems,
                                  com.parse.ParseException e) {
                     //Todo: Submit nothing error
@@ -257,6 +288,7 @@ public class ServerTableOrder extends AppCompatActivity {
                             if (formattedPrice.equals("$0.00"))
                                 formattedPrice = "Free";
                             tvPrice.setText(formattedPrice);
+
                         }
                     }
                 }

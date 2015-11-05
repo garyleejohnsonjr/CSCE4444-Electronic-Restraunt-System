@@ -38,7 +38,7 @@ public class ManualAdjustments extends AppCompatActivity {
                 if (e == null) {
                     for (ParseObject order : orders) {
                         int num = 0;
-                       if(!order.getString("AdjustmentComments").isEmpty())
+                       if(order.containsKey("AdjustmentComments"))
                            etComments.setText(order.getString("AdjustmentComments"));
                         if(i.getDoubleExtra("Adjustments", num) != 0)
                             etAdjustments.setText(Double.toString(i.getDoubleExtra("Adjustments", num)));
@@ -47,6 +47,7 @@ public class ManualAdjustments extends AppCompatActivity {
             }
         });
 
+        //Gets the comments and adjustment and submits to parse
         bAdjustSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +65,7 @@ public class ManualAdjustments extends AppCompatActivity {
                         }
                     }
                 });
+                //Destroys Page
                 finish();
             }
         });

@@ -25,6 +25,17 @@ public class ServerOrders extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout();
+    }
+
+    //Refreshes on Resume
+    protected void onResume() {
+        super.onResume();
+        setLayout();
+    }
+
+    //Sets Content Layout
+    public void setLayout(){
         setContentView(R.layout.activity_server_orders);
 
         //Gets Table number
@@ -41,7 +52,8 @@ public class ServerOrders extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent iTableStatus = new Intent(ServerOrders.this, MenuMain.class);
-                iTableStatus.putExtra("Number", i.getIntExtra("Number", tableNum));
+                MainApplication application = (MainApplication)getApplicationContext();
+                application.currentTable = i.getIntExtra("Number", tableNum);
                 startActivity(iTableStatus);
             }
         });
@@ -61,7 +73,6 @@ public class ServerOrders extends AppCompatActivity {
             }
         });
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
