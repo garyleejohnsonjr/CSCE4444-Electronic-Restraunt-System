@@ -53,31 +53,35 @@
             android:layout_height="wrap_content"
             android:text="Gratuity Report"
             android:id="@+id/bGratuityReport"
-            android:onClick="switchReport" />
+            android:onClick="GratuityReport" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tax Report"
-            android:id="@+id/bTaxReport" />
+            android:id="@+id/bTaxReport"
+            android:onClick="TaxReport" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Revenue Report"
-            android:id="@+id/bRevenueReport" />
+            android:id="@+id/bRevenueReport"
+            android:onClick="RevenueReport" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Items Sold"
-            android:id="@+id/bItemsSold" />
+            android:id="@+id/bItemsSold"
+            android:onClick="SalesReport" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Daily Adjustments"
-            android:id="@+id/bAdjustments" />
+            android:id="@+id/bAdjustments"
+            android:onClick="AdjustmentReport" />
 
         <Button
             android:layout_width="wrap_content"
