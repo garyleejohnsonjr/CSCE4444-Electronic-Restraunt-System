@@ -18,6 +18,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -28,33 +29,13 @@ public class ServerTableOrder extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_server_table_order);
-
-        /*final Intent i = getIntent();
-        int tableNum = 0;
-
-        //gets table number and finds in database
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Tables");
-        query.whereEqualTo("Number", i.getIntExtra("Number", tableNum));
-        query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> tables,
-                                     com.parse.ParseException e) {
-                //Todo: Submit nothing error
-                if (e == null) {
-                    for (ParseObject table : tables) {
-                        Log.d("Tables", "True");
-                    }
-                } else {
-                    //Failed Query Log
-                    Log.d("Tables", "Error: " + e.getMessage());
-                }
-            }
-        });
-
-*/
         final Intent i = getIntent();
         final int tableNum = 0;
 
+
+        //Formats the Order Adapter
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
         query.whereEqualTo("TableNumber", i.getIntExtra("Number", tableNum));
         query.whereNotEqualTo("Status", "Paid");
@@ -65,22 +46,108 @@ public class ServerTableOrder extends AppCompatActivity {
                 //Todo: Submit nothing error
                 if (e == null) {
                     int x = 0;
-                    for (ParseObject order: orders) {
-                        if( x == i.getIntExtra("Order", tableNum)) {
+                    for (ParseObject order : orders) {
+                        if (x == i.getIntExtra("Order", tableNum)) {
                             TableAdapter adapter = new TableAdapter(order.getList("ItemsOrdered"));
                             ListView lvTableOrder = (ListView) findViewById(R.id.lvTableOrder);
                             lvTableOrder.setAdapter(adapter);
+
+                            //Gets Total Price
+                            final TextView tvTotalPrice = (TextView) findViewById(R.id.tvTotalPrice);
+                            final TextView tvAdjustments = (TextView) findViewById(R.id.tvAdjustments);
+                            final ParseObject update = order;
+
+                            //Gets total and adjustments
+                            String formattedAdjustments = String.format("$%.2f", order.getDouble("Adjustments"));
+                            String formattedTotalPrice = String.format("$%.2f", order.getDouble("Total") - order.getDouble("Adjustments"));
+                            tvAdjustments.setText("Adjustments: -" + formattedAdjustments);
+                            tvTotalPrice.setText("Total: " + formattedTotalPrice);
+
+                            Button bSelfAdjust = (Button) findViewById(R.id.bSelfAdjust);
+                            final ParseObject id = order;
+
+                            //Launches New activity with object id
+                            bSelfAdjust.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent iAdjustments = new Intent(ServerTableOrder.this, ManualAdjustments.class);
+                                    iAdjustments.putExtra("objectId", id.getObjectId());
+                                    startActivity(iAdjustments);
+                                }
+
+                            });
                         }
                         x++;
                     }
+                } else {
+                    //Failed Query Log
+                    Log.d("Tables", "Error: " + e.getMessage());
                 }
-             else {
-                //Failed Query Log
-                Log.d("Tables", "Error: " + e.getMessage());
             }
-        }
-    });
+        });
+
 }
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        setContentView(R.layout.activity_server_table_order);
+        final Intent i = getIntent();
+        final int tableNum = 0;
+
+
+        //Formats the Order Adapter
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
+        query.whereEqualTo("TableNumber", i.getIntExtra("Number", tableNum));
+        query.whereNotEqualTo("Status", "Paid");
+        query.orderByAscending("createdAt");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> orders,
+                             com.parse.ParseException e) {
+                //Todo: Submit nothing error
+                if (e == null) {
+                    int x = 0;
+                    for (ParseObject order : orders) {
+                        if (x == i.getIntExtra("Order", tableNum)) {
+                            TableAdapter adapter = new TableAdapter(order.getList("ItemsOrdered"));
+                            ListView lvTableOrder = (ListView) findViewById(R.id.lvTableOrder);
+                            lvTableOrder.setAdapter(adapter);
+
+                            //Gets Total Price
+                            final TextView tvTotalPrice = (TextView) findViewById(R.id.tvTotalPrice);
+                            final TextView tvAdjustments = (TextView) findViewById(R.id.tvAdjustments);
+                            final ParseObject update = order;
+
+                            //Gets total and adjustments
+                            String formattedAdjustments = String.format("$%.2f", order.getDouble("Adjustments"));
+                            String formattedTotalPrice = String.format("$%.2f", order.getDouble("Total") - order.getDouble("Adjustments"));
+                            tvAdjustments.setText("Adjustments: -" + formattedAdjustments);
+                            tvTotalPrice.setText("Total: " + formattedTotalPrice);
+
+                            Button bSelfAdjust = (Button) findViewById(R.id.bSelfAdjust);
+                            final ParseObject id = order;
+
+                            //Launches New activity with object id
+                            bSelfAdjust.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent iAdjustments = new Intent(ServerTableOrder.this, ManualAdjustments.class);
+                                    iAdjustments.putExtra("objectId", id.getObjectId());
+                                    startActivity(iAdjustments);
+                                }
+
+                            });
+                        }
+                        x++;
+                    }
+                } else {
+                    //Failed Query Log
+                    Log.d("Tables", "Error: " + e.getMessage());
+                }
+            }
+        });
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -103,27 +170,80 @@ public class ServerTableOrder extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    // remove item event
+    public void compItem(View view) {
+
+        ListView lvTableOrder = (ListView) findViewById(R.id.lvTableOrder);
+
+        // get item to remove
+        final int position = lvTableOrder.getPositionForView(view);
+        final Intent i = getIntent();
+        final int tableNum = 0;
+
+        //Formats the Order Adapter
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
+        query.whereEqualTo("TableNumber", i.getIntExtra("Number", tableNum));
+        query.whereNotEqualTo("Status", "Paid");
+        query.orderByAscending("createdAt");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> orders,
+                             com.parse.ParseException e) {
+                //Todo: Submit nothing error
+                if (e == null) {
+                    int x = 0;
+                    for (ParseObject order : orders) {
+                        if (x ==  i.getIntExtra("Order", tableNum)) {
+                                final ParseObject price = order;
+
+                                ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
+                                List<String> items = order.getList("ItemsOrdered");
+
+                                int y = 0;
+                                for(String item: items){
+                                    if (y == position)
+                                        query.whereEqualTo("ItemName",item);
+                                    y++;
+                                }
+                                query.findInBackground(new FindCallback<ParseObject>() {
+                                    public void done(List<ParseObject> menuitems,
+                                                     com.parse.ParseException e) {
+                                        for(ParseObject menuitem : menuitems){
+
+                                            //adds Menu item Adjust to intent
+                                            Intent i = new Intent(ServerTableOrder.this, ManualAdjustments.class);
+                                            i.putExtra("objectId", price.getObjectId());
+                                            i.putExtra("Adjustments", menuitem.getDouble("Price"));
+                                            startActivity(i);
+                                        }
+                                    }
+
+                                });
+                        }
+                        x++;
+                    }
+                }
+            }
+        });
+    }
 
     private class TableAdapter extends ArrayAdapter<Object> {
         // constructor
-        public TableAdapter(List<Object> objects) { super(ServerTableOrder.this, 0, objects); }
-
-        @Override public View getView(int position, View view, ViewGroup parent) {
+        public TableAdapter(List<Object> objects) {
+            super(ServerTableOrder.this, 0, objects);
+        }
+        @Override
+        public View getView(int position, View view, ViewGroup parent) {
             if (view == null) {
-                view = getLayoutInflater().inflate(R.layout.activity_submit_item, parent, false);
+                view = getLayoutInflater().inflate(R.layout.activity_comp_item, parent, false);
             }
-
             // get the item
-
-           String item= getItem(position).toString();
+            String item = getItem(position).toString();
             // get item name
-            TextView tvItemName = (TextView)view.findViewById(R.id.tvItemName);
+            TextView tvItemName = (TextView) view.findViewById(R.id.tvItemName);
             tvItemName.setText(item);
 
-
             // get price
-
-            final TextView tvPrice = (TextView)view.findViewById(R.id.tvPrice);
+            final TextView tvPrice = (TextView) view.findViewById(R.id.tvPrice);
             ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
             query.whereEqualTo("ItemName", item);
             query.findInBackground(new FindCallback<ParseObject>() {
@@ -134,14 +254,15 @@ public class ServerTableOrder extends AppCompatActivity {
                         for (ParseObject menuitem : menuitems) {
                             Double price = menuitem.getDouble("Price");
                             String formattedPrice = String.format("$%.2f", price);
-                            if (formattedPrice.equals("$0.00")) formattedPrice = "Free";
+                            if (formattedPrice.equals("$0.00"))
+                                formattedPrice = "Free";
                             tvPrice.setText(formattedPrice);
                         }
                     }
                 }
             });
             return view;
-
         }
     }
+
 }

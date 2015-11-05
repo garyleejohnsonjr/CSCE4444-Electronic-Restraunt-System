@@ -160,7 +160,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableStatus = new Intent(ServerMain.this, TableStatus.class);
                 iTableStatus.putExtra("Number", 1);
                 startActivity(iTableStatus);
-                finish();
             }
         });
         tTable2.setOnClickListener(new View.OnClickListener(){
@@ -169,7 +168,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableStatus = new Intent(ServerMain.this, TableStatus.class);
                 iTableStatus.putExtra("Number", 2);
                 startActivity(iTableStatus);
-                finish();
             }
         });
         tTable3.setOnClickListener(new View.OnClickListener(){
@@ -178,7 +176,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableStatus = new Intent(ServerMain.this, TableStatus.class);
                 iTableStatus.putExtra("Number", 3);
                 startActivity(iTableStatus);
-                finish();
             }
         });
         tTable4.setOnClickListener(new View.OnClickListener(){
@@ -187,7 +184,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableStatus = new Intent(ServerMain.this, TableStatus.class);
                 iTableStatus.putExtra("Number", 4);
                 startActivity(iTableStatus);
-                finish();
             }
         });
         tTable5.setOnClickListener(new View.OnClickListener(){
@@ -196,7 +192,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableStatus = new Intent(ServerMain.this, TableStatus.class);
                 iTableStatus.putExtra("Number", 5);
                 startActivity(iTableStatus);
-                finish();
             }
         });
         tTable6.setOnClickListener(new View.OnClickListener(){
@@ -205,7 +200,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableStatus = new Intent(ServerMain.this, TableStatus.class);
                 iTableStatus.putExtra("Number", 6);
                 startActivity(iTableStatus);
-                finish();
             }
         });
         tTable7.setOnClickListener(new View.OnClickListener(){
@@ -214,7 +208,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableStatus = new Intent(ServerMain.this, TableStatus.class);
                 iTableStatus.putExtra("Number", 7);
                 startActivity(iTableStatus);
-                finish();
             }
         });
         tTable8.setOnClickListener(new View.OnClickListener(){
@@ -223,7 +216,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableStatus = new Intent(ServerMain.this, TableStatus.class);
                 iTableStatus.putExtra("Number", 8);
                 startActivity(iTableStatus);
-                finish();
             }
         });
         tTable9.setOnClickListener(new View.OnClickListener(){
@@ -232,7 +224,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableStatus = new Intent(ServerMain.this, TableStatus.class);
                 iTableStatus.putExtra("Number", 9);
                 startActivity(iTableStatus);
-                finish();
             }
         });
         tTable10.setOnClickListener(new View.OnClickListener(){
@@ -241,7 +232,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableStatus = new Intent(ServerMain.this, TableStatus.class);
                 iTableStatus.putExtra("Number", 10);
                 startActivity(iTableStatus);
-                finish();
             }
         });
 
@@ -252,7 +242,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 1);
                 startActivity(iTableOrder);
-                finish();
             }
         });
         bTable2.setOnClickListener(new View.OnClickListener(){
@@ -261,7 +250,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 2);
                 startActivity(iTableOrder);
-                finish();
             }
         });
         bTable3.setOnClickListener(new View.OnClickListener(){
@@ -270,7 +258,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 3);
                 startActivity(iTableOrder);
-                finish();
             }
         });
         bTable4.setOnClickListener(new View.OnClickListener(){
@@ -279,7 +266,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 4);
                 startActivity(iTableOrder);
-                finish();
             }
         });
         bTable5.setOnClickListener(new View.OnClickListener(){
@@ -288,7 +274,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 5);
                 startActivity(iTableOrder);
-                finish();
             }
         });
         bTable6.setOnClickListener(new View.OnClickListener(){
@@ -297,7 +282,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 6);
                 startActivity(iTableOrder);
-                finish();
             }
         });
         bTable7.setOnClickListener(new View.OnClickListener(){
@@ -306,7 +290,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 7);
                 startActivity(iTableOrder);
-                finish();
             }
         });
         bTable8.setOnClickListener(new View.OnClickListener(){
@@ -315,7 +298,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 8);
                 startActivity(iTableOrder);
-                finish();
             }
         });
         bTable9.setOnClickListener(new View.OnClickListener(){
@@ -324,7 +306,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 9);
                 startActivity(iTableOrder);
-                finish();
             }
         });
         bTable10.setOnClickListener(new View.OnClickListener(){
@@ -333,7 +314,6 @@ public class ServerMain extends AppCompatActivity {
                 Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 10);
                 startActivity(iTableOrder);
-                finish();
             }
         });
 

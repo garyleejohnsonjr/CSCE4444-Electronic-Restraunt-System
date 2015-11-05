@@ -81,4 +81,5 @@
     <string name="title_activity_rewards_game">RewardsGame</string>
     <string name="title_activity_rewards_game_win">RewardsGameWin</string>
     <string name="title_activity_rewards_game_lose">RewardsGameLose</string>
+    <string name="title_activity_manual_adjustments">ManualAdjustments</string>
 </resources>

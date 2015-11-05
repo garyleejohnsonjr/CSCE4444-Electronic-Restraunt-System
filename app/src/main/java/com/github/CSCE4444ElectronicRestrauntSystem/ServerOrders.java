@@ -84,7 +84,7 @@ public class ServerOrders extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // remove item event
+    // Click Order event
     public void ServerTableOrders(View view) {
 
         ListView lvOrderList = (ListView) findViewById(R.id.lvOrderList);
@@ -107,7 +107,6 @@ public class ServerOrders extends AppCompatActivity {
                     iTableStatus.putExtra("Number", i.getIntExtra("Number", tableNum));
                     iTableStatus.putExtra("Order", position);
                     startActivity(iTableStatus);
-                    finish();
                 }
             }
         });

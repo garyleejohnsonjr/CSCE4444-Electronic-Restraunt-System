@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.github.CSCE4444ElectronicRestrauntSystem.ManualAdjustments"
+    android:background="#99ffc610">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number|numberDecimal"
+        android:ems="10"
+        android:id="@+id/etAdjustment"
+        android:hint = "Adjustment Amount"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="97dp" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etComments"
+        android:ems="12"
+        android:singleLine="true"
+        android:hint = "Comments"
+        style="@android:style/Widget.Holo.Light.EditText"
+        android:layout_below="@+id/etAdjustment"
+        android:layout_centerHorizontal="true"
+        android:inputType="text" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/bAdjustSubmit"
+        android:layout_below="@+id/etComments"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dp" />
+]
+</RelativeLayout>

@@ -14,9 +14,17 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="299dp"
-        android:id="@+id/lvTableOrder"
-        android:layout_weight="0.70" />
+        android:layout_height="288dp"
+        android:id="@+id/lvTableOrder" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Adjustments: $0.00"
+        android:id="@+id/tvAdjustments"
+        android:gravity="right"
+        android:layout_gravity="right" />
 
     <TextView
         android:layout_width="match_parent"
@@ -35,16 +43,8 @@
             style="@android:style/Widget.Holo.Light.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Menu"
-            android:id="@+id/bMenu"
-            android:onClick="submitOrder" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit Order"
-            android:id="@+id/bSubmitOrder"
-            style="@android:style/Widget.Holo.Light.Button"
+            android:text="Self Adjustments"
+            android:id="@+id/bSelfAdjust"
             android:onClick="submitOrder" />
 
         <Button
