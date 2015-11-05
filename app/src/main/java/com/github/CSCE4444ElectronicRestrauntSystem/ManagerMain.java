@@ -112,7 +112,7 @@ public class ManagerMain extends AppCompatActivity {
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> reportItems, ParseException e) {
-                GratReportAdaptor adapter = new GratReportAdaptor(reportItems);
+                TaxReportAdaptor adapter = new TaxReportAdaptor(reportItems);
                 ListView lvReportSpace = (ListView) findViewById(R.id.lvReportSpace);
                 lvReportSpace.setAdapter(adapter);
             }
@@ -122,16 +122,15 @@ public class ManagerMain extends AppCompatActivity {
         public TaxReportAdaptor(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
         @Override public View getView(int position, View view, ViewGroup parent) {
             if (view == null) {
-                view = getLayoutInflater().inflate(R.layout.activity_manager_reportgrat, parent, false);
+                view = getLayoutInflater().inflate(R.layout.activity_manager_reportadjust, parent, false);
             }
             //seting item name in field
             ParseObject entry=getItem(position);
-            TextView tvOrder=(TextView)view.findViewById(R.id.tvOrder);
-            Integer ItemName=entry.getInt("TableNumber");
-            String ItemNameString = "Table: " + String.valueOf(ItemName);
-            tvOrder.setText(ItemNameString);
+            TextView tvOrder=(TextView)view.findViewById(R.id.tvOrderNumber);
+            String objectID=entry.getObjectId().toString();
+            tvOrder.setText("Order: " + objectID);
             //setting item quantity in field
-            TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvGratuity);
+            TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvAdjustNumber);
             Double Gratuity=  entry.getNumber("Tax").doubleValue();
             String sG=String.valueOf(Gratuity);
             tvItemQuantity.setText(sG);
