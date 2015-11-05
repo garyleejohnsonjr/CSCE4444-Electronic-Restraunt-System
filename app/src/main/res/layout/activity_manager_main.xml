@@ -102,6 +102,7 @@
         android:id="@+id/lvReportSpace"
         android:layout_alignTop="@+id/linearLayout"
         android:layout_toRightOf="@+id/linearLayout"
-        android:layout_toEndOf="@+id/linearLayout" />
+        android:layout_toEndOf="@+id/linearLayout"
+        android:layout_above="@+id/textView6" />
 
 </RelativeLayout>

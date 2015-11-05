@@ -32,7 +32,7 @@ public class RewardsGame extends AppCompatActivity {
             cell.setImageResource(R.drawable.ace);
 
             MainApplication application = (MainApplication) getApplication();
-            application.gamePlays += 1;
+            application.gamePlays = 2;
 
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
