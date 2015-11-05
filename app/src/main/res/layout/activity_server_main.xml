@@ -3,196 +3,268 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.github.CSCE4444ElectronicRestrauntSystem.ServerMain"
     android:background="#99ffc610">
 
 
-<Button
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pay Bill"
-        android:id="@+id/bPayBill"
-        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table 1"
+        android:id="@+id/tTable1"
+        android:layout_column="1"
+        android:clickable="true"
+        android:padding="5dp"
+        android:layout_alignBottom="@+id/bTable1Order"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TableLayout
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:minHeight="0dp"
+        android:gravity="center"
+        android:minWidth="0dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Table Order"
+        android:id="@+id/bTable1Order"
         android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/bTable2Order"
+        android:layout_alignStart="@+id/bTable2Order" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table 10"
+        android:id="@+id/tTable10"
+        android:layout_column="1"
+        android:clickable="true"
+        android:padding="5dp"
+        android:layout_below="@+id/tTable9"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/tableLayout">
+        android:layout_alignParentStart="true" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table 9"
+        android:id="@+id/tTable9"
+        android:layout_column="1"
+        android:clickable="true"
+        android:padding="5dp"
+        android:layout_below="@+id/tTable8"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table 8"
+        android:id="@+id/tTable8"
+        android:layout_column="1"
+        android:clickable="true"
+        android:padding="5dp"
+        android:layout_below="@+id/tTable7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Table 1"
-                android:id="@+id/tTable1"
-                android:layout_column="1"
-                android:clickable="true"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table 7"
+        android:id="@+id/tTable7"
+        android:layout_column="1"
+        android:clickable="true"
+        android:padding="5dp"
+        android:layout_below="@+id/tTable6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        </TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table 6"
+        android:id="@+id/tTable6"
+        android:layout_column="1"
+        android:clickable="true"
+        android:padding="5dp"
+        android:layout_below="@+id/tTable5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table 5"
+        android:id="@+id/tTable5"
+        android:layout_column="1"
+        android:clickable="true"
+        android:padding="5dp"
+        android:layout_below="@+id/tTable4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table 4"
+        android:id="@+id/tTable4"
+        android:layout_column="1"
+        android:clickable="true"
+        android:padding="5dp"
+        android:layout_below="@+id/tTable3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table 3"
+        android:id="@+id/tTable3"
+        android:layout_column="1"
+        android:clickable="true"
+        android:padding="5dp"
+        android:layout_below="@+id/tTable2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Table 2"
-                android:id="@+id/tTable2"
-                android:layout_column="1"
-                android:clickable="true" />
-        </TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table 2"
+        android:id="@+id/tTable2"
+        android:layout_column="1"
+        android:clickable="true"
+        android:padding="5dp"
+        android:layout_below="@+id/tTable1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:minHeight="0dp"
+        android:gravity="center"
+        android:minWidth="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Table Order"
+        android:id="@+id/bTable2Order"
+        android:layout_below="@+id/bTable1Order"
+        android:layout_alignLeft="@+id/bTable3Order"
+        android:layout_alignStart="@+id/bTable3Order" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:minHeight="0dp"
+        android:gravity="center"
+        android:minWidth="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Table Order"
+        android:id="@+id/bTable3Order"
+        android:layout_below="@+id/bTable2Order"
+        android:layout_alignLeft="@+id/bTable4Order"
+        android:layout_alignStart="@+id/bTable4Order" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:minHeight="0dp"
+        android:gravity="center"
+        android:minWidth="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Table Order"
+        android:id="@+id/bTable4Order"
+        android:layout_below="@+id/tTable3"
+        android:layout_alignLeft="@+id/bTable5Order"
+        android:layout_alignStart="@+id/bTable5Order" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Table 3"
-                android:id="@+id/tTable3"
-                android:layout_column="1"
-                android:clickable="true" />
-        </TableRow>
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:minHeight="0dp"
+        android:gravity="center"
+        android:minWidth="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Table Order"
+        android:id="@+id/bTable5Order"
+        android:layout_below="@+id/bTable4Order"
+        android:layout_alignLeft="@+id/bTable6Order"
+        android:layout_alignStart="@+id/bTable6Order" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:minHeight="0dp"
+        android:gravity="center"
+        android:minWidth="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Table Order"
+        android:id="@+id/bTable6Order"
+        android:layout_below="@+id/bTable5Order"
+        android:layout_alignLeft="@+id/bTable7Order"
+        android:layout_alignStart="@+id/bTable7Order" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:minHeight="0dp"
+        android:gravity="center"
+        android:minWidth="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Table Order"
+        android:id="@+id/bTable7Order"
+        android:layout_below="@+id/bTable6Order"
+        android:layout_alignLeft="@+id/bTable8Order"
+        android:layout_alignStart="@+id/bTable8Order" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Table 4"
-                android:id="@+id/tTable4"
-                android:layout_column="1"
-                android:clickable="true" />
-        </TableRow>
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:minHeight="0dp"
+        android:gravity="center"
+        android:minWidth="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Table Order"
+        android:id="@+id/bTable8Order"
+        android:layout_below="@+id/tTable7"
+        android:layout_alignLeft="@+id/bTable9Order"
+        android:layout_alignStart="@+id/bTable9Order" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:minHeight="0dp"
+        android:gravity="center"
+        android:minWidth="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Table Order"
+        android:id="@+id/bTable10Order"
+        android:layout_below="@+id/bTable9Order"
+        android:layout_centerHorizontal="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Table 5"
-                android:id="@+id/tTable5"
-                android:layout_column="1"
-                android:clickable="true" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Table 6"
-                android:id="@+id/tTable6"
-                android:layout_column="1"
-                android:clickable="true" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Table 7"
-                android:id="@+id/tTable7"
-                android:layout_column="1"
-                android:clickable="true" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Table 8"
-                android:id="@+id/tTable8"
-                android:layout_column="1"
-                android:clickable="true" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Table 9"
-                android:id="@+id/tTable9"
-                android:layout_column="1"
-                android:clickable="true" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Table 10"
-                android:id="@+id/tTable10"
-                android:layout_column="1"
-                android:clickable="true" />
-        </TableRow>
-    </TableLayout>
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:minHeight="0dp"
+        android:gravity="center"
+        android:minWidth="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Table Order"
+        android:id="@+id/bTable9Order"
+        android:layout_below="@+id/bTable8Order"
+        android:layout_alignLeft="@+id/bTable10Order"
+        android:layout_alignStart="@+id/bTable10Order" />
 
 </RelativeLayout>

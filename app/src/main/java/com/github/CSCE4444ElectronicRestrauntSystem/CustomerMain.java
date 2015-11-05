@@ -20,6 +20,15 @@ public class CustomerMain extends AppCompatActivity {
         Button bGames = (Button) findViewById(R.id.bGames);
         Button bRewardsClub = (Button) findViewById(R.id.bRewardsClub);
         Button bCallServer = (Button) findViewById(R.id.bCallServer);
+        Button bShareTwitter = (Button) findViewById(R.id.bShare);
+
+        bShareTwitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iShareTwitter = new Intent(CustomerMain.this, ShareTwitter.class);
+                startActivity(iShareTwitter);
+            }
+        });
 
         bPayBill.setOnClickListener(new View.OnClickListener() {
             @Override
