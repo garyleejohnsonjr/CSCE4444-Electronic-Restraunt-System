@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Price"
-                android:id="@+id/tvPrice" />
+                android:id="@+id/tvItemQuantity" />
         </LinearLayout>
 
     </LinearLayout>
