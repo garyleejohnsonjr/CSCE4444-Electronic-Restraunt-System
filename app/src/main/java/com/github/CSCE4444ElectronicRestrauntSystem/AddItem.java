@@ -28,6 +28,12 @@ public class AddItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 
+        //Sets Call Server Button to invisible if its a server
+        Button bCallServer = (Button)findViewById(R.id.bCallServer);
+        Intent i = getIntent();
+        if(i.getBooleanExtra("Server", false))
+            bCallServer.setVisibility(View.INVISIBLE);
+
         // get item name
         String ItemName = getIntent().getStringExtra("ItemName");
         setTitle("Add Item - " + ItemName);

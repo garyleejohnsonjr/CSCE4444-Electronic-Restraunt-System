@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,6 +35,13 @@ public class MenuMain extends AppCompatActivity {
     @Override public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_menu_main);
+
+        //Sets Call Server Button to invisible if its a server
+        Button bCallServer = (Button)findViewById(R.id.bCallServer);
+        Intent i = getIntent();
+        if(i.getBooleanExtra("Server", false))
+            bCallServer.setVisibility(View.INVISIBLE);
+
         currentCategory = findViewById(R.id.bAppetizers);
         switchCategory(currentCategory);
     }
@@ -93,6 +101,9 @@ public class MenuMain extends AppCompatActivity {
     // add item event
     public void addItem(View view) {
         Intent intent = new Intent(this, AddItem.class);
+        Intent i = getIntent();
+        if(i.getBooleanExtra("Server", false))
+            intent.putExtra("Server", true);
         TextView tvItemName = (TextView)view.findViewById(R.id.tvItemName);
         String itemName = tvItemName.getText().toString();
         intent.putExtra("ItemName", itemName);
@@ -110,6 +121,9 @@ public class MenuMain extends AppCompatActivity {
     // submit order activity
     public void submitOrder (View view) {
         Intent intent = new Intent(this, SubmitOrder.class);
+        Intent i = getIntent();
+        if(i.getBooleanExtra("Server", false))
+            intent.putExtra("Server", true);
         startActivityForResult(intent, REQUEST_SUBMIT_ORDER);
     }
 

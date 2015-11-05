@@ -54,6 +54,7 @@ public class ServerOrders extends AppCompatActivity {
                 Intent iTableStatus = new Intent(ServerOrders.this, MenuMain.class);
                 MainApplication application = (MainApplication)getApplicationContext();
                 application.currentTable = i.getIntExtra("Number", tableNum);
+                iTableStatus.putExtra("Server", true);
                 startActivity(iTableStatus);
             }
         });

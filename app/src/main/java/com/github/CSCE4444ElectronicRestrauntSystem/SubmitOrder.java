@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +32,12 @@ public class SubmitOrder extends AppCompatActivity {
     @Override public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_submit_order);
+        //Sets Call Server Button to invisible if its a server
+        Button bCallServer = (Button)findViewById(R.id.bCallServer);
+        Intent i = getIntent();
+        if(i.getBooleanExtra("Server", false))
+            bCallServer.setVisibility(View.INVISIBLE);
+
         MainApplication application = (MainApplication)getApplicationContext();
         SubmitAdapter adapter = new SubmitAdapter(application.currentOrder);
         ListView lvSubmitOrder = (ListView)findViewById(R.id.lvSubmitOrder);
