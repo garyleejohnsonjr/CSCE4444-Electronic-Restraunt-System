@@ -28,6 +28,7 @@ public class ManagerMain extends AppCompatActivity {
     }
 //shows revenue report on clicking button
     public void RevenueReport(View view) {
+        currentCategory.setEnabled(true);
         currentCategory = view;
         currentCategory.setEnabled(false);
         ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
@@ -64,9 +65,10 @@ public class ManagerMain extends AppCompatActivity {
         }
     }
     public void GratuityReport(View view){
+        currentCategory.setEnabled(true);
         currentCategory = view;
         currentCategory.setEnabled(false);
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Orders");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
         // run the query in the background, then create and set the adapter
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -85,27 +87,33 @@ public class ManagerMain extends AppCompatActivity {
             }
             //seting item name in field
             ParseObject entry=getItem(position);
-            TextView tvItemName=(TextView)view.findViewById(R.id.tvItemName);
-            String ItemName=entry.getString("ItemName");
-            tvItemName.setText(ItemName);
+            TextView tvOrder=(TextView)view.findViewById(R.id.tvOrder);
+            String ItemName=entry.getString("TableNumber");
+            tvOrder.setText(ItemName);
             //setting item quantity in field
             TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvItemQuantity);
-            int ItemQuantity=(int)entry.getNumber("Frequency");
-            String sIQ=String.valueOf(ItemQuantity);
-            tvItemQuantity.setText(sIQ);
+            int Gratuity=(int)entry.getNumber("Gratuity");
+            String sG=String.valueOf(Gratuity);
+            tvItemQuantity.setText(sG);
 
             return view;
         }
 
     }
     public void TaxReport(View view){
-
+        currentCategory.setEnabled(true);
+        currentCategory = view;
+        currentCategory.setEnabled(false);
     }
     public void AdjustmentReport(View view){
-
+        currentCategory.setEnabled(true);
+        currentCategory = view;
+        currentCategory.setEnabled(false);
     }
     public void SalesReport(View view){
-
+        currentCategory.setEnabled(true);
+        currentCategory = view;
+        currentCategory.setEnabled(false);
     }
 }
 
