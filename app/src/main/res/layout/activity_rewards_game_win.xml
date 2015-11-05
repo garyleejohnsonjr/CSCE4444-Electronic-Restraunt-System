@@ -50,4 +50,13 @@
         android:hint="Username"
         android:layout_toLeftOf="@+id/ivRewardsWinnerAce"
         android:layout_toStartOf="@+id/ivRewardsWinnerAce" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/bSubmitRewardsWinner"
+        android:layout_below="@+id/etRewardsWinPassword"
+        android:layout_alignRight="@+id/etRewardsWinPassword"
+        android:layout_alignEnd="@+id/etRewardsWinPassword" />
 </RelativeLayout>
