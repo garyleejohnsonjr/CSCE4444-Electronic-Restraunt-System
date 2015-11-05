@@ -16,14 +16,18 @@ public class Coupon extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coupon);
 
+
+        //Grabs the object ID, which is the coupon code, from the intent
         Intent intent = getIntent();
         String objectID = intent.getExtras().getString("objectID");
 
+        //Sets the object ID into the text field
         TextView tvCouponCode = (TextView) findViewById(R.id.tvCouponCode2);
         tvCouponCode.setText(objectID);
 
+        //Finds the exit button
         Button bExit = (Button) findViewById(R.id.bExitCouponScreen);
-
+        //Kills the activity
         bExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

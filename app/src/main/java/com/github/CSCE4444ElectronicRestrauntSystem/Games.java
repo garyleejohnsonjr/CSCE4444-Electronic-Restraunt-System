@@ -16,11 +16,13 @@ public class Games extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games);
 
+        //Grabs all the buttons from the XML
         Button bTicTacToe = (Button) findViewById(R.id.bTicTacToe);
         Button bSnake = (Button) findViewById(R.id.bSnake);
         Button bRewards = (Button) findViewById(R.id.bRewardsGame);
         Button bPong = (Button) findViewById(R.id.bPong);
 
+        //When the Tic Tac Toe Button is clicked, this tells it to open the game
         bTicTacToe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,6 +31,7 @@ public class Games extends AppCompatActivity {
             }
         });
 
+        //Opens snake game when button is clicked
         bSnake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,6 +40,7 @@ public class Games extends AppCompatActivity {
             }
         });
 
+        //Opens pong game when button is clicked
         bPong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,15 +49,18 @@ public class Games extends AppCompatActivity {
             }
         });
 
+        //Opens rewards club game
         bRewards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //The next line is used to access global variables
                 MainApplication application = (MainApplication) getApplication();
+                //Since the game can only be played twice per visit, this checks and prevents a user from playing more than they should be allowed to
                 if(application.gamePlays == 2)
                 {
                     Toast.makeText(getApplicationContext(),
                             "You can't play this game anymore during this visit.", Toast.LENGTH_LONG).show();
-                }
+                } //otherwise, launch the game
                 else
                 {
                     Intent iRewardsGame = new Intent(Games.this, RewardsGame.class);

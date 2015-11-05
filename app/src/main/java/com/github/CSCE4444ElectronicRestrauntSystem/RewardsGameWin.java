@@ -28,10 +28,14 @@ public class RewardsGameWin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rewards_game_win);
 
+        //Get buttons and edit text fields
         Button bSubmitRewardsWin = (Button) findViewById(R.id.bSubmitRewardsWinner);
         final EditText etUserName = (EditText) findViewById(R.id.etRewardsWinUsername);
         final EditText etPassword = (EditText) findViewById(R.id.etRewardsWinPassword);
 
+        //When button is clicked, grab username and password
+        //Check with account on Parse to ensure existence
+        //Generate Coupon
         bSubmitRewardsWin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,17 +47,20 @@ public class RewardsGameWin extends AppCompatActivity {
                 query.findInBackground(new FindCallback<ParseObject>(){
                     public void done(List<ParseObject> rewardsUser, ParseException e) {
                         if (e == null) {
+                            //If no user found, notify via a toast that their username or password was incorrect
                             if(rewardsUser.isEmpty())
                             {
                                 Toast.makeText(getApplicationContext(),
                                         "Error: Your username or password was incorrect.", Toast.LENGTH_LONG).show();
                             }
-                            else
+                            else //Else display toast ensuring that credentials were valid
                             {
                                 ParseObject user = rewardsUser.get(0);
                                 Toast.makeText(getApplicationContext(),
                                         user.get("UserID").toString() + " validated.", Toast.LENGTH_LONG).show();
 
+                                //Using the current time in milliseconds in the code field of the coupon
+                                //Add that to a new coupon and save to Parse
                                 Time time = new Time();
                                 time.setToNow();
                                 Log.d("TIME TEST", Long.toString(time.toMillis(false)));
@@ -62,18 +69,23 @@ public class RewardsGameWin extends AppCompatActivity {
                                 ParseObject newCoupon = new ParseObject("Coupon");
                                 newCoupon.put("Code", time.toMillis(false));
                                 newCoupon.saveInBackground();
+                                //Update object with new values created on Parse.com (outside of App's control)
                                 try {
                                     newCoupon.refresh();
                                 } catch (ParseException e1) {
                                     e1.printStackTrace();
                                 }
+                                //Grab the "created at" date from Parse and add three months to it
+                                //Insert this value into the new expiration date
                                 Date date = newCoupon.getCreatedAt();
                                 int month = date.getMonth();
                                 date.setMonth(month + 3);
                                 newCoupon.put("Expiration", date);
                                 newCoupon.saveInBackground();
+                                //Grab objectID (the actual coupon code)
                                 String objectID = newCoupon.getObjectId();
 
+                                //Put object ID into the intent and launch the activity which displays the coupon code
                                 Intent i = new Intent(RewardsGameWin.this, Coupon.class);
                                 i.putExtra("objectID", objectID);
                                 startActivity(i);
@@ -82,18 +94,6 @@ public class RewardsGameWin extends AppCompatActivity {
                         }
                     }
                 });
-
-                MainApplication application = (MainApplication) getApplication();
-                if(application.gamePlays == 2)
-                {
-                    Toast.makeText(getApplicationContext(),
-                            "You can't play this game anymore during this visit.", Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    Intent iRewardsGame = new Intent(RewardsGameWin.this, RewardsGame.class);
-                    startActivity(iRewardsGame);
-                }
             }
         });
 

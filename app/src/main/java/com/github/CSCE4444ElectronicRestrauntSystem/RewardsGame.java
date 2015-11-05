@@ -21,19 +21,25 @@ public class RewardsGame extends AppCompatActivity {
     }
 
 
+    //Method used when a card is clicked
     public void cardClick(View v) {
 
+        //Generate a random number from 1 - 5
         Random thisNumber = new Random();
         int roll = thisNumber.nextInt(5) + 1;
 
+        //if 5, they win!
         if (roll == 5)
         {
+            //Swap image to an ace
             ImageView cell = (ImageView) findViewById(v.getId());
             cell.setImageResource(R.drawable.ace);
 
+            //Set the total plays to 2 so they can't play again
             MainApplication application = (MainApplication) getApplication();
             application.gamePlays = 2;
 
+            //Handler delays half a second and then launches the "win" activity
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -53,7 +59,7 @@ public class RewardsGame extends AppCompatActivity {
             //startActivity(iRewardsGame);
 
         }
-        else
+        else //launch the lose activity after showing a joker
         {
             ImageView cell = (ImageView) findViewById(v.getId());
             cell.setImageResource(R.drawable.joker);

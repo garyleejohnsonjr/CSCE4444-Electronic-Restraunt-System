@@ -16,6 +16,7 @@ public class MainApplication extends Application{
 
     public LinkedList<OrderItem> currentOrder = new LinkedList<>();
 
+    //Globals used elsewhere in the app
     public int currentTable = 0;
     public int gamePlays = 0;
 

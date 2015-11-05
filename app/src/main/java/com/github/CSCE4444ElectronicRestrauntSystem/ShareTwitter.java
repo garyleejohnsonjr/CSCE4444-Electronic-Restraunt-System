@@ -42,6 +42,7 @@ public class ShareTwitter extends AppCompatActivity {
         Twitter.logOut();
     }
 
+    //TwitterLoginButton is from the Twitter API
     private TwitterLoginButton loginButton;
 
 
@@ -50,12 +51,14 @@ public class ShareTwitter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_twitter);
 
+        //EditText field where user can enter custom Tweet messages
         final EditText etTweetText = (EditText) findViewById(R.id.etTweetText);
 
         //API keys SHOULD be obfuscated in the real world
         TwitterAuthConfig authConfig = new TwitterAuthConfig("LbxFz1170RdCnXUYlKqHuymII", "9SYdM5F5muue1AhQuFIcP8yoJzPeZxE2KOdlKPKB49gpWVNSJK");
         Fabric.with(this, new TwitterCore(authConfig), new TweetComposer());
 
+        //Set the button and tell it what to do when clicked
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter_login_button);
         loginButton.setCallback(new Callback<TwitterSession>() {
             @Override
@@ -63,10 +66,14 @@ public class ShareTwitter extends AppCompatActivity {
                 // The TwitterSession is also available through:
                 // Twitter.getInstance().core.getSessionManager().getActiveSession()
                 TwitterSession session = result.data;
-                // TODO: Remove toast and use the TwitterSession's userID
                 // with your app's user model
                 //String msg = "@" + session.getUserName() + " logged in! (#" + session.getUserId() + ")";
                 //Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+
+
+                //At this point, given that we're in the success method, the user is logged in
+                //Using this session, the text is grabbed and inserted into a Tweet
+                //This Tweet is automatically posted
                 TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
                 StatusesService statusesService = twitterApiClient.getStatusesService();
                 statusesService.update(etTweetText.getText().toString(),
@@ -84,7 +91,7 @@ public class ShareTwitter extends AppCompatActivity {
                                         "Whoops! Something went wrong. Try again later.", Toast.LENGTH_LONG).show();
                             }
                         });
-
+                //This function logs the user out so that one cannot accidentally leave their account logged in
                 logMeOut();
             }
 
