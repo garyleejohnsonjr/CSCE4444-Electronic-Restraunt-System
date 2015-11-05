@@ -98,6 +98,9 @@ public class SubmitOrder extends AppCompatActivity {
                     order.put("Status", "Placed");
                     order.put("TableNumber", application.currentTable);
                     order.put("Total", totalPrice);
+                    order.put("Adjustments", 0);
+                    order.put("Tax", 0);
+                    order.put("Gratuity", 0);
 
                     // save the order to the database
                     order.saveInBackground();
