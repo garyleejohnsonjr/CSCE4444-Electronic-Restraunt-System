@@ -6,13 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,12 +35,12 @@ public class CallServer extends AppCompatActivity {
 
         // run query in background
         ordersQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override public void done(final List<ParseObject> orders, ParseException e) {
+            @Override
+            public void done(final List<ParseObject> orders, ParseException e) {
 
                 // build refillable query
                 ParseQuery<ParseObject> itemsQuery = ParseQuery.getQuery("MenuItem");
                 itemsQuery.whereEqualTo("Refillable", true);
-
 
                 itemsQuery.findInBackground(new FindCallback<ParseObject>() {
                     @Override
@@ -51,6 +56,7 @@ public class CallServer extends AppCompatActivity {
                             }
                         }
 
+
                         RefillAdapter adapter = new RefillAdapter(refillablesInOrders);
                         ListView lvRefills = (ListView) findViewById(R.id.lvRefills);
                         lvRefills.setAdapter(adapter);
@@ -62,12 +68,37 @@ public class CallServer extends AppCompatActivity {
     }
 
 
+    public void callServer(View view) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Tables");
+        MainApplication application = (MainApplication)getApplication();
+        query.whereEqualTo("Number", application.currentTable);
+
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override public void done (ParseObject table, ParseException e) {
+                table.put("Status", "Table Help");
+
+                ListView lvRefills = (ListView)findViewById(R.id.lvRefills);
+                RefillAdapter adapter = (RefillAdapter)lvRefills.getAdapter();
+
+                table.put("Refills", adapter.selectedItems);
+
+                EditText etRequests = (EditText)findViewById(R.id.etRequests);
+                String requests = etRequests.getText().toString();
+                table.put("Requests", requests);
+
+                table.saveInBackground();
+                Toast.makeText(getApplicationContext(), "Server called.", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
 
     private class RefillAdapter extends ArrayAdapter<String> {
 
         // constructor
         public RefillAdapter(List<String> strings) { super(CallServer.this, 0, strings); }
+
+        public ArrayList<String> selectedItems = new ArrayList<String>();
 
         // function called whenever the list is created or scrolled
         @Override public View getView(int position, View view, ViewGroup parent) {
@@ -79,8 +110,20 @@ public class CallServer extends AppCompatActivity {
             String string = getItem(position);
 
             // get item name
-            CheckBox tvItemName = (CheckBox)view.findViewById(R.id.cbItemName);
-            tvItemName.setText(string);
+            CheckBox cbItemName = (CheckBox)view;
+            cbItemName.setText(string);
+
+            cbItemName.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        selectedItems.add(buttonView.getText().toString());
+                    } else {
+                        selectedItems.remove(buttonView.getText().toString());
+                    }
+                }
+            });
 
             // return the view
             return view;
