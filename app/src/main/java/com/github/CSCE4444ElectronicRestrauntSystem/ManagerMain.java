@@ -54,6 +54,9 @@ public class ManagerMain extends AppCompatActivity {
         public RevReportAdaptor(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
 
         @Override public View getView(int position, View view, ViewGroup parent) {
+            if (view == null) {
+                view = getLayoutInflater().inflate(R.layout.activity_manager_report, parent, false);
+            }
             //seting item name in field
             ParseObject entry=getItem(position);
             TextView tvItemName=(TextView)findViewById(R.id.tvItemName);
