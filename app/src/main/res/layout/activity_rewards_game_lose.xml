@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Congratulations! You lost because you're a dumbass!"
+        android:text="Sorry, you lost. Try harder next time."
         android:id="@+id/tvRewardsGameLoser"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />

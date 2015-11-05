@@ -1,5 +1,6 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -97,6 +98,9 @@ public class SubmitOrder extends AppCompatActivity {
                     order.put("Status", "Placed");
                     order.put("TableNumber", application.currentTable);
                     order.put("Total", totalPrice);
+                    order.put("Adjustments", 0);
+                    order.put("Tax", 0);
+                    order.put("Gratuity", 0);
 
                     // save the order to the database
                     order.saveInBackground();
@@ -109,6 +113,7 @@ public class SubmitOrder extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
 
                     // return to the menu
+                    setResult(Activity.RESULT_OK, getIntent());
                     finish();
                     }
                 })

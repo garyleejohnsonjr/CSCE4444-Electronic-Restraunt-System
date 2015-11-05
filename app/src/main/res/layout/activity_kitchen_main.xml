@@ -7,6 +7,7 @@
     tools:context="com.github.CSCE4444ElectronicRestrauntSystem.CustomerMain"
     android:background="#99ffc610">
 
+    <!--
     <TextView android:text="Kitchen Stuff Here" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvKitchenStuffHere"
@@ -14,6 +15,22 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textColor="#ffe63a2a"/>
+    -->
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Really Awesome Burgers"
+        android:id="@+id/textView4"
+        android:layout_weight="1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:textColor="#e63a2a"
+        android:textStyle="bold|italic" />
+
 
     <Button
         android:layout_width="wrap_content"
@@ -24,15 +41,15 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
 
-    <LinearLayout
+    <TableRow
         android:id="@+id/llOuterLayout"
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:weightSum="1"
+        android:weightSum="3"
         android:paddingTop="2dp"
-        android:layout_below="@+id/tvKitchenStuffHere"
-        android:layout_above="@+id/bPayBill">
+        android:layout_above="@+id/bIngredients">
+        <!--
         <LinearLayout
             android:id="@+id/llCompletedOrders"
             android:orientation="vertical"
@@ -53,14 +70,14 @@
                 android:background="#99ffee11">
             </ListView>
         </LinearLayout>
-
+        -->
         <LinearLayout
             android:id="@+id/llNewOrders"
             android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight=".3"
-            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="5dp"
             android:background="#02ffffff">
             <TextView
                 android:id="@+id/tvNewOrders"
@@ -75,7 +92,53 @@
                 android:background="#99ffee11">
             </ListView>
         </LinearLayout>
-    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llInProgressOrders"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp"
+            android:background="#02ffffff">
+            <TextView
+                android:id="@+id/tvInProgressOrders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="In Progress"
+                android:textStyle="bold"/>
+            <ListView
+                android:id="@+id/lvInProgressOrderScroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#c3e06144">
+            </ListView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llReadyOrders"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp"
+            android:background="#02ffffff">
+            <TextView
+                android:id="@+id/tvReadyOrders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Completed Orders"
+                android:textStyle="bold"/>
+            <ListView
+                android:id="@+id/lvReadyOrderScroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#99ffee11">
+            </ListView>
+        </LinearLayout>
+    </TableRow>
 
 
 </RelativeLayout>

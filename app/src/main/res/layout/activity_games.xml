@@ -47,8 +47,8 @@ android:background="#99ffc610">
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Game 3"
-            android:id="@+id/bGame3"
+            android:text="Pong"
+            android:id="@+id/bPong"
             style="@android:style/Widget.Holo.Light.Button" />
 
         <Button

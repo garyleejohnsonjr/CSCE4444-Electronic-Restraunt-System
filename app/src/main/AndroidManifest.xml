@@ -67,7 +67,6 @@
             android:name=".CallServer"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/title_activity_call_server"
-            android:logo="@drawable/app_icon_your_company"
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -155,6 +154,14 @@
         <activity
             android:name=".ManualAdjustments"
             android:label="@string/title_activity_manual_adjustments" >
+	</activity>
+        <activity
+            android:name=".Coupon"
+            android:label="@string/title_activity_coupon" >
+        </activity>
+        <activity
+            android:name=".Pong"
+            android:label="@string/title_activity_pong" >
         </activity>
     </application>
 

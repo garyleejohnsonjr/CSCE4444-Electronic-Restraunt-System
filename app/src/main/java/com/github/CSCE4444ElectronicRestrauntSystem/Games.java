@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Games extends AppCompatActivity {
 
@@ -18,6 +19,7 @@ public class Games extends AppCompatActivity {
         Button bTicTacToe = (Button) findViewById(R.id.bTicTacToe);
         Button bSnake = (Button) findViewById(R.id.bSnake);
         Button bRewards = (Button) findViewById(R.id.bRewardsGame);
+        Button bPong = (Button) findViewById(R.id.bPong);
 
         bTicTacToe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,11 +37,28 @@ public class Games extends AppCompatActivity {
             }
         });
 
+        bPong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iPong = new Intent(Games.this, Pong.class);
+                startActivity(iPong);
+            }
+        });
+
         bRewards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iRewardsGame = new Intent(Games.this, RewardsGame.class);
-                startActivity(iRewardsGame);
+                MainApplication application = (MainApplication) getApplication();
+                if(application.gamePlays == 2)
+                {
+                    Toast.makeText(getApplicationContext(),
+                            "You can't play this game anymore during this visit.", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Intent iRewardsGame = new Intent(Games.this, RewardsGame.class);
+                    startActivity(iRewardsGame);
+                }
             }
         });
     }

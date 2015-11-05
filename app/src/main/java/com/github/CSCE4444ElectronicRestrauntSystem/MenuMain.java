@@ -110,7 +110,7 @@ public class MenuMain extends AppCompatActivity {
     // submit order activity
     public void submitOrder (View view) {
         Intent intent = new Intent(this, SubmitOrder.class);
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_SUBMIT_ORDER);
     }
 
 
@@ -126,6 +126,9 @@ public class MenuMain extends AppCompatActivity {
             String toast = itemName + " added to order.";
             Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
             switchCategory(currentCategory);
+        }
+        else if (id == REQUEST_SUBMIT_ORDER && result == Activity.RESULT_OK) {
+            finish();
         }
     }
 

@@ -18,5 +18,11 @@
   <declare-styleable name="TileView">
     <attr name="tileSize" format="integer" />
   </declare-styleable>
+
+    <declare-styleable name="PongView">
+        <attr name="paddleHeight" format="integer"/>
+        <attr name="paddleWidth" format="integer"/>
+        <attr name="ballRadius" format="integer"/>
+    </declare-styleable>
 </resources>
 

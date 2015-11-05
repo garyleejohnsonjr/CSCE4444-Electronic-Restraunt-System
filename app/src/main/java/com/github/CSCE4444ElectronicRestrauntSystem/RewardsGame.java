@@ -30,13 +30,16 @@ public class RewardsGame extends AppCompatActivity {
         {
             ImageView cell = (ImageView) findViewById(v.getId());
             cell.setImageResource(R.drawable.ace);
-            //TODO: DO SOME REAL SHIT HERE!
+
+            MainApplication application = (MainApplication) getApplication();
+            application.gamePlays += 1;
 
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
                     Intent iRewardsGame = new Intent(RewardsGame.this, RewardsGameWin.class);
                     startActivity(iRewardsGame);
+                    finish();
                 }
             }, 500);
 
@@ -54,13 +57,16 @@ public class RewardsGame extends AppCompatActivity {
         {
             ImageView cell = (ImageView) findViewById(v.getId());
             cell.setImageResource(R.drawable.joker);
-            //TODO: DO SOME MO' REAL SHIT HERE!
+
+            MainApplication application = (MainApplication) getApplication();
+            application.gamePlays += 1;
 
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
                     Intent iRewardsGame = new Intent(RewardsGame.this, RewardsGameLose.class);
                     startActivity(iRewardsGame);
+                    finish();
                 }
             }, 500);
         }
