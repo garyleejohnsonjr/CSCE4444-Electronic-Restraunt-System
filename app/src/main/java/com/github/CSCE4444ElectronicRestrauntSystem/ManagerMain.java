@@ -107,6 +107,38 @@ public class ManagerMain extends AppCompatActivity {
         currentCategory.setEnabled(true);
         currentCategory = view;
         currentCategory.setEnabled(false);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
+        // run the query in the background, then create and set the adapter
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> reportItems, ParseException e) {
+                GratReportAdaptor adapter = new GratReportAdaptor(reportItems);
+                ListView lvReportSpace = (ListView) findViewById(R.id.lvReportSpace);
+                lvReportSpace.setAdapter(adapter);
+            }
+        });
+    }
+    public class TaxReportAdaptor extends ArrayAdapter<ParseObject>{
+        public TaxReportAdaptor(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
+        @Override public View getView(int position, View view, ViewGroup parent) {
+            if (view == null) {
+                view = getLayoutInflater().inflate(R.layout.activity_manager_reportgrat, parent, false);
+            }
+            //seting item name in field
+            ParseObject entry=getItem(position);
+            TextView tvOrder=(TextView)view.findViewById(R.id.tvOrder);
+            Integer ItemName=entry.getInt("TableNumber");
+            String ItemNameString = "Table: " + String.valueOf(ItemName);
+            tvOrder.setText(ItemNameString);
+            //setting item quantity in field
+            TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvGratuity);
+            Double Gratuity=  entry.getNumber("Tax").doubleValue();
+            String sG=String.valueOf(Gratuity);
+            tvItemQuantity.setText(sG);
+
+            return view;
+        }
+
     }
     public void AdjustmentReport(View view){
         currentCategory.setEnabled(true);
