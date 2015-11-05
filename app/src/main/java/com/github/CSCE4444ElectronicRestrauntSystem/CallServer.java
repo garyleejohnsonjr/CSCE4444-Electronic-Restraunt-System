@@ -62,6 +62,8 @@ public class CallServer extends AppCompatActivity {
     }
 
 
+    public
+
     private class RefillAdapter extends ArrayAdapter<String> {
 
         // constructor
