@@ -71,7 +71,7 @@
 
 
 
-    <string name="mode_ready">Snake\nPress Up To Play</string>
+    <string name="mode_ready">Snake\nPress Top of Screen To Play</string>
     <string name="mode_pause">Paused\nPress Up To Resume</string>
     <string name="mode_lose_prefix">Game Over\nScore: </string>
     <string name="mode_lose_suffix">\nPress Up To Play</string>
@@ -82,4 +82,14 @@
     <string name="title_activity_rewards_game_win">RewardsGameWin</string>
     <string name="title_activity_rewards_game_lose">RewardsGameLose</string>
     <string name="title_activity_coupon">Coupon</string>
+    <string name="title_activity_pong">Pong</string>
+
+    <string name="mode_readyPong">Touch to play</string>
+    <string name="mode_pausePong">Paused</string>
+    <string name="mode_win">Good work :-)</string>
+    <string name="mode_lose">Sorry :-(</string>
+    <string name="menu_new_game">New game</string>
+    <string name="menu_exit">Exit</string>
+    <string name="menu_resume">Resume</string>
+    <string name="default_score">0    0</string>
 </resources>

@@ -155,6 +155,10 @@
             android:name=".Coupon"
             android:label="@string/title_activity_coupon" >
         </activity>
+        <activity
+            android:name=".Pong"
+            android:label="@string/title_activity_pong" >
+        </activity>
     </application>
 
 </manifest>
