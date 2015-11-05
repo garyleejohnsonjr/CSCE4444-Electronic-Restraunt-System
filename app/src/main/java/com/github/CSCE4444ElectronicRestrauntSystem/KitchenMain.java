@@ -23,7 +23,9 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,17 +38,26 @@ public class KitchenMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kitchen_main);
 
+        Button AvailCheck = (Button) findViewById(R.id.bAvailability);
+        AvailCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newIntent = new Intent(KitchenMain.this, MenuAvailability.class);
+                startActivity(newIntent);
+            }
+        });
+
         Thread refreshFeed = new Thread(){
             public void run(){
                 while(true){
                     try{
-                        sleep(10000);
+                        sleep(1000);
                     }
                     catch (InterruptedException e){
                         e.printStackTrace();
                     }
                     finally {
-                        //Checks for updated Table status every 10 secs
+                        //Checks for updated Table status every 1 secs
                         findList();
                         findList2();
                         findList3();
@@ -134,12 +145,20 @@ public class KitchenMain extends AppCompatActivity {
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> orderItems, ParseException e) {
                 KitchenAdapter adapter = new KitchenAdapter(orderItems);
-                ListView lvReadyOrderScroll = (ListView)findViewById(R.id.lvReadyOrderScroll);
+                ListView lvReadyOrderScroll = (ListView) findViewById(R.id.lvReadyOrderScroll);
                 lvReadyOrderScroll.setAdapter(adapter);
             }
         });
     }
 
+    //This is where we need to pass order ID so that when you click an order if gets the right data
+    public void orderInfo(View view) {
+        Intent intent = new Intent(this, OrderInfo.class);
+        TextView tvOrderName = (TextView)view.findViewById(R.id.tvOrderStatus);
+        String orderName = tvOrderName.getText().toString();
+        intent.putExtra("OrderName", orderName);
+        startActivity(intent);
+    }
 
 
     private class KitchenAdapter extends ArrayAdapter<ParseObject> {
@@ -157,9 +176,13 @@ public class KitchenMain extends AppCompatActivity {
             ParseObject item = getItem(position);
 
             // get Order Time
-            /*TextView tvOrderTime = (TextView)view.findViewById(R.id.tvItemName);
-            String createdAt = String.valueOf(item.getDate("createdAt"));
-            tvOrderTime.setText(createdAt);*/
+            TextView tvOrderTime = (TextView)view.findViewById(R.id.tvOrderTime);
+            //Date value = item.getCreatedAt();
+            Date date = item.getCreatedAt();
+            //String createdAt = String.valueOf(item.getDate("createdAt"));
+            DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
+            String reportDate = df.format(date);
+            tvOrderTime.setText(reportDate);
 
             // get Table Number
             TextView tvTableNumber = (TextView)view.findViewById(R.id.tvTableNumber);
