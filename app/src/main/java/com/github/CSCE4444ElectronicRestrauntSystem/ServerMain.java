@@ -249,7 +249,7 @@ public class ServerMain extends AppCompatActivity {
         bTable1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 1);
                 startActivity(iTableOrder);
                 finish();
@@ -258,7 +258,7 @@ public class ServerMain extends AppCompatActivity {
         bTable2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 2);
                 startActivity(iTableOrder);
                 finish();
@@ -267,7 +267,7 @@ public class ServerMain extends AppCompatActivity {
         bTable3.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 3);
                 startActivity(iTableOrder);
                 finish();
@@ -276,7 +276,7 @@ public class ServerMain extends AppCompatActivity {
         bTable4.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 4);
                 startActivity(iTableOrder);
                 finish();
@@ -285,7 +285,7 @@ public class ServerMain extends AppCompatActivity {
         bTable5.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 5);
                 startActivity(iTableOrder);
                 finish();
@@ -294,7 +294,7 @@ public class ServerMain extends AppCompatActivity {
         bTable6.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 6);
                 startActivity(iTableOrder);
                 finish();
@@ -303,7 +303,7 @@ public class ServerMain extends AppCompatActivity {
         bTable7.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 7);
                 startActivity(iTableOrder);
                 finish();
@@ -312,7 +312,7 @@ public class ServerMain extends AppCompatActivity {
         bTable8.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 8);
                 startActivity(iTableOrder);
                 finish();
@@ -321,7 +321,7 @@ public class ServerMain extends AppCompatActivity {
         bTable9.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 9);
                 startActivity(iTableOrder);
                 finish();
@@ -330,7 +330,7 @@ public class ServerMain extends AppCompatActivity {
         bTable10.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent iTableOrder = new Intent(ServerMain.this, ServerTableOrder.class);
+                Intent iTableOrder = new Intent(ServerMain.this, ServerOrders.class);
                 iTableOrder.putExtra("Number", 10);
                 startActivity(iTableOrder);
                 finish();

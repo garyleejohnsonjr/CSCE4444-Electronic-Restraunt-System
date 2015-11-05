@@ -67,7 +67,6 @@
             android:name=".CallServer"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/title_activity_call_server"
-            android:logo="@drawable/app_icon_your_company"
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -115,7 +114,6 @@
             android:name=".ServerTableOrder"
             android:label="@string/title_activity_server_table_order" >
         </activity>
-
         <activity
             android:name=".SubmitOrder"
             android:label="@string/title_activity_submit_order" >
@@ -128,6 +126,34 @@
         <activity
             android:name=".ShareTwitter"
             android:label="@string/title_activity_share_twitter" >
+        </activity>
+        <activity
+            android:name=".TicTacToe"
+            android:label="@string/title_activity_tic_tac_toe" >
+        </activity>
+        <activity
+            android:name=".Snake"
+            android:label="@string/title_activity_snake" >
+        </activity>
+        <activity
+            android:name=".ServerOrders"
+            android:label="@string/title_activity_server_orders" >
+        </activity>
+        <activity
+            android:name=".RewardsGame"
+            android:label="@string/title_activity_rewards_game" >
+        </activity>
+        <activity
+            android:name=".RewardsGameWin"
+            android:label="@string/title_activity_rewards_game_win" >
+        </activity>
+        <activity
+            android:name=".RewardsGameLose"
+            android:label="@string/title_activity_rewards_game_lose" >
+        </activity>
+        <activity
+            android:name=".Coupon"
+            android:label="@string/title_activity_coupon" >
         </activity>
     </application>
 

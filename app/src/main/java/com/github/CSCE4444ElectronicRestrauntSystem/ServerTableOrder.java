@@ -52,19 +52,26 @@ public class ServerTableOrder extends AppCompatActivity {
         });
 
 */
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Tables");
-        query.whereEqualTo("Number", 1);
-        query.include("CurrentOrder");
+        final Intent i = getIntent();
+        final int tableNum = 0;
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
+        query.whereEqualTo("TableNumber", i.getIntExtra("Number", tableNum));
+        query.whereNotEqualTo("Status", "Paid");
+        query.orderByAscending("createdAt");
         query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> tables,
+            public void done(List<ParseObject> orders,
                              com.parse.ParseException e) {
                 //Todo: Submit nothing error
                 if (e == null) {
-                    for (ParseObject table: tables) {
-                        ParseObject order = table.getParseObject("CurrentOrder");
-                        TableAdapter adapter = new TableAdapter(order.getList("ItemsOrdered"));
-                        ListView lvTableOrder = (ListView) findViewById(R.id.lvTableOrder);
-                        lvTableOrder.setAdapter(adapter);
+                    int x = 0;
+                    for (ParseObject order: orders) {
+                        if( x == i.getIntExtra("Order", tableNum)) {
+                            TableAdapter adapter = new TableAdapter(order.getList("ItemsOrdered"));
+                            ListView lvTableOrder = (ListView) findViewById(R.id.lvTableOrder);
+                            lvTableOrder.setAdapter(adapter);
+                        }
+                        x++;
                     }
                 }
              else {

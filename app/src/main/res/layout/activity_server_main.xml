@@ -32,8 +32,8 @@
         android:text="Table Order"
         android:id="@+id/bTable1Order"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/bTable2Order"
-        android:layout_alignStart="@+id/bTable2Order" />
+        android:layout_toRightOf="@+id/tTable10"
+        android:layout_toEndOf="@+id/tTable10" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -161,8 +161,8 @@
         android:text="Table Order"
         android:id="@+id/bTable2Order"
         android:layout_below="@+id/bTable1Order"
-        android:layout_alignLeft="@+id/bTable3Order"
-        android:layout_alignStart="@+id/bTable3Order" />
+        android:layout_alignLeft="@+id/bTable1Order"
+        android:layout_alignStart="@+id/bTable1Order" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -174,8 +174,8 @@
         android:text="Table Order"
         android:id="@+id/bTable3Order"
         android:layout_below="@+id/bTable2Order"
-        android:layout_alignLeft="@+id/bTable4Order"
-        android:layout_alignStart="@+id/bTable4Order" />
+        android:layout_alignLeft="@+id/bTable2Order"
+        android:layout_alignStart="@+id/bTable2Order" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -186,9 +186,9 @@
         android:layout_height="wrap_content"
         android:text="Table Order"
         android:id="@+id/bTable4Order"
-        android:layout_below="@+id/tTable3"
-        android:layout_alignLeft="@+id/bTable5Order"
-        android:layout_alignStart="@+id/bTable5Order" />
+        android:layout_below="@+id/bTable3Order"
+        android:layout_alignLeft="@+id/bTable3Order"
+        android:layout_alignStart="@+id/bTable3Order" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -200,8 +200,8 @@
         android:text="Table Order"
         android:id="@+id/bTable5Order"
         android:layout_below="@+id/bTable4Order"
-        android:layout_alignLeft="@+id/bTable6Order"
-        android:layout_alignStart="@+id/bTable6Order" />
+        android:layout_alignLeft="@+id/bTable4Order"
+        android:layout_alignStart="@+id/bTable4Order" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -213,8 +213,8 @@
         android:text="Table Order"
         android:id="@+id/bTable6Order"
         android:layout_below="@+id/bTable5Order"
-        android:layout_alignLeft="@+id/bTable7Order"
-        android:layout_alignStart="@+id/bTable7Order" />
+        android:layout_alignLeft="@+id/bTable5Order"
+        android:layout_alignStart="@+id/bTable5Order" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -226,8 +226,8 @@
         android:text="Table Order"
         android:id="@+id/bTable7Order"
         android:layout_below="@+id/bTable6Order"
-        android:layout_alignLeft="@+id/bTable8Order"
-        android:layout_alignStart="@+id/bTable8Order" />
+        android:layout_toRightOf="@+id/tTable10"
+        android:layout_toEndOf="@+id/tTable10" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -238,9 +238,9 @@
         android:layout_height="wrap_content"
         android:text="Table Order"
         android:id="@+id/bTable8Order"
-        android:layout_below="@+id/tTable7"
-        android:layout_alignLeft="@+id/bTable9Order"
-        android:layout_alignStart="@+id/bTable9Order" />
+        android:layout_alignTop="@+id/tTable8"
+        android:layout_alignLeft="@+id/bTable7Order"
+        android:layout_alignStart="@+id/bTable7Order" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -252,7 +252,8 @@
         android:text="Table Order"
         android:id="@+id/bTable10Order"
         android:layout_below="@+id/bTable9Order"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/bTable9Order"
+        android:layout_alignStart="@+id/bTable9Order" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -264,7 +265,7 @@
         android:text="Table Order"
         android:id="@+id/bTable9Order"
         android:layout_below="@+id/bTable8Order"
-        android:layout_alignLeft="@+id/bTable10Order"
-        android:layout_alignStart="@+id/bTable10Order" />
+        android:layout_toRightOf="@+id/tTable10"
+        android:layout_toEndOf="@+id/tTable10" />
 
 </RelativeLayout>

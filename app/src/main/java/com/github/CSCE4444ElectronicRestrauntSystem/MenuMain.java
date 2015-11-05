@@ -165,6 +165,8 @@ public class MenuMain extends AppCompatActivity {
             String itemName = item.getString("ItemName");
             tvItemName.setText(itemName);
 
+
+
             // get price
             TextView tvPrice = (TextView)view.findViewById(R.id.tvPrice);
             float price = item.getNumber("Price").floatValue();

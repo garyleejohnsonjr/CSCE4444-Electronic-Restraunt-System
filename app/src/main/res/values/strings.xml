@@ -49,7 +49,7 @@
     <string name="error_fragment_message">An error occurred</string>
     <string name="dismiss_error">Dismiss</string>
     <string name="oops">Oops</string>
-    <string name="title_activity_call_server">CallServer</string>
+    <string name="title_activity_call_server">Call Server</string>
     <string name="title_activity_table_list">TableList</string>
     <string name="title_activity_all_orders">AllOrders</string>
     <string name="title_activity_single_order">SingleOrder</string>
@@ -66,4 +66,20 @@
     <string name="title_activity_server_table_order">ServerTableOrder</string>
     <string name="title_activity_submit_order">Submit Order</string>
     <string name="title_activity_share_twitter">ShareTwitter</string>
+    <string name="title_activity_tic_tac_toe">TicTacToe</string>
+    <string name="title_activity_snake">Snake</string>
+
+
+
+    <string name="mode_ready">Snake\nPress Up To Play</string>
+    <string name="mode_pause">Paused\nPress Up To Resume</string>
+    <string name="mode_lose_prefix">Game Over\nScore: </string>
+    <string name="mode_lose_suffix">\nPress Up To Play</string>
+
+    <string name="snake_layout_text_text"></string>
+    <string name="title_activity_server_orders">ServerOrders</string>
+    <string name="title_activity_rewards_game">RewardsGame</string>
+    <string name="title_activity_rewards_game_win">RewardsGameWin</string>
+    <string name="title_activity_rewards_game_lose">RewardsGameLose</string>
+    <string name="title_activity_coupon">Coupon</string>
 </resources>

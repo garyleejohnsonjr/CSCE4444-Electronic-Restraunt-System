@@ -1,9 +1,13 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class Games extends AppCompatActivity {
 
@@ -11,6 +15,43 @@ public class Games extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games);
+
+        Button bTicTacToe = (Button) findViewById(R.id.bTicTacToe);
+        Button bSnake = (Button) findViewById(R.id.bSnake);
+        Button bRewards = (Button) findViewById(R.id.bRewardsGame);
+
+        bTicTacToe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iTicTacToe = new Intent(Games.this, TicTacToe.class);
+                startActivity(iTicTacToe);
+            }
+        });
+
+        bSnake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iSnake = new Intent(Games.this, Snake.class);
+                startActivity(iSnake);
+            }
+        });
+
+        bRewards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainApplication application = (MainApplication) getApplication();
+                if(application.gamePlays == 2)
+                {
+                    Toast.makeText(getApplicationContext(),
+                            "You can't play this game anymore during this visit.", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Intent iRewardsGame = new Intent(Games.this, RewardsGame.class);
+                    startActivity(iRewardsGame);
+                }
+            }
+        });
     }
 
     @Override
