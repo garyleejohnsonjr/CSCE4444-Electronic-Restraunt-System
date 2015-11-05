@@ -151,6 +151,10 @@
             android:name=".RewardsGameLose"
             android:label="@string/title_activity_rewards_game_lose" >
         </activity>
+        <activity
+            android:name=".Coupon"
+            android:label="@string/title_activity_coupon" >
+        </activity>
     </application>
 
 </manifest>

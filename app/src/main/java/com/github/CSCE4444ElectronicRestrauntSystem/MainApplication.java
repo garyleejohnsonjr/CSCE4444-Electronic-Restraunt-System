@@ -17,6 +17,7 @@ public class MainApplication extends Application{
     public LinkedList<OrderItem> currentOrder = new LinkedList<>();
 
     public int currentTable = 0;
+    public int gamePlays = 0;
 
     @Override public void onCreate() {
         super.onCreate();

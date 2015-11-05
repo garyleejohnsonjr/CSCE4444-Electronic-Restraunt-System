@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Games extends AppCompatActivity {
 
@@ -38,8 +39,17 @@ public class Games extends AppCompatActivity {
         bRewards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iRewardsGame = new Intent(Games.this, RewardsGame.class);
-                startActivity(iRewardsGame);
+                MainApplication application = (MainApplication) getApplication();
+                if(application.gamePlays == 2)
+                {
+                    Toast.makeText(getApplicationContext(),
+                            "You can't play this game anymore during this visit.", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Intent iRewardsGame = new Intent(Games.this, RewardsGame.class);
+                    startActivity(iRewardsGame);
+                }
             }
         });
     }
