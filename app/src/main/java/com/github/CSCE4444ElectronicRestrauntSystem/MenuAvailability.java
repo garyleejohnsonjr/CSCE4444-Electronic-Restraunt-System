@@ -109,14 +109,6 @@ public class MenuAvailability extends AppCompatActivity {
             // get the current item
             ParseObject item = getItem(position);
 
-            // get Order Time
-            //TextView tvOrderTime = (TextView)view.findViewById(R.id.tvOrderTime);
-            //Date value = item.getCreatedAt();
-            //Date date = item.getCreatedAt();
-            //String createdAt = String.valueOf(item.getDate("createdAt"));
-            //DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
-            //String reportDate = df.format(date);
-            //tvOrderTime.setText(reportDate);
 
             // get name
             TextView tvMenuItem = (TextView)view.findViewById(R.id.tvMenuItem);

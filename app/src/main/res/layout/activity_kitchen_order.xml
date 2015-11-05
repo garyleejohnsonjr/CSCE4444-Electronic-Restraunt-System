@@ -39,6 +39,14 @@
             android:id="@+id/tvItemsOrdered"
             android:layout_weight="1" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Special Requests:"
+            android:id="@+id/tvRequests"
+            android:layout_weight="1" />
+
     </LinearLayout>
 
 </LinearLayout>

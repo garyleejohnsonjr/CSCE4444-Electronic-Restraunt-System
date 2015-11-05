@@ -47,11 +47,15 @@ public class KitchenMain extends AppCompatActivity {
             }
         });
 
+
+        findList();
+        findList2();
+        findList3();
         Thread refreshFeed = new Thread(){
             public void run(){
                 while(true){
                     try{
-                        sleep(1000);
+                        sleep(7000);
                     }
                     catch (InterruptedException e){
                         e.printStackTrace();
@@ -197,6 +201,13 @@ public class KitchenMain extends AppCompatActivity {
             String begin2 = "Items Ordered: \n";
             String NewOutput2 = begin2 + Items;
             tvItemsOrdered.setText(NewOutput2);
+
+            // get Items Ordered
+            TextView tvRequests = (TextView)view.findViewById(R.id.tvRequests);
+            String Items2 = String.valueOf(item.getJSONArray("Requests"));
+            String begin3 = "\n Special Requests: \n";
+            String NewOutput3 = begin3 + Items2;
+            tvRequests.setText(NewOutput3);
 
             // return the view
             return view;
