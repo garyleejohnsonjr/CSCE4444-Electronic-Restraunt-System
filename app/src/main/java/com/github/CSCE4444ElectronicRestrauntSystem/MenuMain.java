@@ -65,6 +65,7 @@ public class MenuMain extends AppCompatActivity {
             case R.id.bAppetizers:
                 setTitle("Menu - Appetizers");
                 query.whereEqualTo("Type", "Appatizer");
+                query.addDescendingOrder("Frequency");
                 break;
             case R.id.bFavorites:
                 setTitle("Menu - Favorites");
@@ -75,14 +76,17 @@ public class MenuMain extends AppCompatActivity {
             case R.id.bEntrees:
                 setTitle("Menu - Entrees");
                 query.whereEqualTo("Type", "Entree");
+                query.addDescendingOrder("Frequency");
                 break;
             case R.id.bDesserts:
                 setTitle("Menu - Desserts");
                 query.whereEqualTo("Type", "Dessert");
+                query.addDescendingOrder("Frequency");
                 break;
             case R.id.bDrinks:
                 setTitle("Menu - Drinks");
                 query.whereEqualTo("Type", "Drink");
+                query.addDescendingOrder("Frequency");
                 break;
         }
 
