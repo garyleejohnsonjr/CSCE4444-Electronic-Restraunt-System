@@ -108,7 +108,9 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                     else if(uName.equals("manager") && pswd.equals("manager"))
                                     {
-                                        //Todo: Manager login
+                                        Intent i= new Intent(MainActivity.this, ManagerMain.class);
+                                        startActivity(i);
+                                        finish();
                                     }
 
                                 }

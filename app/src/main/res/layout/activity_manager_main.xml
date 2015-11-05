@@ -52,7 +52,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Gratuity Report"
-            android:id="@+id/bGratuityReport" />
+            android:id="@+id/bGratuityReport"
+            android:onClick="switchReport" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tax Report"
+            android:id="@+id/bTaxReport" />
 
         <Button
             android:layout_width="wrap_content"
@@ -69,8 +76,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Daily Top 3"
-            android:id="@+id/bTop3" />
+            android:text="Daily Adjustments"
+            android:id="@+id/bAdjustments" />
 
         <Button
             android:layout_width="wrap_content"
