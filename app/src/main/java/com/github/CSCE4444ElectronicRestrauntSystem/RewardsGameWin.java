@@ -17,7 +17,6 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -74,7 +73,7 @@ public class RewardsGameWin extends AppCompatActivity {
                                 newCoupon.saveInBackground();
                                 String objectID = newCoupon.getObjectId();
 
-                                Intent i = new Intent(RewardsGameWin.this, Coupon.class);
+                                Intent i = new Intent(RewardsGameWin.this, CallServer.Coupon.class);
                                 i.putExtra("objectID", objectID);
                                 startActivity(i);
                                 finish();

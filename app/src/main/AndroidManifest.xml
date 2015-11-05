@@ -156,7 +156,7 @@
             android:label="@string/title_activity_manual_adjustments" >
 	</activity>
         <activity
-            android:name=".Coupon"
+            android:name=".CallServer$Coupon"
             android:label="@string/title_activity_coupon" >
         </activity>
         <activity

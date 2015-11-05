@@ -3,5 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Item Name"
-    android:id="@+id/cbItemName">
+    android:id="@+id/cbItemName"
+    android:onClick="Refills">
 </CheckBox>
