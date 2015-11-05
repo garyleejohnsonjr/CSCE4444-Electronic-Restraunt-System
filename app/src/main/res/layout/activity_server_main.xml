@@ -268,4 +268,72 @@
         android:layout_toRightOf="@+id/tTable10"
         android:layout_toEndOf="@+id/tTable10" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Reading Menu"
+        android:id="@+id/textView10"
+        android:layout_marginRight="169dp"
+        android:layout_marginEnd="169dp"
+        android:textColor="#FF00FF00"
+        android:layout_below="@+id/bTable2Order"
+        android:layout_alignRight="@+id/tTable7"
+        android:layout_alignEnd="@+id/tTable7" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table Ordered"
+        android:id="@+id/textView12"
+        android:textColor="#FF0008FF"
+        android:layout_above="@+id/textView13"
+        android:layout_alignLeft="@+id/textView10"
+        android:layout_alignStart="@+id/textView10" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table Eating"
+        android:id="@+id/textView13"
+        android:textColor="#FFFF0B00"
+        android:layout_above="@+id/textView14"
+        android:layout_alignLeft="@+id/textView12"
+        android:layout_alignStart="@+id/textView12" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table Paid and Occupied"
+        android:id="@+id/textView14"
+        android:textColor="#FF010101"
+        android:layout_above="@+id/textView15"
+        android:layout_alignLeft="@+id/textView13"
+        android:layout_alignStart="@+id/textView13" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table Needs Help"
+        android:id="@+id/textView15"
+        android:textColor="#FFFF00E9"
+        android:layout_above="@+id/textView16"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Table Unoccupied"
+        android:id="@+id/textView16"
+        android:textColor="#ffffff"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/textView15"
+        android:layout_alignStart="@+id/textView15" />
+
 </RelativeLayout>

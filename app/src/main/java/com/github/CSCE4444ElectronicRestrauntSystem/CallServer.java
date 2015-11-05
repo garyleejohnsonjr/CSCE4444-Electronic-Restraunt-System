@@ -31,6 +31,7 @@ public class CallServer extends AppCompatActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call_server);
+        setRequests();
 
         // build orders query
         ParseQuery<ParseObject> ordersQuery = ParseQuery.getQuery("Order");
@@ -85,7 +86,8 @@ public class CallServer extends AppCompatActivity {
                 ListView lvRefills = (ListView)findViewById(R.id.lvRefills);
                 RefillAdapter adapter = (RefillAdapter)lvRefills.getAdapter();
 
-                table.put("Refills", adapter.selectedItems);
+                if(!adapter.selectedItems.isEmpty())
+                    table.addAll("Refills", adapter.selectedItems);
 
                 EditText etRequests = (EditText)findViewById(R.id.etRequests);
                 String requests = etRequests.getText().toString();
@@ -93,6 +95,7 @@ public class CallServer extends AppCompatActivity {
 
                 table.saveInBackground();
                 Toast.makeText(getApplicationContext(), "Server called.", Toast.LENGTH_LONG).show();
+                finish();
             }
         });
     }
@@ -110,13 +113,26 @@ public class CallServer extends AppCompatActivity {
             if (view == null) {
                 view = getLayoutInflater().inflate(R.layout.activity_call_item, parent, false);
             }
-
             // get the current item
             String string = getItem(position);
 
             // get item name
-            CheckBox cbItemName = (CheckBox)view;
+            final CheckBox cbItemName = (CheckBox)view;
             cbItemName.setText(string);
+
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Tables");
+            MainApplication application = (MainApplication)getApplication();
+            query.whereEqualTo("Number", application.currentTable);
+
+            query.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject table, ParseException e) {
+                    if(table.containsKey("Refills")) {
+                        if (table.getList("Refills").contains(cbItemName.getText()))
+                            cbItemName.setChecked(true);
+                    }
+                }
+            });
 
             /*bItemName.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -134,6 +150,25 @@ public class CallServer extends AppCompatActivity {
             return view;
         }
     }
+    public void setRequests(){
+        setContentView(R.layout.activity_call_server);
+        final TextView etRequests = (TextView) findViewById(R.id.etRequests);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Tables");
+        MainApplication application = (MainApplication)getApplication();
+        query.whereEqualTo("Number", application.currentTable);
+
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject table, ParseException e) {
+                if(table.containsKey("Requests")) {
+                    etRequests.setText(table.getString("Requests"));
+
+                }
+            }
+        });
+    }
+
     public void Refills(View view) {
         ListView lvRefills = (ListView)findViewById(R.id.lvRefills);
         RefillAdapter adapter = (RefillAdapter)lvRefills.getAdapter();
