@@ -54,13 +54,16 @@ public class ManagerMain extends AppCompatActivity {
         public RevReportAdaptor(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
 
         @Override public View getView(int position, View view, ViewGroup parent) {
+            //seting item name in field
             ParseObject entry=getItem(position);
             TextView tvItemName=(TextView)findViewById(R.id.tvItemName);
             String ItemName=entry.getString("ItemName");
             tvItemName.setText(ItemName);
+            //setting item quantity in field
             TextView tvItemQuantity=(TextView)findViewById(R.id.tvItemQuantity);
-            String ItemQuantity=entry.getString("Frequency");
-            tvItemQuantity.setText(ItemQuantity);
+            int ItemQuantity=(int)entry.getNumber("Frequency");
+            String sIQ=String.valueOf(ItemQuantity);
+            tvItemQuantity.setText(sIQ);
 
             return view;
         }
