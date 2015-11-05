@@ -23,7 +23,7 @@ public class ManagerMain extends AppCompatActivity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_manager_main);
-        currentCategory = findViewById(R.id.bRevenueReport);
+        currentCategory = findViewById(R.id.bRevenueReport);//sets entry point and inital report displayed on screen. chosen arbiraraly
         RevenueReport(currentCategory);
 
     }
@@ -67,6 +67,7 @@ public class ManagerMain extends AppCompatActivity {
             return view;
         }
     }
+    //on click, generates and displays the gratuity report
     public void GratuityReport(View view){
         currentCategory.setEnabled(true);
         currentCategory = view;
@@ -75,14 +76,14 @@ public class ManagerMain extends AppCompatActivity {
         // run the query in the background, then create and set the adapter
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
-            public void done(List<ParseObject> reportItems, ParseException e) {
+            public void done(List<ParseObject> reportItems, ParseException e) {//completes the parse query and sets adaptor for display
                 GratReportAdaptor adapter = new GratReportAdaptor(reportItems);
                 ListView lvReportSpace = (ListView) findViewById(R.id.lvReportSpace);
                 lvReportSpace.setAdapter(adapter);
             }
         });
     }
-    public class GratReportAdaptor extends ArrayAdapter<ParseObject>{
+    private class GratReportAdaptor extends ArrayAdapter<ParseObject>{
         public GratReportAdaptor(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
         @Override public View getView(int position, View view, ViewGroup parent) {
             if (view == null) {
@@ -104,7 +105,7 @@ public class ManagerMain extends AppCompatActivity {
         }
 
     }
-    public void TaxReport(View view){
+    public void TaxReport(View view){//on click, generates and displays the tax report
         currentCategory.setEnabled(true);
         currentCategory = view;
         currentCategory.setEnabled(false);
@@ -140,7 +141,7 @@ public class ManagerMain extends AppCompatActivity {
         }
 
     }
-    public void AdjustmentReport(View view){
+    public void AdjustmentReport(View view){//onclick generates and displays the adjustment report
         currentCategory.setEnabled(true);
         currentCategory = view;
         currentCategory.setEnabled(false);
@@ -177,7 +178,7 @@ public class ManagerMain extends AppCompatActivity {
 
     }
 
-    public void SalesReport(View view){
+    public void SalesReport(View view){//on click, generates and displays the Sales Reports
         currentCategory.setEnabled(true);
         currentCategory = view;
         currentCategory.setEnabled(false);
@@ -214,12 +215,12 @@ public class ManagerMain extends AppCompatActivity {
             return view;
         }
     }
-    public void TableAdmin(View view){
+    public void TableAdmin(View view){//changes to the server view, so the manager can view tables and orders
         Intent i = new Intent(ManagerMain.this, ServerMain.class);
         //example: i.putExtra("user", ParseUser.getCurrentUser().getString("name"));
         startActivity(i);
     }
-    public void ManageIngridents(View view) {
+    public void ManageIngridents(View view) {//changes to the kitchen view, so the manager can view ingrediants and pending orders
         Intent i = new Intent(ManagerMain.this, KitchenMain.class);
         //example: i.putExtra("user", ParseUser.getCurrentUser().getString("name"));
         startActivity(i);

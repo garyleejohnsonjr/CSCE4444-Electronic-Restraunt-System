@@ -70,7 +70,7 @@ public class MenuMain extends AppCompatActivity {
             case R.id.bFavorites:
                 setTitle("Menu - Favorites");
                 query.whereNotEqualTo("Type", "Drink");
-                query.addDescendingOrder("Frequency");
+                query.addDescendingOrder("Frequency");//all queres sort by most frequently ordered
                 query.setLimit(3);
                 break;
             case R.id.bEntrees:

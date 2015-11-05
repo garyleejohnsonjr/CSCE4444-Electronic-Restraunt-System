@@ -98,17 +98,19 @@ public class SubmitOrder extends AppCompatActivity {
                     for (OrderItem item : application.currentOrder)                         {
                             itemsOrdered.addLast(item.name);
                             requests.addLast(item.request);
+
+                            //queries database for the item in question and adds one to the count of that item ordered today
                             ParseQuery<ParseObject> update = ParseQuery.getQuery("MenuItem");
                             update.whereEqualTo("ItemName", item.name);
                             update.getFirstInBackground(new GetCallback<ParseObject>() {
                                 public void done(ParseObject object, ParseException e) {
                                     if (object == null) {
 
-                                    } else {
+                                    } else {//if our item exists(and it should)
                                             int current =object.getInt("Frequency");
                                             current=current+1;
                                             object.put("Frequency",current);
-                                            object.saveInBackground();
+                                            object.saveInBackground();//saves our changes.
                                     }
                                 }
                             });
