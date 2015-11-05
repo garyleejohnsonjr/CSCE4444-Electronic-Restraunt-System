@@ -87,13 +87,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Table Admin"
-            android:id="@+id/bTableAdmin" />
+            android:id="@+id/bTableAdmin"
+            android:onClick="TableAdmin" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Manage Ingridients"
-            android:id="@+id/bManageIngridients" />
+            android:id="@+id/bManageIngridients"
+            android:onClick="ManageIngridents" />
     </LinearLayout>
 
     <ListView

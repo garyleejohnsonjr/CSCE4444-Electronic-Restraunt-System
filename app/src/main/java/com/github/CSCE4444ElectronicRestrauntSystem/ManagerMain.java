@@ -1,5 +1,6 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -212,6 +213,16 @@ public class ManagerMain extends AppCompatActivity {
 
             return view;
         }
+    }
+    public void TableAdmin(View view){
+        Intent i = new Intent(ManagerMain.this, ServerMain.class);
+        //example: i.putExtra("user", ParseUser.getCurrentUser().getString("name"));
+        startActivity(i);
+    }
+    public void ManageIngridents(View view) {
+        Intent i = new Intent(ManagerMain.this, KitchenMain.class);
+        //example: i.putExtra("user", ParseUser.getCurrentUser().getString("name"));
+        startActivity(i);
     }
 }
 
