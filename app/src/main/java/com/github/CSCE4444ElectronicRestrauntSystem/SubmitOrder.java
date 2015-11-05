@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -97,6 +98,22 @@ public class SubmitOrder extends AppCompatActivity {
                     for (OrderItem item : application.currentOrder)                         {
                             itemsOrdered.addLast(item.name);
                             requests.addLast(item.request);
+                            ParseQuery<ParseObject> update = ParseQuery.getQuery("MenuItem");
+                            update.whereEqualTo("ItemName", item.name);
+                            update.getFirstInBackground(new GetCallback<ParseObject>() {
+                                public void done(ParseObject object, ParseException e) {
+                                    if (object == null) {
+
+                                    } else {
+                                            int current =object.getInt("Frequency");
+                                            current=current+1;
+                                            object.put("Frequency",current);
+                                            object.saveInBackground();
+                                    }
+                                }
+                            });
+
+
                         }
 
                     // build the order
@@ -106,7 +123,8 @@ public class SubmitOrder extends AppCompatActivity {
                     order.put("TableNumber", application.currentTable);
                     order.put("Total", totalPrice);
                     order.put("Adjustments", 0);
-                    order.put("Tax", 0);
+                        Double Tax=totalPrice*.0825;
+                    order.put("Tax", Tax);
                     order.put("Gratuity", 0);
 
                     // save the order to the database
