@@ -3,10 +3,7 @@ package com.github.CSCE4444ElectronicRestrauntSystem;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 
 public class CustomerMain extends AppCompatActivity {
@@ -34,7 +31,7 @@ public class CustomerMain extends AppCompatActivity {
         bPayBill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iPayBill = new Intent(CustomerMain.this, PayBill.class);
+                Intent iPayBill = new Intent(CustomerMain.this, PayOrders.class);
                 startActivity(iPayBill);
             }
         });

@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PayBill"
+            android:name=".PayOrders"
             android:label="@string/title_activity_pay_bill" >
         </activity>
         <activity
@@ -154,7 +154,7 @@
         <activity
             android:name=".ManualAdjustments"
             android:label="@string/title_activity_manual_adjustments" >
-	</activity>
+        </activity>
         <activity
             android:name=".Coupon"
             android:label="@string/title_activity_coupon" >
@@ -162,6 +162,10 @@
         <activity
             android:name=".Pong"
             android:label="@string/title_activity_pong" >
+        </activity>
+        <activity
+            android:name=".PayOrder"
+            android:label="@string/title_activity_pay_order">
         </activity>
     </application>
 

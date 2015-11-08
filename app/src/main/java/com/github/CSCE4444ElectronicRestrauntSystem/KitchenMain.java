@@ -76,7 +76,7 @@ public class KitchenMain extends AppCompatActivity {
         //bPayBill.setOnClickListener(new View.OnClickListener() {
             //@Override
             //public void onClick(View v) {
-            //    Intent iPayBill = new Intent(KitchenMain.this, PayBill.class);
+            //    Intent iPayBill = new Intent(KitchenMain.this, PayOrders.class);
             //    startActivity(iPayBill);
             //}
         //});

@@ -127,6 +127,7 @@ public class SubmitOrder extends AppCompatActivity {
                     order.put("Adjustments", 0);
                         Double Tax=totalPrice*.0825;
                     order.put("Tax", Tax);
+                    order.put("Paid", false);
                     order.put("Gratuity", 0);
 
                     // save the order to the database
