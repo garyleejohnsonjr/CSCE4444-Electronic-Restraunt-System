@@ -44,14 +44,14 @@ public class ServerOrders extends AppCompatActivity {
 
         //New Order button
         Button bNewOrder = (Button)findViewById(R.id.bNewOrder);
+        MainApplication application = (MainApplication)getApplicationContext();
+        application.currentTable = i.getIntExtra("Number", tableNum);
 
         //Button takes you to menu
         bNewOrder.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent iTableStatus = new Intent(ServerOrders.this, MenuMain.class);
-                MainApplication application = (MainApplication)getApplicationContext();
-                application.currentTable = i.getIntExtra("Number", tableNum);
                 iTableStatus.putExtra("Server", true);
                 startActivity(iTableStatus);
             }

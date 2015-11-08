@@ -64,6 +64,8 @@ public class ServerTableOrder extends AppCompatActivity {
                             tvTotalPrice.setText("Total: " + formattedTotalPrice);
 
                             Button bSelfAdjust = (Button) findViewById(R.id.bSelfAdjust);
+                            Button bPayBill = (Button) findViewById(R.id.bPay);
+
                             final ParseObject id = order;
 
                             //Launches New activity with object id
@@ -73,6 +75,18 @@ public class ServerTableOrder extends AppCompatActivity {
                                     Intent iAdjustments = new Intent(ServerTableOrder.this, ManualAdjustments.class);
                                     iAdjustments.putExtra("objectId", id.getObjectId());
                                     startActivity(iAdjustments);
+                                }
+
+                            });
+
+                            //Sends to Pay Bill Page
+                            bPayBill.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent iPay = new Intent(ServerTableOrder.this, PayOrder.class);
+                                    iPay.putExtra("OrderID", id.getObjectId());
+                                    startActivity(iPay);
+                                    finish();
                                 }
 
                             });
@@ -125,6 +139,8 @@ public class ServerTableOrder extends AppCompatActivity {
                             tvTotalPrice.setText("Total: " + formattedTotalPrice);
 
                             Button bSelfAdjust = (Button) findViewById(R.id.bSelfAdjust);
+                            Button bPayBill = (Button) findViewById(R.id.bPay);
+
                             final ParseObject id = order;
 
                             //Launches New activity with object id
@@ -137,6 +153,19 @@ public class ServerTableOrder extends AppCompatActivity {
                                 }
 
                             });
+
+                            //Sends to Pay Bill Page
+                            bPayBill.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent iPay = new Intent(ServerTableOrder.this, PayOrder.class);
+                                    iPay.putExtra("OrderID", id.getObjectId());
+                                    startActivity(iPay);
+                                    finish();
+                                }
+
+                            });
+
                         }
                         x++;
                     }
