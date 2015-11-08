@@ -95,4 +95,5 @@
     <string name="default_score">0    0</string>
     <string name="title_activity_pay_orders_item">PayOrdersItem</string>
     <string name="title_activity_pay_order">Pay Order</string>
+    <string name="title_activity_customer_survey">CustomerSurvey</string>
 </resources>

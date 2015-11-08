@@ -167,6 +167,10 @@
             android:name=".PayOrder"
             android:label="@string/title_activity_pay_order">
         </activity>
+        <activity
+            android:name=".CustomerSurvey"
+            android:label="@string/title_activity_customer_survey" >
+        </activity>
     </application>
 
 </manifest>
