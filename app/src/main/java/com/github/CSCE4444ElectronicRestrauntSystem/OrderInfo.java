@@ -91,6 +91,8 @@ public class OrderInfo extends AppCompatActivity {
                     ParseObject o = query.get(objectId);
                     o.put("Status", "In Progress");
                     o.saveInBackground();
+
+                    Toast.makeText(OrderInfo.this, "Status has been set to 'In Progress'", Toast.LENGTH_LONG).show();
                 }catch(ParseException p) {
                 }
             }
@@ -111,6 +113,8 @@ public class OrderInfo extends AppCompatActivity {
                     ParseObject o = query.get(objectId);
                     o.put("Status", "Ready");
                     o.saveInBackground();
+
+                    Toast.makeText(OrderInfo.this, "Status has been set to 'Ready'", Toast.LENGTH_LONG).show();
                 }catch(ParseException p) {
                 }
             }
@@ -119,6 +123,7 @@ public class OrderInfo extends AppCompatActivity {
 
     // exit back to kitchen screen
     public void SetToKitchen(View view) {
-
+        Intent intent = new Intent(this, KitchenMain.class);
+        startActivity(intent);
     }
 }
