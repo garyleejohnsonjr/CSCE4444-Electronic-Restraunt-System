@@ -167,6 +167,11 @@ public class KitchenMain extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void MenuAvailability(View view) {
+        Intent intent = new Intent(this, MenuAvailability.class);
+        startActivity(intent);
+    }
+
 
     private class KitchenAdapter extends ArrayAdapter<ParseObject> {
 

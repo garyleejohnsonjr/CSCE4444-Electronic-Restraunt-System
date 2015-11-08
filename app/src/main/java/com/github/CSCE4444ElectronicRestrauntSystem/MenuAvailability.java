@@ -1,6 +1,7 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -32,6 +34,7 @@ import java.util.List;
 /**
  * Created by mark on 11/5/2015.
  */
+
 public class MenuAvailability extends AppCompatActivity {
 
     @Override
@@ -39,11 +42,12 @@ public class MenuAvailability extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_availability);
 
+        findList();
         Thread refreshFeed = new Thread() {
             public void run() {
                 while (true) {
                     try {
-                        sleep(1000);
+                        sleep(10000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } finally {
@@ -95,7 +99,7 @@ public class MenuAvailability extends AppCompatActivity {
         });
     }
 
-    private class AvailabilityAdapter extends ArrayAdapter<ParseObject> {
+    public class AvailabilityAdapter extends ArrayAdapter<ParseObject> {
 
         // constructor
         public AvailabilityAdapter(List<ParseObject> objects) { super(MenuAvailability.this, 0, objects); }
@@ -115,17 +119,52 @@ public class MenuAvailability extends AppCompatActivity {
             //String begin = "Table Number: ";
             String name = String.valueOf(item.getString("ItemName"));
             //String NewOutput = begin + table;
+            //Intent intent = new Intent(this, here);
+            //intent.putExtra("ItemName", name);
+            //////////////////
             tvMenuItem.setText(name);
 
             // get availability
             TextView tvAvailability = (TextView)view.findViewById(R.id.tvAvailability);
-            String avail = String.valueOf(item.getBoolean("Availability"));
-            //String begin2 = "Items Ordered: \n";
-            //String NewOutput2 = begin2 + Items;
-            tvAvailability.setText(avail);
+            String avail = String.valueOf(item.getBoolean("Avalibility"));
+            String yes = "Available";
+            String no = "Not Available";
+            if(avail == "true") {
+                tvAvailability.setText(yes);
+            }else if(avail == "false"){
+                tvAvailability.setText(no);
+            }
 
             // return the view
             return view;
         }
+    }
+
+    public void Toggle(View view) {
+        //Intent intent = new Intent(this, MenuAvailability.class);
+        TextView tvMenuItem = (TextView)view.findViewById(R.id.tvMenuItem);
+        final String name2 = tvMenuItem.getText().toString();
+        TextView tvAvailability = (TextView)view.findViewById(R.id.tvAvailability);
+        final String avail2 = tvAvailability.getText().toString();
+
+        final ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
+        query.whereEqualTo("ItemName", name2);
+
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+
+            public void done(ParseObject item, ParseException e) {
+                try {
+                    if(avail2.equals("Available")){
+                        ParseObject o = query.get(name2);
+                        o.put("Avalibility", "false");
+                        o.saveInBackground();
+
+                        Toast.makeText(MenuAvailability.this, "Menu item toggled off.", Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (ParseException p) {
+                }
+            }
+        });
     }
 }
