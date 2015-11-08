@@ -194,6 +194,10 @@
             android:name=".PayCredit"
             android:label="@string/title_activity_pay_credit">
         </activity>
+        <activity
+            android:name=".MenuAvailability"
+            android:label="@string/title_activity_menu_availability" >
+        </activity>
     </application>
 
 </manifest>

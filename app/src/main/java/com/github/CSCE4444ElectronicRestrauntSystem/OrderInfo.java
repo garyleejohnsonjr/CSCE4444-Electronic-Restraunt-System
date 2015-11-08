@@ -61,7 +61,8 @@ public class OrderInfo extends AppCompatActivity {
                 TextView tvRequests = (TextView) findViewById(R.id.tvSpecialRequests);
                 String Items2 = String.valueOf(item.getJSONArray("Requests"));
                 String begin2 = "\n Special Requests: \n";
-                String NewOutput2 = begin2 + Items2;
+                String end = "\n";
+                String NewOutput2 = begin2 + Items2 + end;
                 tvRequests.setText(NewOutput2);
 
                 if(TabStat.equals("Placed")){
