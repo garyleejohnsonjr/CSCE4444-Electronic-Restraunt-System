@@ -71,8 +71,7 @@
             android:layout_height="wrap_content"
             android:text="Exit to Kitchen Menu"
             android:id="@+id/bExit"
-            style="@android:style/Widget.Holo.Light.Button"
-            android:onClick="callServer" />
+            style="@android:style/Widget.Holo.Light.Button"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -80,15 +79,13 @@
             android:text="Move to In Progress"
             android:id="@+id/bMoveIP"
             style="@android:style/Widget.Holo.Light.Button"
-            android:enabled="false"
-            android:onClick="checkCalories" />
+            android:enabled="false" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Move to Ready"
             android:id="@+id/bMoveRdy"
-            android:onClick="addItem"
             style="@android:style/Widget.Holo.Light.Button"
             android:enabled="false" />
 

@@ -158,9 +158,9 @@ public class KitchenMain extends AppCompatActivity {
     //This is where we need to pass order ID so that when you click an order if gets the right data
     public void orderInfo(View view) {
         Intent intent = new Intent(this, OrderInfo.class);
-        TextView tvOrderName = (TextView)view.findViewById(R.id.tvOrderStatus);
-        String orderName = tvOrderName.getText().toString();
-        intent.putExtra("OrderName", orderName);
+        //TextView tvOrderName = (TextView)view.findViewById(R.id.tvOrderStatus);
+        //String orderName = tvOrderName.getText().toString();
+        //intent.putExtra("OrderName", orderName);
         startActivity(intent);
     }
 

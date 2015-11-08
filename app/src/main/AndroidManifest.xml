@@ -167,6 +167,10 @@
             android:name=".CustomerSurvey"
             android:label="@string/title_activity_customer_survey" >
         </activity>
+        <activity
+            android:name=".OrderInfo"
+            android:label="@string/title_acivity_order_info" >
+        </activity>
     </application>
 
 </manifest>
