@@ -60,14 +60,18 @@ public class RewardsGameWin extends AppCompatActivity {
                                         user.get("UserID").toString() + " validated.", Toast.LENGTH_LONG).show();
 
                                 //Using the current time in milliseconds in the code field of the coupon
-                                //Add that to a new coupon and save to Parse
+                                //Add that to a new coupon
+                                //Add user and "Unused" status
                                 Time time = new Time();
                                 time.setToNow();
                                 Log.d("TIME TEST", Long.toString(time.toMillis(false)));
                                 //Toast.makeText(getApplicationContext(),
                                 //        Long.toString(time.toMillis(false)), Toast.LENGTH_LONG).show();
                                 ParseObject newCoupon = new ParseObject("Coupon");
+                                newCoupon.put("Status", "Unused");
+                                newCoupon.put("User", user.get("UserID").toString());
                                 newCoupon.put("Code", time.toMillis(false));
+                                //Save to Parse
                                 newCoupon.saveInBackground();
                                 //Update object with new values created on Parse.com (outside of App's control)
                                 try {

@@ -154,7 +154,7 @@
         <activity
             android:name=".ManualAdjustments"
             android:label="@string/title_activity_manual_adjustments" >
-	</activity>
+        </activity>
         <activity
             android:name=".Coupon"
             android:label="@string/title_activity_coupon" >
@@ -162,6 +162,10 @@
         <activity
             android:name=".Pong"
             android:label="@string/title_activity_pong" >
+        </activity>
+        <activity
+            android:name=".CustomerSurvey"
+            android:label="@string/title_activity_customer_survey" >
         </activity>
     </application>
 
