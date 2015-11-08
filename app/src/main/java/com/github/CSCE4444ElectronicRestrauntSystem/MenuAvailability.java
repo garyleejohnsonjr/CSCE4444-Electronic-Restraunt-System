@@ -51,7 +51,7 @@ public class MenuAvailability extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } finally {
-                        //Checks for updated Table status every 1 secs
+                        //Checks for updated Table status every 10 secs
                         findList();
                     }
                 }
@@ -85,7 +85,7 @@ public class MenuAvailability extends AppCompatActivity {
     public void findList() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
         //query.whereEqualTo("Type", "Placed");
-        query.orderByDescending("Type");
+        query.orderByAscending("ItemName");
         //query.addAscendingOrder("createdAt");
         //query.orderByAscending("createdAt");
 
@@ -135,6 +135,15 @@ public class MenuAvailability extends AppCompatActivity {
                 tvAvailability.setText(no);
             }
 
+            //Button changes when toggled
+            Button bToggle = (Button)view.findViewById(R.id.bToggle);
+            String avail3 = String.valueOf(item.getBoolean("Avalibility"));
+            if(avail3 == "true") {
+                bToggle.setText("Toggle Off");
+            }else if(avail3 == "false"){
+                bToggle.setText("Toggle On");
+            }
+
             // return the view
             return view;
         }
@@ -154,15 +163,18 @@ public class MenuAvailability extends AppCompatActivity {
 
             public void done(ParseObject item, ParseException e) {
                 try {
-                    if(avail2.equals("Available")){
+                    if (avail2.equals("Available")) {
                         ParseObject o = query.get(name2);
                         o.put("Avalibility", "false");
                         o.saveInBackground();
 
                         Toast.makeText(MenuAvailability.this, "Menu item toggled off.", Toast.LENGTH_LONG).show();
+                    } else if (avail2.equals("Not Available")) {
+                        ParseObject o = query.get(name2);
+                        o.put("Avalibility", "true");
+                        o.saveInBackground();
                     }
-
-                } catch (ParseException p) {
+                }catch (ParseException p) {
                 }
             }
         });
