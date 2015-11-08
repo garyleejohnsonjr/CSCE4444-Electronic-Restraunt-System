@@ -1,5 +1,6 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -31,47 +32,48 @@ public class PayOrder extends AppCompatActivity {
         query.whereEqualTo("objectId", orderID);
 
         query.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override public void done(ParseObject order, ParseException e) {
+            @Override
+            public void done(ParseObject order, ParseException e) {
                 //get order items
                 LinkedList<OrderItem> orderItems = new LinkedList<>();
                 List<Object> items = order.getList("ItemsOrdered");
                 List<Object> requests = order.getList("Requests");
                 for (Object item : items) {
                     // item name
-                    String itemName = (String)item;
+                    String itemName = (String) item;
 
                     // request
-                    String request = (String)requests.remove(0);
+                    String request = (String) requests.remove(0);
 
                     orderItems.add(new OrderItem(itemName, request, 0f));
                 }
 
                 // set adapter
-                ListView lvOrder = (ListView)findViewById(R.id.lvOrder);
+                ListView lvOrder = (ListView) findViewById(R.id.lvOrder);
                 OrderAdapter adapter = new OrderAdapter(orderItems);
                 lvOrder.setAdapter(adapter);
 
 
                 //get adjustments
-                TextView tvAdjustments = (TextView)findViewById(R.id.tvAdjustments);
+                TextView tvAdjustments = (TextView) findViewById(R.id.tvAdjustments);
                 float adjustments = order.getNumber("Adjustments").floatValue();
                 String formattedAdjustments = String.format("-$%.2f", adjustments);
                 tvAdjustments.setText(formattedAdjustments);
 
                 //get subtotal
-                TextView tvSubTotal = (TextView)findViewById(R.id.tvSubTotal);
+                TextView tvSubTotal = (TextView) findViewById(R.id.tvSubTotal);
                 float subTotal = order.getNumber("Total").floatValue();
                 String formattedSubTotal = String.format("$%.2f", subTotal);
                 tvSubTotal.setText(formattedSubTotal);
 
                 //get tax
-                TextView tvTax = (TextView)findViewById(R.id.tvTax);
+                TextView tvTax = (TextView) findViewById(R.id.tvTax);
                 float tax = order.getNumber("Tax").floatValue();
                 String formattedTax = String.format("$%.2f", tax);
                 tvTax.setText(formattedTax);
 
                 //get total
-                TextView tvTotal = (TextView)findViewById(R.id.tvTotal);
+                TextView tvTotal = (TextView) findViewById(R.id.tvTotal);
                 float total = subTotal - adjustments + tax;
                 String formattedTotal = String.format("$%.2f", total);
                 tvTotal.setText(formattedTotal);
@@ -81,24 +83,48 @@ public class PayOrder extends AppCompatActivity {
 
     // pay cash button event
     public void payCash(View view) {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Tables");
-        MainApplication application = (MainApplication)getApplication();
-        query.whereEqualTo("Number", application.currentTable);
+        final Intent i = getIntent();
 
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override public void done (ParseObject table, ParseException e) {
-                table.put("Status", "Table Help");
-                table.put("Requests", "Customer requests to pay with cash.");
+        //Server Receives Customers Cash
+        if(i.hasExtra("Server")){
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
+            query.whereEqualTo("objectId", i.getStringExtra("OrderID"));
 
-                table.saveInBackground();
-                Toast.makeText(getApplicationContext(), "Server called.", Toast.LENGTH_LONG).show();
-                finish();
-            }
-        });
+            query.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject order, ParseException e) {
+                    //get order items
+                    order.put("Status", "Paid");
+                    order.saveInBackground();
+                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            });
+        }
+        else {
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Tables");
+            MainApplication application = (MainApplication) getApplication();
+            query.whereEqualTo("Number",application.currentTable);
+
+            query.getFirstInBackground(new GetCallback<ParseObject>()
+                 {
+                        @Override public void done (ParseObject table, ParseException e){
+                        table.put("Status", "Table Help");
+                        table.put("Requests", "Customer requests to pay with cash.");
+                        Toast.makeText(getApplicationContext(), "Server called.", Toast.LENGTH_LONG).show();
+                        table.saveInBackground();
+                        finish();
+                        }
+                 }
+            );
+        }
+
+
+
     }
 
-    // nested class used for the menu adapter
-    private class OrderAdapter extends ArrayAdapter<OrderItem> {
+                // nested class used for the menu adapter
+            private class OrderAdapter extends ArrayAdapter<OrderItem> {
 
         // constructor
         public OrderAdapter(List<OrderItem> items) { super(PayOrder.this, 0, items); }

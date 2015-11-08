@@ -85,6 +85,7 @@ public class ServerTableOrder extends AppCompatActivity {
                                 public void onClick(View v) {
                                     Intent iPay = new Intent(ServerTableOrder.this, PayOrder.class);
                                     iPay.putExtra("OrderID", id.getObjectId());
+                                    iPay.putExtra("Server", "true");
                                     startActivity(iPay);
                                     finish();
                                 }
@@ -160,6 +161,7 @@ public class ServerTableOrder extends AppCompatActivity {
                                 public void onClick(View v) {
                                     Intent iPay = new Intent(ServerTableOrder.this, PayOrder.class);
                                     iPay.putExtra("OrderID", id.getObjectId());
+                                    iPay.putExtra("Server", "true");
                                     startActivity(iPay);
                                     finish();
                                 }
