@@ -4,7 +4,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_pay_bill">Pay Bill</string>
+    <string name="title_activity_pay_bill">Pay Orders</string>
     <string name="title_activity_customer_main">Customer</string>
     <string name="title_activity_kitchen_main">Kitchen</string>
     <string name="title_activity_server_main">Server</string>
@@ -57,7 +57,7 @@
     <string name="title_activity_ingredients">Ingredients</string>
     <string name="title_activity_reports">Reports</string>
     <string name="title_activity_manager_main">ManagerMain</string>
-    <string name="title_activity_rewards_status">RewardsStatus</string>
+    <string name="title_activity_rewards_status">Rewards Status</string>
     <string name="title_activity_table_status">TableStatus</string>
 
 <!-- TODO: Remove or change this placeholder text -->
@@ -86,6 +86,8 @@
     <string name="title_activity_coupon">Coupon</string>
     <string name="title_activity_pong">Pong</string>
 
+    <string name="facebook_app_id">1657530061194012</string>
+
     <string name="mode_readyPong">Touch to play</string>
     <string name="mode_pausePong">Paused</string>
     <string name="mode_win">Good work :-)</string>
@@ -94,5 +96,9 @@
     <string name="menu_exit">Exit</string>
     <string name="menu_resume">Resume</string>
     <string name="default_score">0    0</string>
+    <string name="title_activity_pay_orders_item">PayOrdersItem</string>
+    <string name="title_activity_pay_order">Pay Order</string>
     <string name="title_activity_customer_survey">CustomerSurvey</string>
+    <string name="title_activity_share_facebook">ShareFacebook</string>
+    <string name="title_activity_share_general">ShareGeneral</string>
 </resources>

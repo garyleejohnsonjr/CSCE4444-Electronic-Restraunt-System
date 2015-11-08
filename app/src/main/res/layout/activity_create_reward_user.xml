@@ -43,7 +43,7 @@
                 android:inputType="date"
                 android:ems="10"
                 android:id="@+id/etBirthday"
-                android:hint="Birthday YYYY-MM-DD"/>
+                android:hint="Birthday MM/DD/YYYY"/>
 
             <Button
                 android:layout_width="match_parent"

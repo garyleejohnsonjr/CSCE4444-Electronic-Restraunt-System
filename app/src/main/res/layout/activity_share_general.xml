@@ -11,55 +11,44 @@
     tools:context="com.github.CSCE4444ElectronicRestrauntSystem.CustomerMain"
     android:background="#99ffc610">
 
-    <FrameLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center">
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Select your preferred social media platform below"
+            android:id="@+id/textView20"
+            android:layout_gravity="center_horizontal" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Menu"
-                android:id="@+id/bCustomerViewMenu"
-                style="@android:style/Widget.Holo.Light.Button" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Call Server / Refills"
-                android:id="@+id/bCallServer"
-                style="@android:style/Widget.Holo.Light.Button" />
+            <ImageButton
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:src="@drawable/ficon2"
+                android:id="@+id/ibFacebookShare"
+                android:scaleType="fitXY"
+                android:layout_gravity="left|center_vertical" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Rewards Club"
-                android:id="@+id/bRewardsClub"
-                style="@android:style/Widget.Holo.Light.Button" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Share On Social Media"
-                android:id="@+id/bShare"
-                style="@android:style/Widget.Holo.Light.Button" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Games"
-                android:id="@+id/bGames"
-                style="@android:style/Widget.Holo.Light.Button" />
-
+            <ImageButton
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:src="@drawable/twiticon2"
+                android:id="@+id/ibTwitterShare"
+                android:layout_gravity="center_vertical|right"
+                android:scaleType="fitXY"
+                android:layout_marginLeft="320dp" />
         </LinearLayout>
-    </FrameLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -80,7 +69,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pay Orders"
+            android:text="Pay Bill"
             android:id="@+id/bPayBill"
             style="@android:style/Widget.Holo.Light.Button" />
 

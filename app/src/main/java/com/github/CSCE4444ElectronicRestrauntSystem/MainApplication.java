@@ -1,7 +1,10 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
 import android.app.Application;
+
+import com.facebook.appevents.AppEventsLogger;
 import com.parse.Parse;
+import com.facebook.FacebookSdk;
 
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
@@ -24,6 +27,8 @@ public class MainApplication extends Application{
         super.onCreate();
         TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
         Fabric.with(this, new Twitter(authConfig));
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
         // parse stuff
         Parse.enableLocalDatastore(this);

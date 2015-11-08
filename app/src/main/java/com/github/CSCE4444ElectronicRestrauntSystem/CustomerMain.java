@@ -3,10 +3,7 @@ package com.github.CSCE4444ElectronicRestrauntSystem;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 
 public class CustomerMain extends AppCompatActivity {
@@ -21,12 +18,12 @@ public class CustomerMain extends AppCompatActivity {
         Button bGames = (Button) findViewById(R.id.bGames);
         Button bRewardsClub = (Button) findViewById(R.id.bRewardsClub);
         Button bCallServer = (Button) findViewById(R.id.bCallServer);
-        Button bShareTwitter = (Button) findViewById(R.id.bShare);
+        Button bShareGeneral = (Button) findViewById(R.id.bShare);
 
-        bShareTwitter.setOnClickListener(new View.OnClickListener() {
+        bShareGeneral.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iShareTwitter = new Intent(CustomerMain.this, ShareTwitter.class);
+                Intent iShareTwitter = new Intent(CustomerMain.this, ShareGeneral.class);
                 startActivity(iShareTwitter);
             }
         });
@@ -34,7 +31,7 @@ public class CustomerMain extends AppCompatActivity {
         bPayBill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iPayBill = new Intent(CustomerMain.this, PayBill.class);
+                Intent iPayBill = new Intent(CustomerMain.this, PayOrders.class);
                 startActivity(iPayBill);
             }
         });

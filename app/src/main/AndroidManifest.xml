@@ -18,6 +18,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
@@ -28,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PayBill"
+            android:name=".PayOrders"
             android:label="@string/title_activity_pay_bill" >
         </activity>
         <activity
@@ -100,7 +104,7 @@
         </activity>
         <activity
             android:name=".RewardsStatus"
-            android:label="@string/title_activity_table_status" >
+            android:label="@string/title_activity_rewards_status" >
         </activity>
         <activity
             android:name=".CreateRewardUser"
@@ -164,12 +168,28 @@
             android:label="@string/title_activity_pong" >
         </activity>
         <activity
+            android:name=".PayOrder"
+            android:label="@string/title_activity_pay_order">
+        </activity>
+        <activity
             android:name=".CustomerSurvey"
             android:label="@string/title_activity_customer_survey" >
         </activity>
         <activity
+
             android:name=".OrderInfo"
-            android:label="@string/title_acivity_order_info" >
+            android:label="@string/title_acivity_order_info" />
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".ShareFacebook"
+            android:label="@string/title_activity_share_facebook" >
+        </activity>
+        <activity
+            android:name=".ShareGeneral"
+            android:label="@string/title_activity_share_general" >
         </activity>
     </application>
 
