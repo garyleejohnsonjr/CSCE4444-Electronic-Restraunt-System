@@ -18,6 +18,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
@@ -170,6 +174,19 @@
         <activity
             android:name=".CustomerSurvey"
             android:label="@string/title_activity_customer_survey" >
+        </activity>
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".ShareFacebook"
+            android:label="@string/title_activity_share_facebook" >
+        </activity>
+        <activity
+            android:name=".ShareGeneral"
+            android:label="@string/title_activity_share_general" >
         </activity>
     </application>
 

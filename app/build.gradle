@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         maven { url 'https://maven.fabric.io/public' }
+        mavenCentral()
     }
 
     dependencies {
@@ -12,6 +13,7 @@ apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
+    mavenCentral()
 }
 
 
@@ -40,6 +42,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.parse.bolts:bolts-android:1.+'
     compile 'com.android.support:design:23.1.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.7.0'
     compile('com.twitter.sdk.android:twitter:1.9.1@aar') {
         transitive = true;
     }

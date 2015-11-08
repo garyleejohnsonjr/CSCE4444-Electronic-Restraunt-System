@@ -85,6 +85,8 @@
     <string name="title_activity_coupon">Coupon</string>
     <string name="title_activity_pong">Pong</string>
 
+    <string name="facebook_app_id">1657530061194012</string>
+
     <string name="mode_readyPong">Touch to play</string>
     <string name="mode_pausePong">Paused</string>
     <string name="mode_win">Good work :-)</string>
@@ -96,4 +98,6 @@
     <string name="title_activity_pay_orders_item">PayOrdersItem</string>
     <string name="title_activity_pay_order">Pay Order</string>
     <string name="title_activity_customer_survey">CustomerSurvey</string>
+    <string name="title_activity_share_facebook">ShareFacebook</string>
+    <string name="title_activity_share_general">ShareGeneral</string>
 </resources>
