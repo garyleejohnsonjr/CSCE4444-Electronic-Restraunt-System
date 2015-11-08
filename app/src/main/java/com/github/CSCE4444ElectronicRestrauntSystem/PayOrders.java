@@ -47,7 +47,14 @@ public class PayOrders extends AppCompatActivity {
         ListView lvOrders = (ListView) findViewById(R.id.lvOrders);
         int position = lvOrders.getPositionForView(view);
         String orderID = orderIDs.get(position);
+        intent.putExtra("OrderNumber", position);
         intent.putExtra("OrderID", orderID);
+        startActivity(intent);
+    }
+
+    // call server event
+    public void callServer(View view) {
+        Intent intent = new Intent(this, CallServer.class);
         startActivity(intent);
     }
 
@@ -70,7 +77,6 @@ public class PayOrders extends AppCompatActivity {
             TextView tvOrderID = (TextView)view.findViewById(R.id.tvOrderID);
             String orderID = item.getObjectId();
             orderIDs.addLast(orderID);
-
 
             tvOrderID.setText("Order #" + (position + 1));
 

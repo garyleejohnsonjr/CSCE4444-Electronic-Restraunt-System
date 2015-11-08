@@ -101,4 +101,5 @@
     <string name="title_activity_customer_survey">CustomerSurvey</string>
     <string name="title_activity_share_facebook">ShareFacebook</string>
     <string name="title_activity_share_general">ShareGeneral</string>
+    <string name="title_activity_pay_credit">Pay Credit</string>
 </resources>

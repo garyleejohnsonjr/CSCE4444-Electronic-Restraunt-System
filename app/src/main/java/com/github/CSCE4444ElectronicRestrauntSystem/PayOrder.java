@@ -1,5 +1,8 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,6 +28,10 @@ public class PayOrder extends AppCompatActivity {
 
         // get order ID
         String orderID = getIntent().getExtras().getString("OrderID");
+
+        // set title
+        int orderNumber = getIntent().getExtras().getInt("OrderNumber");
+        setTitle("Pay Order #" + (orderNumber + 1));
 
         // build query
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
@@ -92,9 +99,38 @@ public class PayOrder extends AppCompatActivity {
 
                 table.saveInBackground();
                 Toast.makeText(getApplicationContext(), "Server called.", Toast.LENGTH_LONG).show();
-                finish();
+
+                new AlertDialog.Builder(PayOrder.this)
+                    .setTitle("Survey")
+                    .setMessage("Would you like to take a brief survey about your experience dining with us?")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(PayOrder.this, CustomerSurvey.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+
             }
         });
+    }
+
+    // pay credit button event
+    public void payCredit(View view) {
+        Intent intent = new Intent(this, PayCredit.class);
+        startActivity(intent);
+    }
+
+    // enter coupon button event
+    public void rewardsClub(View view) {
+        //TODO: rewards club/coupon
     }
 
     // nested class used for the menu adapter
