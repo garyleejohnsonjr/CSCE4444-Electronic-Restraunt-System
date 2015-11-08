@@ -8,7 +8,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.parse.ParseObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class CreateRewardUser extends AppCompatActivity {
 
@@ -32,21 +39,31 @@ public class CreateRewardUser extends AppCompatActivity {
                 String pswd = etPassword.getText().toString();
                 String birthday = etBirthday.getText().toString();
 
-                //Creates New User
-                //Todo: General Error handling
-                ParseObject user = new ParseObject("RewardsMbr");
-                user.put("UserID", uName);
-                user.put("Password", pswd);
-                //Todo:Format Birthday Correctly
-                //user.put("Birthday", birthday);
-                user.put("Points", 0);
-                user.saveInBackground();
+                if(formatDate(birthday) == null)
+                    Toast.makeText(getApplicationContext(), "Wrong date Format", Toast.LENGTH_LONG).show();
+                else if(uName.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Enter A Username", Toast.LENGTH_LONG).show();
+                }
+                else if (pswd.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Enter a Password.", Toast.LENGTH_LONG).show();
+                }
+                else if(birthday.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Enter a Birthday", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    //Creates New User
+                    ParseObject user = new ParseObject("RewardsMbr");
+                    user.put("UserID", uName);
+                    user.put("Password", pswd);
+                    user.put("Birthday", formatDate(birthday));
+                    user.put("Points", 0);
+                    user.saveInBackground();
 
-                //Todo: Sends user to main page for testing. Needs to go to individual homepage
-                Intent i = new Intent(CreateRewardUser.this, RewardsStatus.class);
-                startActivity(i);
-
-                finish();
+                    Intent i = new Intent(CreateRewardUser.this, RewardsStatus.class);
+                    i.putExtra("UserId", uName);
+                    startActivity(i);
+                    finish();
+                }
             }
         });
     }
@@ -72,4 +89,17 @@ public class CreateRewardUser extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-}
+
+    public static Date formatDate(String birthday) {
+
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
+        try {
+            Date date = format.parse(birthday);
+            return date;
+        } catch (ParseException e) {
+
+        }
+        return null;
+    }
+
+ }

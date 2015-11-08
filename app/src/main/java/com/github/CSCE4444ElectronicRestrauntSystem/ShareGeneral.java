@@ -47,7 +47,7 @@ public class ShareGeneral extends AppCompatActivity {
         bPayBill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iPayBill = new Intent(ShareGeneral.this, PayBill.class);
+                Intent iPayBill = new Intent(ShareGeneral.this, PayOrder.class);
                 startActivity(iPayBill);
             }
         });

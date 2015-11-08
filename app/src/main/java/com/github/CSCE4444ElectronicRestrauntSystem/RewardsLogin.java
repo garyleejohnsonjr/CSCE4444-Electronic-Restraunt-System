@@ -47,7 +47,6 @@ public class RewardsLogin extends AppCompatActivity {
                     public void done(List<ParseObject> users,
                                      ParseException e) {
                         //Username Not Found
-                        //Todo:Incorrect Username Message
                         if (users.size() == 0) {
                             Toast.makeText(getApplicationContext(), "Username invalid.", Toast.LENGTH_LONG).show();
                             finish();
@@ -57,14 +56,14 @@ public class RewardsLogin extends AppCompatActivity {
                                 //Log to check queries
                                 Log.d("Password", username.getString("Password"));
 
-                                if (username.getString("Password").equals(                                    pswd)) {
+                                if (username.getString("Password").equals(pswd)) {
                                     Intent i = new Intent(RewardsLogin.this, RewardsStatus.class);
                                     //example: i.putExtra("user", ParseUser.getCurrentUser().getString("name"));
+                                    i.putExtra("UserId", uName);
                                     startActivity(i);
                                     finish();
                                 }
                                 //Incorrect Password Resets Page
-                                //Todo:Incorrect Password Message
                                 else {
                                     //toast/alert message I prefer alerts but this works for now
                                     Toast.makeText(getApplicationContext(), "Password invalid.", Toast.LENGTH_LONG).show();
