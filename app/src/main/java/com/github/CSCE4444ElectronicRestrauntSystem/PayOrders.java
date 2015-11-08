@@ -14,9 +14,12 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class PayOrders extends AppCompatActivity {
+
+    LinkedList<String> orderIDs = new LinkedList<>();
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +44,9 @@ public class PayOrders extends AppCompatActivity {
     // pay order event
     public void payOrder(View view) {
         Intent intent = new Intent(this, PayOrder.class);
-        TextView tvOrderID = (TextView)view.findViewById(R.id.tvOrderID);
-        String orderID = tvOrderID.getText().toString();
+        ListView lvOrders = (ListView) findViewById(R.id.lvOrders);
+        int position = lvOrders.getPositionForView(view);
+        String orderID = orderIDs.get(position);
         intent.putExtra("OrderID", orderID);
         startActivity(intent);
     }
@@ -65,7 +69,10 @@ public class PayOrders extends AppCompatActivity {
             // get order id
             TextView tvOrderID = (TextView)view.findViewById(R.id.tvOrderID);
             String orderID = item.getObjectId();
-            tvOrderID.setText(orderID);
+            orderIDs.addLast(orderID);
+
+
+            tvOrderID.setText("Order #" + (position + 1));
 
             // return the view
             return view;
