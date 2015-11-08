@@ -22,6 +22,8 @@ import java.util.List;
 
 public class PayOrder extends AppCompatActivity {
 
+    float total = 0.00f;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_order);
@@ -79,7 +81,7 @@ public class PayOrder extends AppCompatActivity {
 
                 //get total
                 TextView tvTotal = (TextView)findViewById(R.id.tvTotal);
-                float total = subTotal - adjustments + tax;
+                total = subTotal - adjustments + tax;
                 String formattedTotal = String.format("$%.2f", total);
                 tvTotal.setText(formattedTotal);
             }
@@ -124,7 +126,18 @@ public class PayOrder extends AppCompatActivity {
 
     // pay credit button event
     public void payCredit(View view) {
+        // get order number
+        int orderNumber = getIntent().getExtras().getInt("OrderNumber");
+
+        // get order id
+        String orderID = getIntent().getExtras().getString("OrderID");
+
+        // build intent
         Intent intent = new Intent(this, PayCredit.class);
+        intent.putExtra("Total", total);
+        intent.putExtra("OrderNumber", orderNumber);
+        intent.putExtra("OrderID", orderID);
+
         startActivity(intent);
     }
 
