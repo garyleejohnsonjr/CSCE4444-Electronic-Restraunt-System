@@ -42,6 +42,10 @@
                     android:id="@+id/tvTableNumber" />
             </LinearLayout>
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -61,10 +65,15 @@
         </LinearLayout>
     </LinearLayout>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
 
         <Button
             android:layout_width="wrap_content"
@@ -79,7 +88,8 @@
             android:text="Move to In Progress"
             android:id="@+id/bMoveIP"
             style="@android:style/Widget.Holo.Light.Button"
-            android:enabled="false" />
+            android:enabled="false"
+            android:onClick="SetInProgress"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -87,7 +97,8 @@
             android:text="Move to Ready"
             android:id="@+id/bMoveRdy"
             style="@android:style/Widget.Holo.Light.Button"
-            android:enabled="false" />
+            android:enabled="false"
+            android:onClick="SetReady"/>
 
         <TextView
             android:layout_width="wrap_content"
