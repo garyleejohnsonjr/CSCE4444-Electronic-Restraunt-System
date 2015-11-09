@@ -70,6 +70,8 @@ public class RewardsLogin extends AppCompatActivity {
                                         i.putExtra("UserId", uName);
                                         i.putExtra("Paying", true);
                                         i.putExtra("objectId", intent.getStringExtra("objectId"));
+                                        i.putExtra("OrderNumber", getIntent().getExtras().getInt("OrderNumber"));
+                                        i.putExtra("OrderID", getIntent().getExtras().getString("OrderID"));
                                         startActivity(i);
                                         finish();
                                     }

@@ -83,16 +83,22 @@ public class RewardCoupons extends AppCompatActivity {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
         query.whereEqualTo("objectId", i.getStringExtra("objectId"));
-        query.getFirstInBackground(new GetCallback<ParseObject>(){
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
             public void done(ParseObject order,
                              ParseException e) {
 
-                    Double newPrice = order.getDouble("Adjustments") + 10;
-                    order.put("Coupon", true);
-                    order.put("Adjustments",newPrice);
-                    order.saveInBackground();
+                Double newPrice = order.getDouble("Adjustments") + 10;
+                order.put("Coupon", true);
+                order.put("Adjustments", newPrice);
+                order.saveInBackground();
             }
         });
+
+        //Goes Back to Pay Page
+        Intent intent = new Intent(RewardCoupons.this, PayOrder.class);
+        intent.putExtra("OrderNumber", getIntent().getExtras().getInt("OrderNumber"));
+        intent.putExtra("OrderID", getIntent().getExtras().getString("OrderID"));
+        startActivity(intent);
         finish();
     }
 

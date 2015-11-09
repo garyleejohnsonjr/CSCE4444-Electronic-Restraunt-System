@@ -73,7 +73,6 @@ public class TableStatus extends AppCompatActivity {
                 query.findInBackground(new FindCallback<ParseObject>() {
                     public void done(List<ParseObject> tables,
                                      ParseException e) {
-                        //Todo: Submit nothing error
                         if (e == null) {
                             for (ParseObject table : tables) {
 

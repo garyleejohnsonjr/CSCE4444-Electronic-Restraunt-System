@@ -106,6 +106,7 @@ public class ServerOrders extends AppCompatActivity {
         final int tableNum = 0;
         final Intent i = getIntent();
 
+        //Arranges Orders by time created
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
         query.whereEqualTo("TableNumber", i.getIntExtra("Number", tableNum));
         query.whereNotEqualTo("Status", "Paid");
@@ -115,6 +116,7 @@ public class ServerOrders extends AppCompatActivity {
                              ParseException e) {
                 //Todo: Submit nothing error
                 if (e == null) {
+                    //Goes to individual order
                     Intent iTableStatus = new Intent(ServerOrders.this, ServerTableOrder.class);
                     iTableStatus.putExtra("Number", i.getIntExtra("Number", tableNum));
                     iTableStatus.putExtra("Order", position);

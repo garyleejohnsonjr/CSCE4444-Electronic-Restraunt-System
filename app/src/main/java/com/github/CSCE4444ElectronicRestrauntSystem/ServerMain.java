@@ -22,7 +22,6 @@ import java.util.List;
 
 
 //Main Sever Page
-//Todo: This is basically just a copy of the temporary CustomerMain
 public class ServerMain extends AppCompatActivity {
 
     void changeColor(final TextView tTable, int tableNum){
@@ -31,10 +30,8 @@ public class ServerMain extends AppCompatActivity {
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> tables,
                              ParseException e) {
-                //Todo: Submit nothing error
                 if (e == null) {
                     for (ParseObject table : tables) {
-                        //Puts Status into database
                         if(table.getString("Status").equals("Table Ordered")) {
                             //Blue-Ordered
                             tTable.clearAnimation();
@@ -45,7 +42,6 @@ public class ServerMain extends AppCompatActivity {
                             tTable.clearAnimation();
                             tTable.setTextColor(0xFF010101);
                         }
-                        //Todo: May need to change color. Just for testing purposes
                         if(table.getString("Status").equals("Table Help")){
                             //Blinks Pink if needs help
                             tTable.setTextColor(0xFFFF00E9);

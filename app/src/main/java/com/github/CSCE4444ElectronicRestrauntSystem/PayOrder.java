@@ -49,9 +49,10 @@ public class PayOrder extends AppCompatActivity {
                     String itemName = (String) item;
 
                     // request
-                    String request = (String) requests.remove(0);
-
-                    orderItems.add(new OrderItem(itemName, request, 0f));
+                    if (!requests.isEmpty()) {
+                        String request = (String) requests.remove(0);
+                        orderItems.add(new OrderItem(itemName, request, 0f));
+                    }
                 }
 
                 // set adapter
@@ -147,25 +148,33 @@ public class PayOrder extends AppCompatActivity {
 
     // enter coupon button event
     public void rewardsClub(View view) {
-        // get order id
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
-        query.whereEqualTo("objectId", getIntent().getStringExtra("OrderID"));
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject order, ParseException e) {
-                //Checks to see if a coupon was used
-                if (order.getBoolean("Coupon"))
-                    Toast.makeText(getApplicationContext(), "You have already Used a Coupon", Toast.LENGTH_LONG).show();
-                else {
-                    //Goes to Rewards Login
-                    String orderID = getIntent().getExtras().getString("OrderID");
-                    Intent intent = new Intent(PayOrder.this, RewardsLogin.class);
-                    intent.putExtra("Paying", true);
-                    intent.putExtra("objectId", orderID);
-                    startActivity(intent);
+        //Checks to see if the total is at least $10
+        if(total < 10)
+            Toast.makeText(getApplicationContext(), "Your meal must be at least $10", Toast.LENGTH_LONG).show();
+        else {
+            //Looks For Coupons
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
+            query.whereEqualTo("objectId", getIntent().getStringExtra("OrderID"));
+            query.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject order, ParseException e) {
+                    //Checks to see if a coupon was used
+                    if (order.getBoolean("Coupon"))
+                        Toast.makeText(getApplicationContext(), "You have already Used a Coupon", Toast.LENGTH_LONG).show();
+                    else {
+                        //Goes to Rewards Login
+                        String orderID = getIntent().getExtras().getString("OrderID");
+                        Intent intent = new Intent(PayOrder.this, RewardsLogin.class);
+                        intent.putExtra("Paying", true);
+                        intent.putExtra("objectId", orderID);
+                        intent.putExtra("OrderNumber", getIntent().getExtras().getInt("OrderNumber"));
+                        intent.putExtra("OrderID", getIntent().getExtras().getString("OrderID"));
+                        startActivity(intent);
+                        finish();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
                 // nested class used for the menu adapter

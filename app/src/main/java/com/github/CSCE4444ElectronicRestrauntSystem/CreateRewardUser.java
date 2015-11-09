@@ -24,21 +24,25 @@ public class CreateRewardUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_reward_user);
 
+
         Button bCreateRwdInfo= (Button) findViewById(R.id.bCreateRwdsInfo);
         final EditText etRwdName = (EditText) findViewById(R.id.etRewardsName);
         final EditText etPassword = (EditText) findViewById(R.id.etRwdsPassword);
         final EditText etBirthday =(EditText) findViewById(R.id.etBirthday);
+
+        //Creates new user
         bCreateRwdInfo.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 //Todo: Finish logic to confirm login info; current logic only temporary
 
-                //Grab user entered username and password and store as strings
+                //Grab user entered username, birthday, and password and store as strings
                 String uName = etRwdName.getText().toString();
                 String pswd = etPassword.getText().toString();
                 String birthday = etBirthday.getText().toString();
 
+                //Toasts For Erros
                 if(formatDate(birthday) == null)
                     Toast.makeText(getApplicationContext(), "Wrong Format", Toast.LENGTH_LONG).show();
                 else if(uName.isEmpty()){
