@@ -24,13 +24,28 @@
         android:id="@+id/lvOrders"
         android:layout_weight="1" />
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Really Awesome Burgers"
-        android:id="@+id/textView4"
-        android:layout_gravity="bottom"
-        android:textColor="#e63a2a"
-        android:textStyle="bold|italic" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Really Awesome Burgers"
+            android:id="@+id/textView4"
+            android:layout_gravity="bottom"
+            android:textColor="#e63a2a"
+            android:textStyle="bold|italic"
+            android:layout_weight="1" />
+
+        <Button
+            style="@android:style/Widget.Holo.Light.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Call Server / Refills"
+            android:onClick="callServer"
+            android:id="@+id/bCallServer" />
+    </LinearLayout>
 </LinearLayout>

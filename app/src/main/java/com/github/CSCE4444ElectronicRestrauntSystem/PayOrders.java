@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -24,8 +25,16 @@ public class PayOrders extends AppCompatActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_orders);
+    }
 
+    @Override protected void onResume() {
+        super.onResume();
 
+        ListView lvOrders = (ListView) findViewById(R.id.lvOrders);
+        lvOrders.setAdapter(null);
+        orderIDs.clear();
+
+        //query orders
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
         MainApplication application = (MainApplication)getApplication();
         query.whereEqualTo("TableNumber", application.currentTable);
@@ -47,7 +56,14 @@ public class PayOrders extends AppCompatActivity {
         ListView lvOrders = (ListView) findViewById(R.id.lvOrders);
         int position = lvOrders.getPositionForView(view);
         String orderID = orderIDs.get(position);
+        intent.putExtra("OrderNumber", position);
         intent.putExtra("OrderID", orderID);
+        startActivity(intent);
+    }
+
+    // call server event
+    public void callServer(View view) {
+        Intent intent = new Intent(this, CallServer.class);
         startActivity(intent);
     }
 
@@ -70,7 +86,6 @@ public class PayOrders extends AppCompatActivity {
             TextView tvOrderID = (TextView)view.findViewById(R.id.tvOrderID);
             String orderID = item.getObjectId();
             orderIDs.addLast(orderID);
-
 
             tvOrderID.setText("Order #" + (position + 1));
 

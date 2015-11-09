@@ -70,6 +70,12 @@ public class Games extends AppCompatActivity {
         });
     }
 
+    // call server event
+    public void callServer(View view) {
+        Intent intent = new Intent(this, CallServer.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

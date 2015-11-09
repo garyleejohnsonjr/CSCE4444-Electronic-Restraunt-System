@@ -158,9 +158,17 @@ public class KitchenMain extends AppCompatActivity {
     //This is where we need to pass order ID so that when you click an order if gets the right data
     public void orderInfo(View view) {
         Intent intent = new Intent(this, OrderInfo.class);
-        TextView tvOrderName = (TextView)view.findViewById(R.id.tvOrderStatus);
-        String orderName = tvOrderName.getText().toString();
-        intent.putExtra("OrderName", orderName);
+        //TextView tvOrderName = (TextView)view.findViewById(R.id.tvOrderStatus);
+        //String orderName = tvOrderName.getText().toString();
+        //intent.putExtra("OrderName", orderName);
+        TextView tvobjectId = (TextView)view.findViewById(R.id.tvobjectId);
+        String ObjectId = tvobjectId.getText().toString();
+        intent.putExtra("objectId", ObjectId);
+        startActivity(intent);
+    }
+
+    public void MenuAvailability(View view) {
+        Intent intent = new Intent(this, MenuAvailability.class);
         startActivity(intent);
     }
 
@@ -202,12 +210,18 @@ public class KitchenMain extends AppCompatActivity {
             String NewOutput2 = begin2 + Items;
             tvItemsOrdered.setText(NewOutput2);
 
-            // get Items Ordered
+            // get Requests
             TextView tvRequests = (TextView)view.findViewById(R.id.tvRequests);
             String Items2 = String.valueOf(item.getJSONArray("Requests"));
             String begin3 = "\n Special Requests: \n";
             String NewOutput3 = begin3 + Items2;
             tvRequests.setText(NewOutput3);
+
+            // get object ID for when it is clicked and we need this items info
+            TextView tvObjectId = (TextView)view.findViewById(R.id.tvobjectId);
+            //String Item = String.valueOf(item.getString("id"));
+            String Item = item.getObjectId();
+            tvObjectId.setText(Item);
 
             // return the view
             return view;

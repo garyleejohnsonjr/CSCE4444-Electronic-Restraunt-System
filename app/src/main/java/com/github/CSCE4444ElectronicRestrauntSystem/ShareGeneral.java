@@ -43,15 +43,6 @@ public class ShareGeneral extends AppCompatActivity {
         //Extra padding to ensure that no user is logged in
         LoginManager.getInstance().logOut();
 
-        //Go to the pay bill screen
-        bPayBill.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent iPayBill = new Intent(ShareGeneral.this, PayOrder.class);
-                startActivity(iPayBill);
-            }
-        });
-
         //Make a share dialogue - This is how we share to Facebook
         shareDialogue.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
 
@@ -111,6 +102,12 @@ public class ShareGeneral extends AppCompatActivity {
             }
         });
 
+    }
+
+    // call server event
+    public void callServer(View view) {
+        Intent intent = new Intent(this, CallServer.class);
+        startActivity(intent);
     }
 
     @Override

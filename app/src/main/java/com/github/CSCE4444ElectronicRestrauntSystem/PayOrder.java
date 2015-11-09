@@ -1,5 +1,11 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
+<<<<<<< HEAD
+=======
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+>>>>>>> origin/master
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,12 +26,18 @@ import java.util.List;
 
 public class PayOrder extends AppCompatActivity {
 
+    float total = 0.00f;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_order);
 
         // get order ID
         String orderID = getIntent().getExtras().getString("OrderID");
+
+        // set title
+        int orderNumber = getIntent().getExtras().getInt("OrderNumber");
+        setTitle("Pay Order #" + (orderNumber + 1));
 
         // build query
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
@@ -73,8 +85,13 @@ public class PayOrder extends AppCompatActivity {
                 tvTax.setText(formattedTax);
 
                 //get total
+<<<<<<< HEAD
                 TextView tvTotal = (TextView) findViewById(R.id.tvTotal);
                 float total = subTotal - adjustments + tax;
+=======
+                TextView tvTotal = (TextView)findViewById(R.id.tvTotal);
+                total = subTotal - adjustments + tax;
+>>>>>>> origin/master
                 String formattedTotal = String.format("$%.2f", total);
                 tvTotal.setText(formattedTotal);
             }
@@ -121,10 +138,63 @@ public class PayOrder extends AppCompatActivity {
 
 
 
+<<<<<<< HEAD
     }
 
                 // nested class used for the menu adapter
             private class OrderAdapter extends ArrayAdapter<OrderItem> {
+=======
+                table.saveInBackground();
+                Toast.makeText(getApplicationContext(), "Server called.", Toast.LENGTH_LONG).show();
+
+                new AlertDialog.Builder(PayOrder.this)
+                    .setTitle("Survey")
+                    .setMessage("Would you like to take a brief survey about your experience dining with us?")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(PayOrder.this, CustomerSurvey.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+
+            }
+        });
+    }
+
+    // pay credit button event
+    public void payCredit(View view) {
+        // get order number
+        int orderNumber = getIntent().getExtras().getInt("OrderNumber");
+
+        // get order id
+        String orderID = getIntent().getExtras().getString("OrderID");
+
+        // build intent
+        Intent intent = new Intent(this, PayCredit.class);
+        intent.putExtra("Total", total);
+        intent.putExtra("OrderNumber", orderNumber);
+        intent.putExtra("OrderID", orderID);
+
+        startActivity(intent);
+        finish();
+    }
+
+    // enter coupon button event
+    public void rewardsClub(View view) {
+        //TODO: rewards club/coupon
+    }
+
+    // nested class used for the menu adapter
+    private class OrderAdapter extends ArrayAdapter<OrderItem> {
+>>>>>>> origin/master
 
         // constructor
         public OrderAdapter(List<OrderItem> items) { super(PayOrder.this, 0, items); }

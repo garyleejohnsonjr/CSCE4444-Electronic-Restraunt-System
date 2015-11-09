@@ -10,6 +10,8 @@
     <string name="title_activity_server_main">Server</string>
     <string name="title_activity_create_user">New User</string>
     <string name="title_activity_menu_main">Menu</string>
+    <string name="title_acivity_order_info">Kitchen</string>
+    <string name="title_activity_menu_availability">Kitchen</string>
     <string name="title_activity_games">Games</string>
     <string name="title_activity_rewards_login">Rewards Login</string>
     <string name="browse_title"><![CDATA[Videos by Your Company]]></string>
@@ -100,4 +102,5 @@
     <string name="title_activity_customer_survey">CustomerSurvey</string>
     <string name="title_activity_share_facebook">ShareFacebook</string>
     <string name="title_activity_share_general">ShareGeneral</string>
+    <string name="title_activity_pay_credit">Pay Credit</string>
 </resources>

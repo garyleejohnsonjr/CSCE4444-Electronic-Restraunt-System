@@ -169,13 +169,15 @@
         </activity>
         <activity
             android:name=".PayOrder"
-            android:label="@string/title_activity_pay_order">
+            android:label="@string/title_activity_pay_order" >
         </activity>
         <activity
             android:name=".CustomerSurvey"
             android:label="@string/title_activity_customer_survey" >
         </activity>
         <activity
+            android:name=".OrderInfo"
+            android:label="@string/title_acivity_order_info" />
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
@@ -187,6 +189,14 @@
         <activity
             android:name=".ShareGeneral"
             android:label="@string/title_activity_share_general" >
+        </activity>
+        <activity
+            android:name=".PayCredit"
+            android:label="@string/title_activity_pay_credit">
+        </activity>
+        <activity
+            android:name=".MenuAvailability"
+            android:label="@string/title_activity_menu_availability" >
         </activity>
     </application>
 
