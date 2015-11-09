@@ -137,7 +137,8 @@
             android:layout_height="wrap_content"
             android:text="Submit Payment"
             android:id="@+id/bSubmit"
-            style="@android:style/Widget.Holo.Light.Button" />
+            style="@android:style/Widget.Holo.Light.Button"
+            android:onClick="submit" />
 
     </LinearLayout>
 

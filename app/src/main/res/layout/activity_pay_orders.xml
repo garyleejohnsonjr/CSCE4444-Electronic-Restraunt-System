@@ -45,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Call Server / Refills"
+            android:onClick="callServer"
             android:id="@+id/bCallServer" />
     </LinearLayout>
 </LinearLayout>

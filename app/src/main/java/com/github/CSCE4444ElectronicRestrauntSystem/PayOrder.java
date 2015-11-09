@@ -1,5 +1,6 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -139,6 +140,7 @@ public class PayOrder extends AppCompatActivity {
         intent.putExtra("OrderID", orderID);
 
         startActivity(intent);
+        finish();
     }
 
     // enter coupon button event
