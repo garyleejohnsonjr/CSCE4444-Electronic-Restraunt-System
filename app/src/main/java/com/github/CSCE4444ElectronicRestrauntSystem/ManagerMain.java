@@ -27,7 +27,8 @@ public class ManagerMain extends AppCompatActivity {
         RevenueReport(currentCategory);
 
     }
-//shows revenue report on clicking button
+
+    //shows revenue report on clicking button
     public void RevenueReport(View view) {
         currentCategory.setEnabled(true);
         currentCategory = view;
@@ -44,31 +45,36 @@ public class ManagerMain extends AppCompatActivity {
             }
         });
     }
-    private class RevReportAdaptor extends ArrayAdapter<ParseObject>{
-        public RevReportAdaptor(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
 
-        @Override public View getView(int position, View view, ViewGroup parent) {
+    private class RevReportAdaptor extends ArrayAdapter<ParseObject> {
+        public RevReportAdaptor(List<ParseObject> objects) {
+            super(ManagerMain.this, 0, objects);
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup parent) {
             if (view == null) {
                 view = getLayoutInflater().inflate(R.layout.activity_manager_reportrev, parent, false);
             }
             //seting item name in field
-            ParseObject entry=getItem(position);
-            TextView tvItemName=(TextView)view.findViewById(R.id.tvItemName);
-            String ItemName=entry.getString("ItemName");
+            ParseObject entry = getItem(position);
+            TextView tvItemName = (TextView) view.findViewById(R.id.tvItemName);
+            String ItemName = entry.getString("ItemName");
             tvItemName.setText(ItemName);
             //setting item quantity in field
-            TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvItemQuantity);
-            int ItemQuantity=(int)entry.getNumber("Frequency");
-            Double ItemPrice=entry.getNumber("Price").doubleValue();
-            Double rev=ItemQuantity*ItemPrice;
-            String sIQ=String.valueOf(rev);
+            TextView tvItemQuantity = (TextView) view.findViewById(R.id.tvItemQuantity);
+            int ItemQuantity = (int) entry.getNumber("Frequency");
+            Double ItemPrice = entry.getNumber("Price").doubleValue();
+            Double rev = ItemQuantity * ItemPrice;
+            String sIQ = String.valueOf(rev);
             tvItemQuantity.setText(sIQ);
 
             return view;
         }
     }
+
     //on click, generates and displays the gratuity report
-    public void GratuityReport(View view){
+    public void GratuityReport(View view) {
         currentCategory.setEnabled(true);
         currentCategory = view;
         currentCategory.setEnabled(false);
@@ -83,29 +89,35 @@ public class ManagerMain extends AppCompatActivity {
             }
         });
     }
-    private class GratReportAdaptor extends ArrayAdapter<ParseObject>{
-        public GratReportAdaptor(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
-        @Override public View getView(int position, View view, ViewGroup parent) {
+
+    private class GratReportAdaptor extends ArrayAdapter<ParseObject> {
+        public GratReportAdaptor(List<ParseObject> objects) {
+            super(ManagerMain.this, 0, objects);
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup parent) {
             if (view == null) {
                 view = getLayoutInflater().inflate(R.layout.activity_manager_reportgrat, parent, false);
             }
             //seting item name in field
-            ParseObject entry=getItem(position);
-            TextView tvOrder=(TextView)view.findViewById(R.id.tvOrder);
-            Integer ItemName=entry.getInt("TableNumber");
+            ParseObject entry = getItem(position);
+            TextView tvOrder = (TextView) view.findViewById(R.id.tvOrder);
+            Integer ItemName = entry.getInt("TableNumber");
             String ItemNameString = "Table: " + String.valueOf(ItemName);
             tvOrder.setText(ItemNameString);
             //setting item quantity in field
-            TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvGratuity);
-            Double Gratuity=  entry.getNumber("Gratuity").doubleValue();
-            String sG=String.valueOf(Gratuity);
+            TextView tvItemQuantity = (TextView) view.findViewById(R.id.tvGratuity);
+            Double Gratuity = entry.getNumber("Gratuity").doubleValue();
+            String sG = String.valueOf(Gratuity);
             tvItemQuantity.setText(sG);
 
             return view;
         }
 
     }
-    public void TaxReport(View view){//on click, generates and displays the tax report
+
+    public void TaxReport(View view) {//on click, generates and displays the tax report
         currentCategory.setEnabled(true);
         currentCategory = view;
         currentCategory.setEnabled(false);
@@ -120,28 +132,34 @@ public class ManagerMain extends AppCompatActivity {
             }
         });
     }
-    public class TaxReportAdaptor extends ArrayAdapter<ParseObject>{
-        public TaxReportAdaptor(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
-        @Override public View getView(int position, View view, ViewGroup parent) {
+
+    public class TaxReportAdaptor extends ArrayAdapter<ParseObject> {
+        public TaxReportAdaptor(List<ParseObject> objects) {
+            super(ManagerMain.this, 0, objects);
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup parent) {
             if (view == null) {
                 view = getLayoutInflater().inflate(R.layout.activity_manager_reportadjust, parent, false);
             }
             //seting item name in field
-            ParseObject entry=getItem(position);
-            TextView tvOrder=(TextView)view.findViewById(R.id.tvOrderNumber);
-            String objectID=entry.getObjectId().toString();
+            ParseObject entry = getItem(position);
+            TextView tvOrder = (TextView) view.findViewById(R.id.tvOrderNumber);
+            String objectID = entry.getObjectId().toString();
             tvOrder.setText("Order: " + objectID);
             //setting item quantity in field
-            TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvAdjustNumber);
-            Double Gratuity=  entry.getNumber("Tax").doubleValue();
-            String sG=String.valueOf(Gratuity);
+            TextView tvItemQuantity = (TextView) view.findViewById(R.id.tvAdjustNumber);
+            Double Gratuity = entry.getNumber("Tax").doubleValue();
+            String sG = String.format("$%.2f", Gratuity);
             tvItemQuantity.setText(sG);
 
             return view;
         }
 
     }
-    public void AdjustmentReport(View view){//onclick generates and displays the adjustment report
+
+    public void AdjustmentReport(View view) {//onclick generates and displays the adjustment report
         currentCategory.setEnabled(true);
         currentCategory = view;
         currentCategory.setEnabled(false);
@@ -156,24 +174,29 @@ public class ManagerMain extends AppCompatActivity {
             }
         });
     }
-    public class AdjustReportAdaptor extends ArrayAdapter<ParseObject>{
-        public AdjustReportAdaptor(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
-        @Override public View getView(int position, View view, ViewGroup parent) {
+
+    public class AdjustReportAdaptor extends ArrayAdapter<ParseObject> {
+        public AdjustReportAdaptor(List<ParseObject> objects) {
+            super(ManagerMain.this, 0, objects);
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup parent) {
             if (view == null) {
                 view = getLayoutInflater().inflate(R.layout.activity_manager_reportadjust, parent, false);
             }
             //seting item name in field
-            ParseObject entry=getItem(position);
-            TextView tvOrder=(TextView)view.findViewById(R.id.tvOrderNumber);
-            String objectID=entry.getObjectId().toString();
+            ParseObject entry = getItem(position);
+            TextView tvOrder = (TextView) view.findViewById(R.id.tvOrderNumber);
+            String objectID = entry.getObjectId().toString();
             tvOrder.setText("Order: " + objectID);
             //setting item quantity in field
-            TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvAdjustNumber);
-            Double Gratuity=  entry.getNumber("Adjustments").doubleValue();
-            String sG=String.valueOf(Gratuity);
+            TextView tvItemQuantity = (TextView) view.findViewById(R.id.tvAdjustNumber);
+            Double Gratuity = entry.getNumber("Adjustments").doubleValue();
+            String sG = String.format("$%.2f", Gratuity);
             tvItemQuantity.setText(sG);
-            String comment=entry.getString("AdjustmentComments");
-            TextView tvComments =(TextView)view.findViewById(R.id.tvComments);
+            String comment = entry.getString("AdjustmentComments");
+            TextView tvComments = (TextView) view.findViewById(R.id.tvComments);
             tvComments.setText(comment);
 
             return view;
@@ -181,7 +204,7 @@ public class ManagerMain extends AppCompatActivity {
 
     }
 
-    public void SalesReport(View view){//on click, generates and displays the Sales Reports
+    public void SalesReport(View view) {//on click, generates and displays the Sales Reports
         currentCategory.setEnabled(true);
         currentCategory = view;
         currentCategory.setEnabled(false);
@@ -197,36 +220,91 @@ public class ManagerMain extends AppCompatActivity {
             }
         });
     }
-    private class SalesReportAdaptor extends ArrayAdapter<ParseObject>{
-        public SalesReportAdaptor(List<ParseObject> objects) { super(ManagerMain.this, 0, objects); }
 
-        @Override public View getView(int position, View view, ViewGroup parent) {
+    private class SalesReportAdaptor extends ArrayAdapter<ParseObject> {
+        public SalesReportAdaptor(List<ParseObject> objects) {
+            super(ManagerMain.this, 0, objects);
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup parent) {
             if (view == null) {
                 view = getLayoutInflater().inflate(R.layout.activity_manager_reportrev, parent, false);
             }
             //seting item name in field
-            ParseObject entry=getItem(position);
-            TextView tvItemName=(TextView)view.findViewById(R.id.tvItemName);
-            String ItemName=entry.getString("ItemName");
+            ParseObject entry = getItem(position);
+            TextView tvItemName = (TextView) view.findViewById(R.id.tvItemName);
+            String ItemName = entry.getString("ItemName");
             tvItemName.setText(ItemName);
             //setting item quantity in field
-            TextView tvItemQuantity=(TextView)view.findViewById(R.id.tvItemQuantity);
-            int ItemQuantity=(int)entry.getNumber("Frequency");
-            String sIQ=String.valueOf(ItemQuantity);
+            TextView tvItemQuantity = (TextView) view.findViewById(R.id.tvItemQuantity);
+            int ItemQuantity = (int) entry.getNumber("Frequency");
+            String sIQ = String.valueOf(ItemQuantity);
             tvItemQuantity.setText(sIQ);
 
             return view;
         }
     }
-    public void TableAdmin(View view){//changes to the server view, so the manager can view tables and orders
+
+    public void TableAdmin(View view) {//changes to the server view, so the manager can view tables and orders
         Intent i = new Intent(ManagerMain.this, ServerMain.class);
         //example: i.putExtra("user", ParseUser.getCurrentUser().getString("name"));
         startActivity(i);
     }
+
     public void ManageIngridents(View view) {//changes to the kitchen view, so the manager can view ingrediants and pending orders
         Intent i = new Intent(ManagerMain.this, KitchenMain.class);
         //example: i.putExtra("user", ParseUser.getCurrentUser().getString("name"));
         startActivity(i);
     }
-}
 
+    public void SurveyReport(View view) {//on click, generates and displays the Sales Reports
+        currentCategory.setEnabled(true);
+        currentCategory = view;
+        currentCategory.setEnabled(false);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Surveys");
+        // run the query in the background, then create and set the adapter
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> reportItems, ParseException e) {
+                SurveyReportAdaptor adapter = new SurveyReportAdaptor(reportItems);
+                ListView lvReportSpace = (ListView) findViewById(R.id.lvReportSpace);
+                lvReportSpace.setAdapter(adapter);
+            }
+        });
+    }
+    private class SurveyReportAdaptor extends ArrayAdapter<ParseObject> {
+        public SurveyReportAdaptor(List<ParseObject> objects) {
+            super(ManagerMain.this, 0, objects);
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup parent) {
+            if (view == null) {
+                view = getLayoutInflater().inflate(R.layout.activity_manager_reportsurvey, parent, false);
+            }
+            //seting item name in field
+            ParseObject entry = getItem(position);
+            TextView tvItemName = (TextView) view.findViewById(R.id.tvSurvey);
+            String ItemName = entry.getString("objectID");
+            tvItemName.setText(ItemName);
+            //setting item quantity in field
+            TextView tvItemQuantity = (TextView) view.findViewById(R.id.tvSurveytext);
+            String AdditionalText = (String) entry.getString("AdditionalComments");
+            tvItemQuantity.setText(AdditionalText);
+            int foodquality =(int)entry.getNumber("FoodQualityRating");
+            String sFQ = String.valueOf(foodquality);
+            TextView tvFoodQuality=(TextView) view.findViewById(R.id.tvFoodQuality);
+            tvFoodQuality.setText("Food "+sFQ);
+            int serverquality =(int)entry.getNumber("ServerRating");
+            String sSQ = String.valueOf(serverquality);
+            TextView tvServerRating=(TextView) view.findViewById(R.id.tvServerRating);
+            tvServerRating.setText("Server "+sSQ);
+            int waittimerating =(int)entry.getNumber("WaitTimeRating");
+            String sWQ = String.valueOf(waittimerating);
+            TextView tvWaitTime=(TextView) view.findViewById(R.id.tvWaitTime);
+            tvWaitTime.setText("Wait "+sWQ);
+            return view;
+        }
+    }
+}
