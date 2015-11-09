@@ -273,7 +273,7 @@ public class ManagerMain extends AppCompatActivity {
             }
         });
     }
-    private class SurveyReportAdaptor extends ArrayAdapter<ParseObject> {
+    private class SurveyReportAdaptor extends ArrayAdapter<ParseObject> {//formats and sets the fields for the survey reports
         public SurveyReportAdaptor(List<ParseObject> objects) {
             super(ManagerMain.this, 0, objects);
         }
@@ -283,27 +283,27 @@ public class ManagerMain extends AppCompatActivity {
             if (view == null) {
                 view = getLayoutInflater().inflate(R.layout.activity_manager_reportsurvey, parent, false);
             }
-            //seting item name in field
+            //setting id
             ParseObject entry = getItem(position);
             TextView tvItemName = (TextView) view.findViewById(R.id.tvSurvey);
             String ItemName = entry.getString("objectID");
             tvItemName.setText(ItemName);
-            //setting item quantity in field
+            //setting comments
             TextView tvItemQuantity = (TextView) view.findViewById(R.id.tvSurveytext);
             String AdditionalText = (String) entry.getString("AdditionalComments");
             tvItemQuantity.setText(AdditionalText);
             int foodquality =(int)entry.getNumber("FoodQualityRating");
             String sFQ = String.valueOf(foodquality);
             TextView tvFoodQuality=(TextView) view.findViewById(R.id.tvFoodQuality);
-            tvFoodQuality.setText("Food "+sFQ);
+            tvFoodQuality.setText(" Food "+sFQ);
             int serverquality =(int)entry.getNumber("ServerRating");
             String sSQ = String.valueOf(serverquality);
             TextView tvServerRating=(TextView) view.findViewById(R.id.tvServerRating);
-            tvServerRating.setText("Server "+sSQ);
+            tvServerRating.setText(" Server "+sSQ);
             int waittimerating =(int)entry.getNumber("WaitTimeRating");
             String sWQ = String.valueOf(waittimerating);
             TextView tvWaitTime=(TextView) view.findViewById(R.id.tvWaitTime);
-            tvWaitTime.setText("Wait "+sWQ);
+            tvWaitTime.setText(" Wait "+sWQ);
             return view;
         }
     }
