@@ -1,11 +1,7 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
-<<<<<<< HEAD
-=======
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
->>>>>>> origin/master
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -85,13 +81,8 @@ public class PayOrder extends AppCompatActivity {
                 tvTax.setText(formattedTax);
 
                 //get total
-<<<<<<< HEAD
                 TextView tvTotal = (TextView) findViewById(R.id.tvTotal);
-                float total = subTotal - adjustments + tax;
-=======
-                TextView tvTotal = (TextView)findViewById(R.id.tvTotal);
                 total = subTotal - adjustments + tax;
->>>>>>> origin/master
                 String formattedTotal = String.format("$%.2f", total);
                 tvTotal.setText(formattedTotal);
             }
@@ -135,38 +126,6 @@ public class PayOrder extends AppCompatActivity {
                  }
             );
         }
-
-
-
-<<<<<<< HEAD
-    }
-
-                // nested class used for the menu adapter
-            private class OrderAdapter extends ArrayAdapter<OrderItem> {
-=======
-                table.saveInBackground();
-                Toast.makeText(getApplicationContext(), "Server called.", Toast.LENGTH_LONG).show();
-
-                new AlertDialog.Builder(PayOrder.this)
-                    .setTitle("Survey")
-                    .setMessage("Would you like to take a brief survey about your experience dining with us?")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(PayOrder.this, CustomerSurvey.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    })
-                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
-
-            }
-        });
     }
 
     // pay credit button event
@@ -194,7 +153,6 @@ public class PayOrder extends AppCompatActivity {
 
     // nested class used for the menu adapter
     private class OrderAdapter extends ArrayAdapter<OrderItem> {
->>>>>>> origin/master
 
         // constructor
         public OrderAdapter(List<OrderItem> items) { super(PayOrder.this, 0, items); }
