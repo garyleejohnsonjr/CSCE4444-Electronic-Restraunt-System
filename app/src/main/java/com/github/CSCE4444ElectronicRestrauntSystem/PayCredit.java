@@ -17,6 +17,8 @@ import com.parse.ParseQuery;
 
 public class PayCredit extends AppCompatActivity {
 
+    String receipt = "";
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_credit);
@@ -66,11 +68,18 @@ public class PayCredit extends AppCompatActivity {
                     EditText etCardName = (EditText) findViewById(R.id.etCardName);
                     String cardName = etCardName.getText().toString();
                     order.put("CardName", cardName);
+                    receipt += "Cardholder's Name: " + cardName + "\n";
 
                     // set card number
                     EditText etCardNumber = (EditText) findViewById(R.id.etCardNumber);
                     long cardNumber = Long.valueOf(etCardNumber.getText().toString());
                     order.put("CardNumber", cardNumber);
+                    receipt += "CardNumber: xxxx-xxxx-xxxx-" + String.valueOf(cardNumber).substring(12) + "\n";
+
+                    // order total
+                    TextView tvTotal = (TextView)findViewById(R.id.tvTotal);
+                    String total = tvTotal.getText().toString();
+                    receipt += "Order Total: " + total + "\n";
 
                     // set card zip
                     EditText etCardZip = (EditText) findViewById(R.id.etCardZip);
@@ -84,6 +93,7 @@ public class PayCredit extends AppCompatActivity {
                         gratuity = Float.valueOf(etGratuity.getText().toString());
                     }
                     order.put("Gratuity", gratuity);
+                    receipt += "Gratuity: #" + gratuity + "\n";
 
                     // set paid
                     order.put("Paid", true);
@@ -108,7 +118,7 @@ public class PayCredit extends AppCompatActivity {
                                     intent.setType("message/rfc822");
                                     intent.putExtra(Intent.EXTRA_EMAIL, new String[]{""});
                                     intent.putExtra(Intent.EXTRA_SUBJECT, "Receipt from Really Awesome Burgers");
-                                    intent.putExtra(Intent.EXTRA_TEXT, "test message");
+                                    intent.putExtra(Intent.EXTRA_TEXT, receipt);
                                     startActivity(Intent.createChooser(intent, "Select Email Client:"));
                                     survey();
                                 }
