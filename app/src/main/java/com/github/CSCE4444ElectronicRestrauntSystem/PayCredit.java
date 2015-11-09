@@ -14,8 +14,6 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.SaveCallback;
-
 
 public class PayCredit extends AppCompatActivity {
 
@@ -42,70 +40,109 @@ public class PayCredit extends AppCompatActivity {
 
     // submit button event
     public void submit(View view) {
-        // get order ID
-        String orderID = getIntent().getExtras().getString("OrderID");
+        EditText etCardName = (EditText) findViewById(R.id.etCardName);
+        EditText etCardNumber = (EditText) findViewById(R.id.etCardNumber);
+        EditText etCardZip = (EditText) findViewById(R.id.etCardZip);
+        if (etCardName.length() == 0) {
+            Toast.makeText(getApplicationContext(), "Name must not be blank.", Toast.LENGTH_LONG).show();
+        } else if (etCardNumber.length() != 16) {
+            Toast.makeText(getApplicationContext(), "Card number must have 16 numbers.", Toast.LENGTH_LONG).show();
+        } else if (etCardZip.length() != 5) {
+            Toast.makeText(getApplicationContext(), "ZIP code must have 5 numbers.", Toast.LENGTH_LONG).show();
+        } else {
 
-        // build query
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
-        query.whereEqualTo("objectId", orderID);
+            // get order ID
+            String orderID = getIntent().getExtras().getString("OrderID");
 
-        // run query
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject order, ParseException e) {
-                // set card name
-                EditText etCardName = (EditText)findViewById(R.id.etCardName);
-                String cardName = etCardName.getText().toString();
-                order.put("CardName", cardName);
+            // build query
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
+            query.whereEqualTo("objectId", orderID);
 
-                // set card number
-                EditText etCardNumber = (EditText)findViewById(R.id.etCardNumber);
-                long cardNumber = Long.valueOf(etCardNumber.getText().toString());
-                order.put("CardNumber", cardNumber);
+            // run query
+            query.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject order, ParseException e) {
+                    // set card name
+                    EditText etCardName = (EditText) findViewById(R.id.etCardName);
+                    String cardName = etCardName.getText().toString();
+                    order.put("CardName", cardName);
 
-                // set card zip
-                EditText etCardZip = (EditText)findViewById(R.id.etCardZip);
-                int cardZip = Integer.valueOf(etCardZip.getText().toString());
-                order.put("CardZip", cardZip);
+                    // set card number
+                    EditText etCardNumber = (EditText) findViewById(R.id.etCardNumber);
+                    long cardNumber = Long.valueOf(etCardNumber.getText().toString());
+                    order.put("CardNumber", cardNumber);
 
-                // set gratuity
-                EditText etGratuity = (EditText)findViewById(R.id.etGratuity);
-                float gratuity = Float.valueOf(etGratuity.getText().toString());
-                order.put("Gratuity", gratuity);
+                    // set card zip
+                    EditText etCardZip = (EditText) findViewById(R.id.etCardZip);
+                    int cardZip = Integer.valueOf(etCardZip.getText().toString());
+                    order.put("CardZip", cardZip);
 
-                // set paid
-                order.put("Paid", true);
+                    // set gratuity
+                    EditText etGratuity = (EditText) findViewById(R.id.etGratuity);
+                    float gratuity = 0.0f;
+                    if (!etGratuity.getText().toString().equals("")) {
+                        gratuity = Float.valueOf(etGratuity.getText().toString());
+                    }
+                    order.put("Gratuity", gratuity);
 
-                // save the order
-                try {
-                    order.save();
-                } catch (ParseException e2) {
-                    // do nothing
+                    // set paid
+                    order.put("Paid", true);
+
+                    // save the order
+                    try {
+                        order.save();
+                    } catch (ParseException e2) {
+                        // do nothing
+                    }
+
+                    // toast
+                    Toast.makeText(getApplicationContext(), "Payment Accepted", Toast.LENGTH_LONG).show();
+
+                    // receipt
+                    new AlertDialog.Builder(PayCredit.this)
+                            .setTitle("Receipt")
+                            .setMessage("Would you like to print or email a receipt?")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(Intent.ACTION_SEND);
+                                    intent.setType("message/rfc822");
+                                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{""});
+                                    intent.putExtra(Intent.EXTRA_SUBJECT, "Receipt from Really Awesome Burgers");
+                                    intent.putExtra(Intent.EXTRA_TEXT, "test message");
+                                    startActivity(Intent.createChooser(intent, "Select Email Client:"));
+                                    survey();
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    survey();
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+
                 }
-
-                // toast
-                Toast.makeText(getApplicationContext(), "Payment Accepted", Toast.LENGTH_LONG).show();
-
-                // survey
-                new AlertDialog.Builder(PayCredit.this)
-                    .setTitle("Survey")
-                    .setMessage("Would you like to take a brief survey about your experience dining with us?")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(PayCredit.this, CustomerSurvey.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    })
-                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
-            }
-        });
+            });
+        }
     }
 
+    public void survey() {
+        new AlertDialog.Builder(PayCredit.this)
+                .setTitle("Survey")
+                .setMessage("Would you like to take a brief survey about your experience dining with us?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(PayCredit.this, CustomerSurvey.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
 }
