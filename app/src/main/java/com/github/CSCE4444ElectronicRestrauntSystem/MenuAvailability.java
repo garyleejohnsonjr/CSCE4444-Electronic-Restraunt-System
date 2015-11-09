@@ -149,13 +149,22 @@ public class MenuAvailability extends AppCompatActivity {
         }
     }
 
-    public void Toggle(View view) {
+    public void Toggle(final View view) {
         //Intent intent = new Intent(this, MenuAvailability.class);
-        TextView tvMenuItem = (TextView)view.findViewById(R.id.tvMenuItem);
-        final String name2 = tvMenuItem.getText().toString();
-        TextView tvAvailability = (TextView)view.findViewById(R.id.tvAvailability);
-        final String avail2 = tvAvailability.getText().toString();
+        ListView lvMenuAvailability = (ListView) findViewById(R.id.lvMenuAvailability);
+        AvailabilityAdapter adapter = (AvailabilityAdapter)lvMenuAvailability.getAdapter();
 
+        int position = lvMenuAvailability.getPositionForView(view);
+        ParseObject currentItem = adapter.getItem(position);
+
+        final String name2 = String.valueOf(currentItem.getString("ItemName"));
+
+        final String avail2 = String.valueOf(currentItem.getBoolean("Avalibility"));
+
+        //Toast.makeText(MenuAvailability.this, name2, Toast.LENGTH_LONG).show();
+        //Toast.makeText(MenuAvailability.this, avail2, Toast.LENGTH_LONG).show();  For testing
+
+        ///////////////////
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
         query.whereEqualTo("ItemName", name2);
 
@@ -163,13 +172,13 @@ public class MenuAvailability extends AppCompatActivity {
 
             public void done(ParseObject item, ParseException e) {
                 try {
-                    if (avail2.equals("Available")) {
+                    if (avail2.equals("true")) {
                         ParseObject o = query.get(name2);
                         o.put("Avalibility", "false");
                         o.saveInBackground();
 
                         Toast.makeText(MenuAvailability.this, "Menu item toggled off.", Toast.LENGTH_LONG).show();
-                    } else if (avail2.equals("Not Available")) {
+                    } else if (avail2.equals("true")) {
                         ParseObject o = query.get(name2);
                         o.put("Avalibility", "true");
                         o.saveInBackground();
