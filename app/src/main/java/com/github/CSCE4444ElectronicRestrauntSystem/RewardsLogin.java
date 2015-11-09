@@ -30,15 +30,20 @@ public class RewardsLogin extends AppCompatActivity {
         final EditText etRwdName = (EditText) findViewById(R.id.etRwdName);
         final EditText etRwdPassword = (EditText) findViewById(R.id.etRwdPassword);
 
+        //Hides Join Button if they are looking for coupons
+        if(getIntent().hasExtra("Paying")){
+            bCreateRwdUser.setVisibility(View.INVISIBLE);
+        }
+
         bSubmitRwdInfo.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                //Todo: Finish logic to confirm login info; current logic only temporary
 
                 //Grab user entered username and password and store as strings
                 final String uName = etRwdName.getText().toString();
                 final String pswd = etRwdPassword.getText().toString();
+                final Intent intent= getIntent();
 
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("RewardsMbr");
 
@@ -56,12 +61,25 @@ public class RewardsLogin extends AppCompatActivity {
                                 //Log to check queries
                                 Log.d("Password", username.getString("Password"));
 
+                                //Correct Login
                                 if (username.getString("Password").equals(pswd)) {
-                                    Intent i = new Intent(RewardsLogin.this, RewardsStatus.class);
-                                    //example: i.putExtra("user", ParseUser.getCurrentUser().getString("name"));
-                                    i.putExtra("UserId", uName);
-                                    startActivity(i);
-                                    finish();
+
+                                    //Paying Customer Login
+                                    if(intent.hasExtra("Paying")){
+                                        Intent i = new Intent(RewardsLogin.this, RewardCoupons.class);
+                                        i.putExtra("UserId", uName);
+                                        i.putExtra("Paying", true);
+                                        i.putExtra("objectId", intent.getStringExtra("objectId"));
+                                        startActivity(i);
+                                        finish();
+                                    }
+                                    else {
+                                        Intent i = new Intent(RewardsLogin.this, RewardsStatus.class);
+                                        //example: i.putExtra("user", ParseUser.getCurrentUser().getString("name"));
+                                        i.putExtra("UserId", uName);
+                                        startActivity(i);
+                                        finish();
+                                    }
                                 }
                                 //Incorrect Password Resets Page
                                 else {
@@ -85,9 +103,7 @@ public class RewardsLogin extends AppCompatActivity {
             }
         });
 
-        //Goes to Create User Page.
-        // Todo: Temporarily placed here, but the manager should be the only one to create new users
-
+        //Goes to Create Reward User Page.
         bCreateRwdUser.setOnClickListener(new View.OnClickListener() {
 
             @Override

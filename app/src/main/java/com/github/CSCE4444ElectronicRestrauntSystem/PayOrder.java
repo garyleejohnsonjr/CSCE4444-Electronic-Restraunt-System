@@ -1,7 +1,5 @@
 package com.github.CSCE4444ElectronicRestrauntSystem;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -89,6 +87,7 @@ public class PayOrder extends AppCompatActivity {
         });
     }
 
+
     // pay cash button event
     public void payCash(View view) {
         final Intent i = getIntent();
@@ -148,57 +147,78 @@ public class PayOrder extends AppCompatActivity {
 
     // enter coupon button event
     public void rewardsClub(View view) {
-        //TODO: rewards club/coupon
-    }
-
-    // nested class used for the menu adapter
-    private class OrderAdapter extends ArrayAdapter<OrderItem> {
-
-        // constructor
-        public OrderAdapter(List<OrderItem> items) { super(PayOrder.this, 0, items); }
-
-        // function called whenever the list is created or scrolled
-        @Override public View getView(int position, View view, ViewGroup parent) {
-            if (view == null) {
-                view = getLayoutInflater().inflate(R.layout.activity_pay_order_item, parent, false);
+        // get order id
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
+        query.whereEqualTo("objectId", getIntent().getStringExtra("OrderID"));
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject order, ParseException e) {
+                //Checks to see if a coupon was used
+                if (order.getBoolean("Coupon"))
+                    Toast.makeText(getApplicationContext(), "You have already Used a Coupon", Toast.LENGTH_LONG).show();
+                else {
+                    //Goes to Rewards Login
+                    String orderID = getIntent().getExtras().getString("OrderID");
+                    Intent intent = new Intent(PayOrder.this, RewardsLogin.class);
+                    intent.putExtra("Paying", true);
+                    intent.putExtra("objectId", orderID);
+                    startActivity(intent);
+                }
             }
-
-            // get the current item
-            OrderItem item = getItem(position);
-
-            // get item name
-            TextView tvItemName = (TextView)view.findViewById(R.id.tvItemName);
-            tvItemName.setText(item.name);
-
-            // get request
-            TextView tvRequest = (TextView)view.findViewById(R.id.tvRequest);
-            tvRequest.setText(item.request);
-
-            // build query for price
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
-            query.whereEqualTo("ItemName", item.name);
-
-            // run query for price
-            TextView tvPrice = (TextView)view.findViewById(R.id.tvPrice);
-            query.getFirstInBackground(new GetCallback<ParseObject>() {
-                private TextView tvPrice;
-
-                private GetCallback<ParseObject> initialize(TextView tvPrice) {
-                    this.tvPrice = tvPrice;
-                    return this;
-                }
-
-                @Override
-                public void done(ParseObject item, ParseException e) {
-                    float price = item.getNumber("Price").floatValue();
-                    String formattedPrice = String.format("$%.2f", price);
-                    tvPrice.setText(formattedPrice);
-                }
-            }.initialize(tvPrice));
-
-            // return the view
-            return view;
-        }
+        });
     }
 
-}
+                // nested class used for the menu adapter
+                private class OrderAdapter extends ArrayAdapter<OrderItem> {
+
+                    // constructor
+                    public OrderAdapter(List<OrderItem> items) {
+                        super(PayOrder.this, 0, items);
+                    }
+
+                    // function called whenever the list is created or scrolled
+                    @Override
+                    public View getView(int position, View view, ViewGroup parent) {
+                        if (view == null) {
+                            view = getLayoutInflater().inflate(R.layout.activity_pay_order_item, parent, false);
+                        }
+
+                        // get the current item
+                        OrderItem item = getItem(position);
+
+                        // get item name
+                        TextView tvItemName = (TextView) view.findViewById(R.id.tvItemName);
+                        tvItemName.setText(item.name);
+
+                        // get request
+                        TextView tvRequest = (TextView) view.findViewById(R.id.tvRequest);
+                        tvRequest.setText(item.request);
+
+                        // build query for price
+                        ParseQuery<ParseObject> query = ParseQuery.getQuery("MenuItem");
+                        query.whereEqualTo("ItemName", item.name);
+
+                        // run query for price
+                        TextView tvPrice = (TextView) view.findViewById(R.id.tvPrice);
+                        query.getFirstInBackground(new GetCallback<ParseObject>() {
+                            private TextView tvPrice;
+
+                            private GetCallback<ParseObject> initialize(TextView tvPrice) {
+                                this.tvPrice = tvPrice;
+                                return this;
+                            }
+
+                            @Override
+                            public void done(ParseObject item, ParseException e) {
+                                float price = item.getNumber("Price").floatValue();
+                                String formattedPrice = String.format("$%.2f", price);
+                                tvPrice.setText(formattedPrice);
+                            }
+                        }.initialize(tvPrice));
+
+                        // return the view
+                        return view;
+                    }
+                }
+
+            }

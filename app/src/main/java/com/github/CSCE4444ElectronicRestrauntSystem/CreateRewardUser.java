@@ -40,7 +40,7 @@ public class CreateRewardUser extends AppCompatActivity {
                 String birthday = etBirthday.getText().toString();
 
                 if(formatDate(birthday) == null)
-                    Toast.makeText(getApplicationContext(), "Wrong date Format", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Wrong Format", Toast.LENGTH_LONG).show();
                 else if(uName.isEmpty()){
                     Toast.makeText(getApplicationContext(), "Enter A Username", Toast.LENGTH_LONG).show();
                 }

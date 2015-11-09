@@ -123,6 +123,7 @@
             android:layout_height="wrap_content"
             android:text="Rewards Club"
             android:id="@+id/bRewards"
+            android:onClick="rewardsClub"
             style="@android:style/Widget.Holo.Light.Button" />
 
         <Button

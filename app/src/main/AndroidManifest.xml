@@ -192,17 +192,21 @@
         </activity>
         <activity
             android:name=".PayCredit"
-            android:label="@string/title_activity_pay_credit">
+            android:label="@string/title_activity_pay_credit" >
         </activity>
         <activity
             android:name=".MenuAvailability"
             android:label="@string/title_activity_menu_availability" >
         </activity>
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".RewardCoupons"
+            android:label="@string/title_activity_reward_coupons" >
+        </activity>
     </application>
 
 </manifest>
