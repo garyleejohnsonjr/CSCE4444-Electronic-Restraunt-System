@@ -105,17 +105,18 @@ public class KitchenMain extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void findList(){
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");// query for info needed
         query.whereEqualTo("Status","Placed");
         //query.orderByDescending("Status");
-        query.addAscendingOrder("createdAt");
+        query.addDescendingOrder("createdAt");
         //query.orderByAscending("createdAt");
 
     // run the query in the background, then create and set the adapter
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> orderItems, ParseException e) {
                 KitchenAdapter adapter = new KitchenAdapter(orderItems);
-                ListView lvNewOrderScroll = (ListView)findViewById(R.id.lvNewOrderScroll);
+                ListView lvNewOrderScroll = (ListView)findViewById(R.id.lvNewOrderScroll);  //set adapter
+
                 lvNewOrderScroll.setAdapter(adapter);
             }
         });
@@ -125,7 +126,7 @@ public class KitchenMain extends AppCompatActivity {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
         query.whereEqualTo("Status","In Progress");
         //query.orderByDescending("Status");
-        query.addAscendingOrder("createdAt");
+        query.addDescendingOrder("createdAt");      //find each list for listviews
         //query.orderByAscending("createdAt");
 
         // run the query in the background, then create and set the adapter
@@ -142,7 +143,7 @@ public class KitchenMain extends AppCompatActivity {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
         query.whereEqualTo("Status","Ready");
         //query.orderByDescending("Status");
-        query.addAscendingOrder("createdAt");
+        query.addDescendingOrder("createdAt");
         //query.orderByAscending("createdAt");
 
         // run the query in the background, then create and set the adapter
@@ -161,7 +162,7 @@ public class KitchenMain extends AppCompatActivity {
         //TextView tvOrderName = (TextView)view.findViewById(R.id.tvOrderStatus);
         //String orderName = tvOrderName.getText().toString();
         //intent.putExtra("OrderName", orderName);
-        TextView tvobjectId = (TextView)view.findViewById(R.id.tvobjectId);
+        TextView tvobjectId = (TextView)view.findViewById(R.id.tvobjectId); //move to orderInfo page for changing status
         String ObjectId = tvobjectId.getText().toString();
         intent.putExtra("objectId", ObjectId);
         startActivity(intent);
@@ -173,7 +174,7 @@ public class KitchenMain extends AppCompatActivity {
     }
 
 
-    private class KitchenAdapter extends ArrayAdapter<ParseObject> {
+    private class KitchenAdapter extends ArrayAdapter<ParseObject> {// adapter for info in the listview in a way that is more intuitive
 
         // constructor
         public KitchenAdapter(List<ParseObject> objects) { super(KitchenMain.this, 0, objects); }
@@ -193,35 +194,35 @@ public class KitchenMain extends AppCompatActivity {
             Date date = item.getCreatedAt();
             //String createdAt = String.valueOf(item.getDate("createdAt"));
             DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
-            String reportDate = df.format(date);
+            String reportDate = df.format(date);                            //grabs date from parse and places in listview
             tvOrderTime.setText(reportDate);
 
             // get Table Number
             TextView tvTableNumber = (TextView)view.findViewById(R.id.tvTableNumber);
             String begin = "Table Number: ";
-            String table = String.valueOf(item.getInt("TableNumber"));
+            String table = String.valueOf(item.getInt("TableNumber"));      //grabs table number from parse and places in listview
             String NewOutput = begin + table;
             tvTableNumber.setText(NewOutput);
 
             // get Items Ordered
             TextView tvItemsOrdered = (TextView)view.findViewById(R.id.tvItemsOrdered);
             String Items = String.valueOf(item.getJSONArray("ItemsOrdered"));
-            String begin2 = "Items Ordered: \n";
+            String begin2 = "Items Ordered: \n";                            //grabs items ordered from parse and places in listview
             String NewOutput2 = begin2 + Items;
             tvItemsOrdered.setText(NewOutput2);
 
             // get Requests
             TextView tvRequests = (TextView)view.findViewById(R.id.tvRequests);
             String Items2 = String.valueOf(item.getJSONArray("Requests"));
-            String begin3 = "\n Special Requests: \n";
+            String begin3 = "\n Special Requests: \n";                      //grabs requests from parse and places in listview
             String NewOutput3 = begin3 + Items2;
             tvRequests.setText(NewOutput3);
 
             // get object ID for when it is clicked and we need this items info
             TextView tvObjectId = (TextView)view.findViewById(R.id.tvobjectId);
             //String Item = String.valueOf(item.getString("id"));
-            String Item = item.getObjectId();
-            tvObjectId.setText(Item);
+            String Item = item.getObjectId();                               //grabs orderID to be sent to orderInfo activity
+            tvObjectId.setText(Item);                                       //in order to reference the spot in listview
 
             // return the view
             return view;

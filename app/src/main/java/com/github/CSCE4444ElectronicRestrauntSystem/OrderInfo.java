@@ -24,11 +24,11 @@ public class OrderInfo extends AppCompatActivity {
     int calories;
 
     // activity creation event
-    @Override public void onCreate(Bundle savedInstanceState) {
+    @Override public void onCreate(Bundle savedInstanceState) {     //create the order info page and set the views
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acivity_order_info);
 
-        String objectId = getIntent().getStringExtra("objectId");
+        String objectId = getIntent().getStringExtra("objectId");   //query parse for your items info
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
         query.whereEqualTo("objectId", objectId);
 
@@ -37,7 +37,7 @@ public class OrderInfo extends AppCompatActivity {
             public void done(ParseObject item, ParseException e) {
                 // get order status and set to order status textview in acivity_order_info.xml
                 TextView tvOrderStatus = (TextView) findViewById(R.id.tvOrderStatus);
-                String TabStat = String.valueOf(item.getString("Status"));
+                String TabStat = String.valueOf(item.getString("Status"));  //format info the way we need it
                 String begin4 = "Table Status: ";
                 String NewOutput4 = begin4 + TabStat;
                 tvOrderStatus.setText(NewOutput4);
@@ -45,14 +45,14 @@ public class OrderInfo extends AppCompatActivity {
                 // get table number and set to table number textview in acivity_order_info.xml
                 TextView tvTableNumber = (TextView) findViewById(R.id.tvTableNumber);
                 String TabNum = String.valueOf(item.getInt("TableNumber"));
-                String begin3 = "Table Number: ";
+                String begin3 = "Table Number: ";                           //grab table number and format
                 String NewOutput3 = begin3 + TabNum;
                 tvTableNumber.setText(NewOutput3);
 
                 // get items ordered and put that in items ordered textview convert from array acivity_order_info.xml
                 TextView tvItemsOrdered = (TextView) findViewById(R.id.tvItemsOrdered);
                 String Items = String.valueOf(item.getJSONArray("ItemsOrdered"));
-                String begin = "Items Ordered: \n";
+                String begin = "Items Ordered: \n";                         //grab items ordered and format
                 String NewOutput = begin + Items;
                 tvItemsOrdered.setText(NewOutput);
 
@@ -60,13 +60,13 @@ public class OrderInfo extends AppCompatActivity {
                 // get special requests string and set to requests textview also in acivity_order_info.xml
                 TextView tvRequests = (TextView) findViewById(R.id.tvSpecialRequests);
                 String Items2 = String.valueOf(item.getJSONArray("Requests"));
-                String begin2 = "\n Special Requests: \n";
+                String begin2 = "\n Special Requests: \n";                  //grab requests and format
                 String end = "\n";
                 String NewOutput2 = begin2 + Items2 + end;
                 tvRequests.setText(NewOutput2);
 
                 if(TabStat.equals("Placed")){
-                    Button bMoveIP = (Button) findViewById(R.id.bMoveIP);
+                    Button bMoveIP = (Button) findViewById(R.id.bMoveIP);   //set buttons to not enabled unless told otherwise
                     bMoveIP.setEnabled(true);
                 } else if(TabStat.equals("In Progress")) {
                     Button bMoveRdy = (Button) findViewById(R.id.bMoveRdy);
@@ -82,8 +82,8 @@ public class OrderInfo extends AppCompatActivity {
     // set order as in progress
     public void SetInProgress(View view) {
         final String objectId = getIntent().getStringExtra("objectId");
-        final ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
-        query.whereEqualTo("objectId", objectId);
+        final ParseQuery<ParseObject> query = ParseQuery.getQuery("Order"); //button sets in progress available and allows
+        query.whereEqualTo("objectId", objectId);                           //the user to set items to in progress
 
         query.getFirstInBackground(new GetCallback<ParseObject>() {
 
@@ -91,20 +91,22 @@ public class OrderInfo extends AppCompatActivity {
                 try {
                     ParseObject o = query.get(objectId);
                     o.put("Status", "In Progress");
-                    o.saveInBackground();
+                    o.saveInBackground();                                    //send to parse
 
                     Toast.makeText(OrderInfo.this, "Status has been set to 'In Progress'", Toast.LENGTH_LONG).show();
-                }catch(ParseException p) {
+                } catch (ParseException p) {
                 }
             }
         });
+        Intent intent = new Intent(this, KitchenMain.class);
+        startActivity(intent);
     }
 
 
     // set order as ready
     public void SetReady(View view) {
         final String objectId = getIntent().getStringExtra("objectId");
-        final ParseQuery<ParseObject> query = ParseQuery.getQuery("Order");
+        final ParseQuery<ParseObject> query = ParseQuery.getQuery("Order"); //same as in progress but for ready setting
         query.whereEqualTo("objectId", objectId);
 
         query.getFirstInBackground(new GetCallback<ParseObject>() {
@@ -116,10 +118,12 @@ public class OrderInfo extends AppCompatActivity {
                     o.saveInBackground();
 
                     Toast.makeText(OrderInfo.this, "Status has been set to 'Ready'", Toast.LENGTH_LONG).show();
-                }catch(ParseException p) {
+                } catch (ParseException p) {
                 }
             }
         });
+        Intent intent = new Intent(this, KitchenMain.class);
+        startActivity(intent);
     }
 
     // exit back to kitchen screen
