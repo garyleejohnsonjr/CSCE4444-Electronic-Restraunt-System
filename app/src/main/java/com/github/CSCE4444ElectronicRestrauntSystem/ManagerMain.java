@@ -172,6 +172,9 @@ public class ManagerMain extends AppCompatActivity {
             Double Gratuity=  entry.getNumber("Adjustments").doubleValue();
             String sG=String.valueOf(Gratuity);
             tvItemQuantity.setText(sG);
+            String comment=entry.getString("AdjustmentComments");
+            TextView tvComments =(TextView)view.findViewById(R.id.tvComments);
+            tvComments.setText(comment);
 
             return view;
         }
