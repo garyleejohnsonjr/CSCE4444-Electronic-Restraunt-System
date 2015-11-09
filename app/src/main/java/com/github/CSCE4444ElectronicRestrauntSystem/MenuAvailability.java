@@ -155,7 +155,7 @@ public class MenuAvailability extends AppCompatActivity {
         AvailabilityAdapter adapter = (AvailabilityAdapter)lvMenuAvailability.getAdapter();
 
         int position = lvMenuAvailability.getPositionForView(view);
-        ParseObject currentItem = adapter.getItem(position);
+         final ParseObject currentItem = adapter.getItem(position);
 
         final String name2 = String.valueOf(currentItem.getString("ItemName"));
 
@@ -171,19 +171,16 @@ public class MenuAvailability extends AppCompatActivity {
         query.getFirstInBackground(new GetCallback<ParseObject>() {
 
             public void done(ParseObject item, ParseException e) {
-                try {
-                    if (avail2.equals("true")) {
-                        ParseObject o = query.get(name2);
-                        o.put("Avalibility", "false");
-                        o.saveInBackground();
+                if (item.getBoolean("Avalibility")) {
+                    item.put("Avalibility", false);
+                    item.saveInBackground();
 
-                        Toast.makeText(MenuAvailability.this, "Menu item toggled off.", Toast.LENGTH_LONG).show();
-                    } else if (avail2.equals("true")) {
-                        ParseObject o = query.get(name2);
-                        o.put("Avalibility", "true");
-                        o.saveInBackground();
-                    }
-                }catch (ParseException p) {
+                    Toast.makeText(MenuAvailability.this, "Menu item toggled off.", Toast.LENGTH_LONG).show();
+                } else if (!item.getBoolean("Avalibility")) {
+                    item.put("Avalibility", true);
+                    item.saveInBackground();
+
+                    Toast.makeText(MenuAvailability.this, "Menu item toggled on.", Toast.LENGTH_LONG).show();
                 }
             }
         });
