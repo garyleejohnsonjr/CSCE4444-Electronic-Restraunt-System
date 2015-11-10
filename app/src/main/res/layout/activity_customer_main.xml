@@ -86,4 +86,14 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Served"
+        android:id="@+id/tvServedCounter"
+        android:textSize="25dp"
+        android:textColor="#e63a2a"
+        android:textStyle="bold|italic"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
 </LinearLayout>
