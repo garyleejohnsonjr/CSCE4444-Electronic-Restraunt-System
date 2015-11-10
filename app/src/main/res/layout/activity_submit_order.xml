@@ -41,6 +41,13 @@
             android:textColor="#e63a2a"
             android:textStyle="bold|italic" />
 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Takeout Order"
+            android:id="@+id/cbTakeout"
+            android:checked="false" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

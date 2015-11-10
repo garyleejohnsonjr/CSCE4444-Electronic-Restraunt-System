@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -92,6 +93,10 @@ public class SubmitOrder extends AppCompatActivity {
                     ParseObject order = new ParseObject("Order");
 
                     // make a list of items ordered and requests
+                        CheckBox cbTakeout = (CheckBox)findViewById(R.id.cbTakeout);
+                        Boolean Takeout=false;
+                        if(cbTakeout.isChecked())
+                        Takeout=true;
                     LinkedList<String> itemsOrdered = new LinkedList<>();
                     LinkedList<String> requests = new LinkedList<>();
                     MainApplication application = (MainApplication)getApplicationContext();
@@ -119,6 +124,7 @@ public class SubmitOrder extends AppCompatActivity {
                         }
 
                     // build the order
+                        order.put("Takeout",Takeout);
                     order.put("ItemsOrdered", itemsOrdered);
                     order.put("Requests", requests);
                     order.put("Status", "Placed");
