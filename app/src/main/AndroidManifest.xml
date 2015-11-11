@@ -207,6 +207,10 @@
             android:name=".RewardCoupons"
             android:label="@string/title_activity_reward_coupons" >
         </activity>
+        <activity
+            android:name=".BreakoutGame"
+            android:label="@string/title_activity_breakout_game" >
+        </activity>
     </application>
 
 </manifest>

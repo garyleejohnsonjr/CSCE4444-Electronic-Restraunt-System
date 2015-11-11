@@ -104,4 +104,5 @@
     <string name="title_activity_share_general">ShareGeneral</string>
     <string name="title_activity_pay_credit">Pay Credit</string>
     <string name="title_activity_reward_coupons">RewardCoupons</string>
+    <string name="title_activity_breakout_game">BreakoutGame</string>
 </resources>

@@ -47,6 +47,13 @@ android:background="#99ffc610">
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Breakout"
+            android:id="@+id/bBreakout"
+            style="@android:style/Widget.Holo.Light.Button" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Win $10 Off Your Next Visit!"
             android:id="@+id/bRewardsGame"
             style="@android:style/Widget.Holo.Light.Button" />

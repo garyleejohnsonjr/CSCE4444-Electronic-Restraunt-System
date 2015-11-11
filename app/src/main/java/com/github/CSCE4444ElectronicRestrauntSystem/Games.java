@@ -21,6 +21,7 @@ public class Games extends AppCompatActivity {
         Button bSnake = (Button) findViewById(R.id.bSnake);
         Button bRewards = (Button) findViewById(R.id.bRewardsGame);
         Button bPong = (Button) findViewById(R.id.bPong);
+        Button bBreakout = (Button) findViewById(R.id.bBreakout);
 
         //When the Tic Tac Toe Button is clicked, this tells it to open the game
         bTicTacToe.setOnClickListener(new View.OnClickListener() {
@@ -28,6 +29,14 @@ public class Games extends AppCompatActivity {
             public void onClick(View v) {
                 Intent iTicTacToe = new Intent(Games.this, TicTacToe.class);
                 startActivity(iTicTacToe);
+            }
+        });
+
+        bBreakout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iBreakout = new Intent(Games.this, BreakoutGame.class);
+                startActivity(iBreakout);
             }
         });
 
