@@ -78,6 +78,11 @@ public class MenuMain extends AppCompatActivity {
                 query.whereEqualTo("Type", "Entree");
                 query.addDescendingOrder("Frequency");
                 break;
+            case R.id.bKidsMenu:
+                setTitle("Menu - Kids' Menu");
+                query.whereEqualTo("Type", "KidsMenu");
+                query.addDescendingOrder("Frequency");
+                break;
             case R.id.bDesserts:
                 setTitle("Menu - Desserts");
                 query.whereEqualTo("Type", "Dessert");

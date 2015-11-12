@@ -52,6 +52,15 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Kids&apos; Menu"
+                android:id="@+id/bKidsMenu"
+                android:gravity="left|center_vertical"
+                style="@android:style/Widget.Holo.Light.Button"
+                android:onClick="switchCategory"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Desserts"
                 android:id="@+id/bDesserts"
                 android:gravity="left|center_vertical"
