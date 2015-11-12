@@ -6,11 +6,11 @@
     android:onClick="addItem">
 
     <ImageView
-        android:layout_width="300px"
-        android:layout_height="250px"
+        android:layout_width="150dp"
+        android:layout_height="125dp"
         android:id="@+id/ivPicture"
         android:background="#000000"
-        android:layout_marginRight="30px"
+        android:layout_marginRight="15dp"
         android:scaleType="centerCrop" />
 
     <LinearLayout

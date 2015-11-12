@@ -75,6 +75,7 @@ public class AddItem extends AppCompatActivity {
                     ParseQuery<ParseObject> drinksQuery = ParseQuery.getQuery("MenuItem");
                     drinksQuery.whereEqualTo("Type", "Drink");
                     drinksQuery.whereEqualTo("Kids", true);
+                    drinksQuery.whereEqualTo("Avalibility", true);
 
                     // run drink query
                     drinksQuery.findInBackground(new FindCallback<ParseObject>() {
@@ -95,6 +96,7 @@ public class AddItem extends AppCompatActivity {
                     ParseQuery<ParseObject> sidesQuery = ParseQuery.getQuery("MenuItem");
                     sidesQuery.whereEqualTo("Type", "Appatizer");
                     sidesQuery.whereEqualTo("Kids", true);
+                    sidesQuery.whereEqualTo("Avalibility", true);
 
                     // run sides query
                     sidesQuery.findInBackground(new FindCallback<ParseObject>() {
